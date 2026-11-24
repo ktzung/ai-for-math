@@ -112,6 +112,7 @@ const out = template
   .replace('/*__BOOKS__*/', () => booksJson)
   .replace('/*__MD_SCRIPTS__*/', () => scripts)
   .replace('/*__VOICE_DATA__*/', () => voiceData.replace(/<\/script/gi, '<\\/script'))
+  .replace('/*__FONT_CSS__*/', () => fs.readFileSync(path.join(__dirname, 'fonts.css'), 'utf8'))
   .replace('/*__VECTOR_CSS__*/', () => fs.readFileSync(path.join(__dirname, 'vector-lesson.css'), 'utf8'))
   .replace('/*__VECTOR_JS__*/', () => fs.readFileSync(path.join(__dirname, 'vector-lesson.js'), 'utf8'))
   .replace('/*__LEARNING_CSS__*/', () => fs.readFileSync(path.join(__dirname, 'learning-tools.css'), 'utf8'))

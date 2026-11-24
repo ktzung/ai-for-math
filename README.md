@@ -18,6 +18,7 @@ Mỗi bài có công thức, ví dụ, câu hỏi tự kiểm tra và lab tươn
 - **Chia sẻ trạng thái lab** bằng URL và **xuất phiếu lab** Markdown.
 - **Ôn tập cách quãng**: quiz đúng/sai được lưu cục bộ, có lịch ôn và gợi ý bài tiếp theo.
 - **Bộ lọc** theo lộ trình/độ khó, bản đồ khái niệm, chế độ lớp học và điều hướng bàn phím.
+- **Font tiếng Việt tự lưu** trong `fonts/`; trang không phụ thuộc Google Fonts khi đọc.
 
 Tiến độ đọc, quiz và trạng thái lab được lưu trong `localStorage` của trình duyệt; không gửi lên máy chủ.
 
@@ -34,6 +35,7 @@ https://ktzung.github.io/ai-for-math/vector.html
 - `index.html` — ứng dụng đọc chính, đã bao gồm nội dung và mã tương tác.
 - `vector.html` — bài mẫu Đại số tuyến tính tương tác.
 - `audio/` — audio bài đọc đầu tiên và manifest.
+- `fonts/` — font tiếng Việt tự lưu (Be Vietnam Pro, Noto Serif; giấy phép OFL).
 - `source/` — bản gốc Markdown và mã nguồn webapp để tái lập bản build.
 - `.github/workflows/build-check.yml` — build lại từ `source/` và chạy kiểm tra trên GitHub Actions.
 - `.nojekyll` — tắt xử lý Jekyll của GitHub Pages.
