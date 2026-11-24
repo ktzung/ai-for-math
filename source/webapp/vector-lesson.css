@@ -1,0 +1,80 @@
+/* Bài mẫu: typography, SVG and controls are self-contained after build. */
+.vector-lesson{font-family:var(--sans);font-size:1rem;line-height:1.8}
+.vector-lesson h1{font-family:var(--serif);font-size:clamp(2rem,4vw,2.9rem);line-height:1.22;letter-spacing:-.035em;margin:14px 0 18px;max-width:650px}
+.vector-lesson h2{font-family:var(--serif);font-size:1.6rem;line-height:1.4;margin:0 0 18px;letter-spacing:-.02em}
+.vector-lesson h3{font-size:1.08rem;margin:20px 0 10px}
+.vector-lesson p{margin:12px 0}
+.vector-lesson strong{font-weight:650}
+.vector-lesson .eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-weight:700}
+.vector-lesson .lede{font-size:1.12rem;color:var(--ink-2);max-width:650px}
+.vector-lesson .reading-meta{font-size:.84rem;color:var(--ink-2);margin:22px 0}
+.lab-nav{display:flex;flex-wrap:wrap;gap:6px 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin:28px 0 38px}
+.lab-nav button{font:inherit;font-size:.9rem;color:var(--accent);background:none;border:0;border-bottom:1px solid transparent;cursor:pointer;padding:3px 0}
+.lab-nav button:hover{border-bottom-color:var(--accent)}
+.vector-lesson section{margin:44px 0;scroll-margin-top:145px}
+.lab-question{padding:20px 24px;background:var(--bg-2);border-left:3px solid var(--accent);margin:24px 0}
+.lab-question p{margin:4px 0}
+.lab-note{border-left:3px solid var(--warn);padding:4px 18px;margin:20px 0;color:var(--ink-2);font-size:.94rem}
+.lab-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:22px 0}
+.lab-table{border-collapse:collapse;width:100%;min-width:580px;text-align:left;font-size:.9rem;line-height:1.6}
+.lab-table th{background:var(--bg-2);font-weight:600;color:var(--accent)}
+.lab-table th,.lab-table td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+.lab-table tr:last-child td{border-bottom:0}
+.lab-table td:first-child{font-weight:600;min-width:120px}
+.lab-equation{font-family:var(--serif);text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin:18px 0;padding:22px 15px;font-size:1.25rem;overflow-x:auto}
+.lab-equation small{display:block;font:400 .9rem/1.7 var(--sans);color:var(--ink-2);margin-top:12px}
+.lab-fraction{display:inline-flex;vertical-align:middle;flex-direction:column;line-height:1.45;margin:0 5px;text-align:center}
+.lab-fraction>span:first-child{border-bottom:1px solid currentColor;padding:0 9px 3px}
+.lab-fraction>span:last-child{padding-top:3px}
+.vector-lesson code{font-family:ui-monospace,monospace;font-size:.9em;background:var(--chip);padding:2px 5px;border-radius:4px}
+.vector-lesson a{color:var(--accent);text-underline-offset:4px}
+.vector-lesson ul,.vector-lesson ol{margin:14px 0 14px 24px}
+.vector-lesson li{padding-left:4px;margin:8px 0}
+.lab-worked{display:grid;grid-template-columns:34px 1fr;gap:12px;margin:20px 0}
+.lab-worked .step{color:var(--accent);font-weight:700;border-top:1px solid var(--accent);padding-top:12px}
+.lab-worked p{margin:8px 0 20px}
+.lab-worked h3{margin:8px 0 4px}
+.lab-workbench{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:24px 0}
+.lab-workbench-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line)}
+.lab-workbench-head h3{margin:0;font-size:1rem}
+.lab-btn{font:500 .88rem/1.5 var(--sans);padding:8px 13px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.lab-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lab-btn[aria-pressed=true]{border-color:var(--accent);background:var(--accent);color:white}
+.lab-presets{display:flex;flex-wrap:wrap;gap:7px;padding:18px 22px 0}
+.lab-body{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(210px,1fr);align-items:center;gap:20px;padding:16px 22px 22px}
+.lab-plot{min-width:0}
+.lab-plot svg{display:block;width:100%;height:auto;max-height:380px;background:#faf8f3;border:1px solid var(--line);border-radius:10px}
+.lab-plot figcaption{font-size:.82rem;color:var(--ink-2);margin:9px 0 0}
+.lab-control{margin:14px 0 22px}
+.lab-control label{display:flex;justify-content:space-between;gap:6px;font-size:.9rem;font-weight:500}
+.lab-control output{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:700}
+.lab-control input{width:100%;accent-color:var(--accent);height:30px;margin-top:5px;cursor:pointer}
+.lab-control .range-ends{display:flex;justify-content:space-between;font-size:.78rem;color:var(--ink-2)}
+.lab-values{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.lab-values>div{padding:14px 10px;text-align:center;border-right:1px solid var(--line)}
+.lab-values>div:last-child{border:0}
+.lab-values dt{color:var(--ink-2);font-size:.82rem}
+.lab-values dd{font-family:var(--serif);font-weight:600;font-size:1.45rem;font-variant-numeric:tabular-nums;line-height:1.5;margin:4px 0}
+.lab-values dd.is-undefined{font-family:var(--sans);font-size:.85rem;line-height:2.5}
+.lab-observation{border-top:1px solid var(--line);padding:15px 22px;background:#edf2e9;font-size:.92rem;min-height:80px}
+.lab-observation p{margin:0}
+.lab-a{color:#1f6f5f;font-weight:700}
+.lab-b{color:#ad542f;font-weight:700}
+.lab-coordinate{font-size:.88rem;color:var(--ink-2);margin:2px 0 12px;min-height:48px;font-variant-numeric:tabular-nums}
+.lab-exercise{border-top:1px solid var(--line);padding:22px 0}
+.lab-exercise h3{margin:0 0 10px}
+.lab-exercise details{border:1px solid var(--line);border-radius:8px;margin:10px 0;padding:11px 15px}
+.lab-exercise summary{cursor:pointer;font-size:.94rem;color:var(--accent);font-weight:600}
+.lab-exercise details p{font-size:.94rem;margin-bottom:3px}
+.lab-quiz{border:1px solid var(--line);border-radius:10px;padding:20px;margin:24px 0;background:var(--panel)}
+.lab-quiz legend{padding:0 8px;font-weight:600}
+.lab-quiz label{display:block;border-radius:6px;padding:10px 8px;cursor:pointer;font-size:.95rem}
+.lab-quiz label:hover{background:var(--bg-2)}
+.lab-quiz input{margin-right:8px;accent-color:var(--accent)}
+.lab-feedback{font-weight:500;min-height:1.8em;color:var(--accent);margin:12px 0 0}
+.lab-complete{border-top:2px solid var(--accent);padding-top:24px;margin-top:38px}
+.lab-complete .lab-btn{background:var(--accent);color:white;border-color:var(--accent)}
+.empty-search{margin:18px;color:var(--ink-2);font-size:.88rem}
+:where(button,a,input,summary):focus-visible{outline:3px solid var(--warn);outline-offset:4px}
+@media(max-width:600px){.lab-body{grid-template-columns:1fr;padding:16px}.lab-workbench-head{padding:16px}.lab-presets{padding:16px 16px 0}.lab-values{grid-template-columns:repeat(2,minmax(0,1fr))}.lab-values>div:nth-child(-n+2){border-bottom:1px solid var(--line)}.lab-values>div:nth-child(2){border-right:0}.lab-values>div:nth-child(3){border-right:1px solid var(--line)}.lab-control{margin:8px 0 16px}.lab-coordinate{min-height:0}.lab-observation{padding:16px}.vector-lesson h1{font-size:2rem}.lab-nav{gap:6px 15px}.lab-question{padding:16px}.lab-equation{font-size:1.12rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sidebar{transition:none}.page-turn{animation:none}}

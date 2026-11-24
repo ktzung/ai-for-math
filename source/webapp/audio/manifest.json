@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "chapters": {
+    "Chuong_01_Tu_duy_toan_hoc_va_cach_doc_ky_hieu.md": {
+      "audio": "audio/chuong-01-tu-duy-toan-hoc-va-cach-doc-ky-hieu.mp3",
+      "title": "Chương 1 — Tư duy toán học và cách đọc ký hiệu",
+      "duration": 1313,
+      "voice": "Hoài My (vi) + Ava (en)",
+      "generated": "2026-11-23T05:09:31.731Z",
+      "sections": [
+        {
+          "id": "mo-dau",
+          "title": "Mở đầu",
+          "t": 0,
+          "duration": 7.4
+        },
+        {
+          "id": "1-mo-dau-bang-mot-tinh-huong",
+          "title": "1. Mở đầu bằng một tình huống",
+          "t": 8,
+          "duration": 81.1
+        },
+        {
+          "id": "2-truc-giac-truoc",
+          "title": "2. Trực giác trước",
+          "t": 89.7,
+          "duration": 101.4
+        },
+        {
+          "id": "3-thu-giai-bang-cach-chua-chinh-thuc",
+          "title": "3. Thử giải bằng cách chưa chính thức",
+          "t": 191.7,
+          "duration": 76.1
+        },
+        {
+          "id": "4-dat-ten-cho-y-tuong",
+          "title": "4. Đặt tên cho ý tưởng",
+          "t": 268.5,
+          "duration": 89
+        },
+        {
+          "id": "5-tu-cau-chuyen-den-ky-hieu",
+          "title": "5. Từ câu chuyện đến ký hiệu",
+          "t": 358.1,
+          "duration": 208.8
+        },
+        {
+          "id": "6-vi-du-co-loi-giai-tung-buoc",
+          "title": "6. Ví dụ có lời giải từng bước",
+          "t": 567.6,
+          "duration": 158.9
+        },
+        {
+          "id": "7-nhin-tu-goc-do-khoa-hoc-may-tinh-hoac-ai",
+          "title": "7. Nhìn từ góc độ khoa học máy tính hoặc AI",
+          "t": 727.2,
+          "duration": 72.4
+        },
+        {
+          "id": "8-nhung-cho-de-nham",
+          "title": "8. Những chỗ dễ nhầm",
+          "t": 800.3,
+          "duration": 92.3
+        },
+        {
+          "id": "9-khi-nao-y-tuong-nay-huu-ich",
+          "title": "9. Khi nào ý tưởng này hữu ích?",
+          "t": 893.2,
+          "duration": 42.8
+        },
+        {
+          "id": "doc-sau-mot-cong-thuc-la-mot-quy-trinh-co-dieu-kien",
+          "title": "Đọc sâu — một công thức là một quy trình có điều kiện",
+          "t": 936.6,
+          "duration": 189.8
+        },
+        {
+          "id": "10-bai-tap",
+          "title": "10. Bài tập",
+          "t": 1127.1,
+          "duration": 149.5
+        },
+        {
+          "id": "11-tom-tat-bang-ngon-ngu-doi-thuong",
+          "title": "11. Tóm tắt bằng ngôn ngữ đời thường",
+          "t": 1277.2,
+          "duration": 35.7
+        }
+      ]
+    }
+  }
+}

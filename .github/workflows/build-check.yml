@@ -1,0 +1,35 @@
+name: Build check
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build the reader from source
+        run: node source/webapp/build.js
+
+      - name: Run content and lab checks
+        run: |
+          node source/webapp/test-series-upgrade.js
+          node source/webapp/test-vector-lesson.js
+          node source/webapp/verify.js
+          node source/webapp/test_render.js
+
+      - name: Ensure published files match the source build
+        run: |
+          cmp source/webapp/index.html index.html
+          cmp source/webapp/vector.html vector.html

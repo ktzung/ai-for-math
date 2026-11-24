@@ -86,6 +86,42 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 }
 .navbtn:hover{border-color:var(--accent);color:var(--accent)}
 .navbtn:disabled{opacity:.4;cursor:default}
+.skip-link{position:fixed;left:12px;top:-60px;z-index:60;background:var(--accent);color:#fff;padding:9px 14px;border-radius:0 0 9px 9px;text-decoration:none;font-size:13px}
+.skip-link:focus{top:0}
+.side-filters{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:10px 16px;border-bottom:1px solid var(--line);flex-shrink:0}
+.side-filters select{min-width:0;width:100%;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:var(--panel);font-family:inherit;font-size:11.5px;color:var(--ink-2)}
+.concept-map{margin:10px 14px 4px;border:1px solid var(--line);border-radius:10px;background:rgba(255,253,249,.62);flex-shrink:0}
+.concept-map summary{padding:9px 12px;cursor:pointer;font-size:12px;font-weight:700;color:var(--accent)}
+.concept-nodes{display:grid;gap:6px;padding:0 9px 10px}
+.concept-node{display:block;width:100%;text-align:left;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);font-family:inherit;cursor:pointer}
+.concept-node:hover{border-color:var(--accent)}
+.concept-node b{display:block;font-size:11.5px;color:var(--ink)}
+.concept-node span{display:block;font-size:10.5px;line-height:1.35;color:var(--muted);margin-top:2px}
+.side-foot .side-next{margin:0 0 7px;font-size:11.5px;line-height:1.45}
+.side-foot .side-next button{border:none;background:none;padding:0;color:var(--accent);font:inherit;text-align:left;cursor:pointer;text-decoration:underline}
+.side-foot .side-review{width:100%;margin-bottom:8px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);font-family:inherit;font-size:12px;cursor:pointer}
+.side-foot .side-review:hover{border-color:var(--accent);color:var(--accent)}
+.review-dialog{width:min(94vw,620px);max-height:82vh;border:1px solid var(--line);border-radius:14px;padding:0;background:var(--panel);color:var(--ink);box-shadow:0 18px 70px rgba(33,25,17,.25)}
+.review-dialog::backdrop{background:rgba(40,32,24,.46)}
+.review-inner{padding:22px 22px 18px}
+.review-inner h2{font-family:var(--serif);font-size:22px;margin-bottom:4px}
+.review-summary{font-size:13px;color:var(--ink-2);margin-bottom:12px}
+.review-list{display:grid;gap:7px;margin:12px 0}
+.review-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--bg)}
+.review-item span{font-size:12.5px;line-height:1.4}
+.review-item b{display:block;font-size:10.5px;color:var(--warn)}
+.review-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.review-close{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:7px 12px;border-radius:8px;font-family:inherit;font-size:12px;cursor:pointer}
+.review-close.primary{border-color:var(--accent);background:var(--accent);color:#fff}
+body.classroom-mode .sidebar{display:none}
+body.classroom-mode .topbar{background:var(--panel)}
+body.classroom-mode .lesson{max-width:1040px}
+body.classroom-mode .content{font-size:19px}
+body.classroom-mode .side-toggle{display:none!important}
+@media (max-width:560px){
+  .side-filters{grid-template-columns:1fr}
+  .review-item{align-items:flex-start;flex-direction:column}
+}
 
 /* ============ Nội dung bài học ============ */
 .lesson{max-width:860px;width:100%;margin:0 auto;padding:40px 40px 90px}
@@ -258,8 +294,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .experiment-toggle label{display:flex;align-items:center;gap:9px;font-weight:500;margin:0;cursor:pointer}
 .experiment-toggle input{width:18px;height:18px;min-width:18px;accent-color:var(--accent);cursor:pointer}
 .experiment-control output{font-weight:600;color:var(--accent);min-width:44px;text-align:right;font-variant-numeric:tabular-nums}
-.experiment-results{display:flex;flex-wrap:wrap;border-top:1px solid var(--line)}
-.experiment-results>div{flex:1;min-width:120px;padding:14px;text-align:center;border-right:1px solid var(--line);font:400 .8rem/1.6 var(--sans)}
+.experiment-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));border-top:1px solid var(--line)}
+.experiment-results>div{padding:14px;text-align:center;border-right:1px solid var(--line);font:400 .8rem/1.6 var(--sans)}
 .experiment-results strong{display:block;font-family:var(--serif);font-size:1.3rem;line-height:1.5;margin-top:6px;overflow-wrap:anywhere}
 .content .experiment-observation{background:#edf2e9;font:400 .9rem/1.8 var(--sans);padding:16px 20px;margin:0}
 .learning-quiz{font-family:var(--sans);margin:26px 0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px}
@@ -296,11 +332,135 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .content p,.content li,.content td,.content th,.content strong{overflow-wrap:anywhere}
 .content pre code{overflow-wrap:normal}
 .content h1{overflow-wrap:anywhere}
-@media(max-width:600px){.experiment-body{grid-template-columns:1fr}.experiment-results>div{min-width:45%;border-bottom:1px solid var(--line)}.experiment-head{padding:16px}.learning-quiz{padding:16px}.reading-toc{padding-left:8px}.content h2,.content h3{scroll-margin-top:160px}}
+.prediction-gate{margin:0 20px 18px;padding:16px 18px;border:1px solid #d9c8a4;border-left:4px solid #9e7a31;border-radius:8px;background:#fbf7eb}
+.prediction-kicker{font:700 .72rem/1.4 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#8a6726;margin-bottom:7px}
+.prediction-question{font:500 .95rem/1.7 var(--sans);color:var(--ink);margin:0 0 12px}
+.prediction-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.prediction-option{font:400 .88rem/1.5 var(--sans);text-align:left;padding:10px 12px;border:1px solid #d9d0c2;border-radius:7px;background:#fff;color:var(--ink);cursor:pointer}
+.prediction-option:hover:not(:disabled){border-color:#9e7a31;background:#fffdf7}
+.prediction-option b{color:#8a6726;margin-right:4px}
+.prediction-option:disabled{cursor:default;opacity:.72}
+.prediction-option.is-correct{border-color:#1f6f5f;background:#edf2e9;opacity:1}
+.prediction-option.is-wrong{border-color:#ad542f;background:#f7e9e3;opacity:1}
+.prediction-feedback{display:none;margin:12px 0 0;font:400 .88rem/1.7 var(--sans)}
+.prediction-feedback.is-correct,.prediction-feedback.is-wrong{display:block}
+.prediction-feedback.is-correct{color:#1f6f5f}
+.prediction-feedback.is-wrong{color:#ad542f}
+.experiment-stage[hidden]{display:none}
+.experiment-visual{min-width:0}
+.experiment-visual svg{display:block;overflow:visible}
+.experiment-visual [data-handle]{touch-action:none;user-select:none}
+.experiment-visual:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+.lab-actions{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 12px}
+.lab-actions .lab-btn{flex:1;min-width:110px}
+.lab-actions .lab-btn:disabled{opacity:.45;cursor:not-allowed}
+.rate-presets{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font:400 .82rem/1.5 var(--sans);color:var(--ink-2);margin:0 0 8px}
+.rate-presets button{font:500 .8rem/1.4 var(--sans);padding:4px 8px;border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--ink-2);cursor:pointer}
+.rate-presets button:hover,.rate-presets button.is-active{border-color:var(--accent);color:var(--accent);background:#edf2e9}
+.conv-visual{display:grid;gap:12px}
+.conv-panels{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.conv-panel{min-width:0}
+.conv-panel svg{width:100%;height:auto;background:#faf8f3;border:1px solid var(--line);border-radius:8px}
+.conv-volume{display:grid;grid-template-columns:minmax(0,1fr) minmax(130px,.55fr);gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#faf8f3}
+.conv-volume>svg{width:100%;height:auto;background:linear-gradient(180deg,#f6f1e8,#faf8f3);border:0}
+.conv-channels{display:grid;gap:6px}
+.conv-channel{display:flex;align-items:center;justify-content:space-between;gap:6px;font:500 .78rem/1.4 var(--sans);padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink-2);cursor:pointer}
+.conv-channel small{font-weight:400;color:#8d8274}
+.conv-channel:hover,.conv-channel.is-active{border-color:var(--accent);color:var(--accent);background:#edf2e9}
+.conv-channel.is-active{border-width:2px;padding:5px 7px}
+.lab-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:0 20px 10px}
+.lab-tool{font:500 .78rem/1.4 var(--sans);padding:5px 9px;border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--ink-2);cursor:pointer}
+.lab-tool:hover{border-color:var(--accent);color:var(--accent);background:#edf2e9}
+.lab-tool-status{font:400 .78rem/1.5 var(--sans);color:var(--accent);min-width:0;overflow-wrap:anywhere}
+.lab-challenge{margin:0 20px 16px;padding:12px 14px;border:1px solid #bfd2c4;border-radius:8px;background:#f0f6ee;font-family:var(--sans)}
+.lab-challenge-copy p{font-size:.9rem;line-height:1.7;margin:2px 0 10px;color:var(--ink)}
+.lab-challenge .lab-btn{font-size:.82rem}
+.lab-challenge-feedback{font-size:.84rem;line-height:1.6;margin:8px 0 0;color:var(--warn)}
+.lab-challenge-feedback[data-state="correct"]{color:var(--accent)}
+.snapshot-view{margin:0 20px 18px;padding:12px 14px;border:1px dashed #c9b48a;border-radius:8px;background:#fcf9ef;font-family:var(--sans);font-size:.84rem}
+.snapshot-view[hidden]{display:none}
+.snapshot-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.snapshot-clear{font:400 .76rem/1.4 var(--sans);border:0;background:none;color:var(--warn);cursor:pointer;text-decoration:underline}
+.snapshot-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.snapshot-label{display:block;font-weight:700;color:var(--accent);margin-bottom:5px}
+.snapshot-grid p{margin:3px 0;line-height:1.5}
+.error-museum{margin:0 20px 20px;border:1px solid #e0c9bd;border-radius:8px;padding:12px 14px;background:#fdf6f2;font-family:var(--sans);font-size:.86rem}
+.error-museum summary{font-weight:650;color:#9d4f31;cursor:pointer}
+.error-museum-intro{font-size:.82rem;color:var(--ink-2);margin:10px 0}
+.error-list{display:flex;flex-wrap:wrap;gap:6px}
+.error-list button{font:500 .78rem/1.4 var(--sans);padding:5px 9px;border:1px solid #e0c9bd;border-radius:18px;background:#fff;color:#8c4d34;cursor:pointer}
+.error-list button:hover{border-color:var(--warn);background:#fbeee7}
+.error-note{margin:12px 0 0;line-height:1.7;color:var(--warn)}
+.error-note:empty{display:none}
+.is-error-state .experiment-head h3{color:#8c4d34}
+.chart-wrap{display:grid;gap:8px}
+.lab-data{font:400 .8rem/1.6 var(--sans);border-top:1px dashed var(--line);padding-top:7px}
+.lab-data summary{color:var(--accent);cursor:pointer;font-weight:600}
+.lab-data table{border-collapse:collapse;width:100%;margin-top:7px}
+.lab-data th,.lab-data td{border:1px solid var(--line);padding:5px 7px;text-align:left}
+.lab-data th{background:var(--bg-2);font-weight:600}
+body.classroom-mode .sidebar{display:none}
+body.classroom-mode .side-toggle{display:none}
+body.classroom-mode .topbar{padding-left:26px}
+body.classroom-mode .lesson{max-width:1020px;padding-top:34px}
+body.classroom-mode .content{font-size:19.5px;line-height:1.75}
+body.classroom-mode .content h1{font-size:34px}
+body.classroom-mode .content h2{font-size:25px}
+body.classroom-mode .lab-toolbar{position:sticky;bottom:0;z-index:2;background:rgba(255,253,249,.96);padding-top:8px;padding-bottom:8px;border-top:1px solid var(--line)}
+@media(max-width:600px){.experiment-body{grid-template-columns:1fr}.experiment-results>div{border-bottom:1px solid var(--line)}.experiment-head{padding:16px}.learning-quiz{padding:16px}.reading-toc{padding-left:8px}.content h2,.content h3{scroll-margin-top:160px}.prediction-gate{margin:0 16px 16px;padding:13px}.prediction-options{grid-template-columns:1fr}.conv-panels{grid-template-columns:1fr 1fr;gap:6px}.conv-volume{grid-template-columns:1fr}.conv-channels{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}.lab-toolbar{padding:0 16px 8px}.lab-challenge,.snapshot-view,.error-museum{margin-left:16px;margin-right:16px}.snapshot-grid{grid-template-columns:1fr}}
+@media print{.sidebar,.topbar,.side-toggle,.lab-toolbar,.prediction-gate,.learning-quiz,.reading-tools,.reading-completion,.voice-player{display:none!important}.lesson{max-width:none;padding:0}.content{font-size:11pt}.experiment-stage[hidden]{display:block!important}.learning-experiment{break-inside:avoid;border:1px solid #bbb}}
+
+/* Trình nghe bài đọc — dùng chung bảng màu với trang */
+.voice-player{
+  margin:22px 0 6px;padding:16px 18px;border:1px solid var(--line);
+  border-radius:14px;background:linear-gradient(180deg,var(--panel),var(--bg-2));
+  box-shadow:0 1px 0 rgba(51,45,38,.04);
+}
+.voice-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.voice-kicker{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.voice-head h2{font-family:var(--serif);font-size:18px;line-height:1.3;color:var(--ink);margin-top:2px}
+.voice-voice{font-size:12px;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
+.voice-dl{font-size:12.5px;color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;white-space:nowrap;padding-top:4px}
+.voice-dl:hover{border-bottom-color:var(--accent)}
+.voice-row{display:flex;align-items:center;gap:12px;margin-top:12px}
+.voice-toggle{
+  width:44px;height:44px;flex:none;border-radius:50%;border:none;cursor:pointer;
+  background:var(--accent);color:#fff;font-size:15px;line-height:1;
+  display:grid;place-items:center;transition:transform .15s ease,background .15s ease;
+}
+.voice-toggle:hover{background:#195c4f}
+.voice-toggle:active{transform:scale(.94)}
+.voice-toggle:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px}
+.voice-track{flex:1;min-width:0}
+.voice-range{
+  -webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:3px;
+  background:linear-gradient(to right,var(--accent) 0,var(--accent) var(--fill,0%),var(--line) var(--fill,0%),var(--line) 100%);
+  cursor:pointer;
+}
+.voice-range::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--accent)}
+.voice-range::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--panel)}
+.voice-range:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px}
+.voice-meta{display:flex;justify-content:space-between;gap:10px;margin-top:5px;font-size:11.5px;color:var(--muted)}
+.voice-sec{flex:1;min-width:0;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-2)}
+.voice-rate{
+  flex:none;border:1px solid var(--line);border-radius:9px;background:var(--panel);
+  color:var(--ink-2);font-family:inherit;font-size:12.5px;padding:7px 8px;cursor:pointer;
+}
+.voice-rate:focus-visible{outline:2px solid var(--accent-2);outline-offset:1px}
+@media (max-width:560px){
+  .voice-player{padding:14px;overflow:hidden}
+  .voice-dl{padding-top:0}
+  .voice-row{flex-wrap:wrap}
+  .voice-track{order:3;flex-basis:100%}
+  .voice-meta{font-size:11px}
+  .voice-sec{text-align:right}
+}
+@media print{.voice-player{display:none}}
 
 </style>
 </head>
 <body>
+<a class="skip-link" href="#lesson">Bỏ qua mục lục, đến bài đọc</a>
 <button class="side-toggle" id="sideToggle" aria-label="Ẩn/hiện mục lục" aria-expanded="false" aria-controls="sidebar" title="Ẩn/hiện mục lục">☰</button>
 <div class="sb-overlay" id="sbOverlay"></div>
 <div class="app">
@@ -313,10 +473,29 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
     <div class="side-search">
       <input id="search" type="search" aria-label="Tìm trong tài liệu" placeholder="Tìm chương / từ khoá…">
     </div>
+    <div class="side-filters">
+      <select id="filterTrack" aria-label="Lọc theo lộ trình">
+        <option value="">Mọi lộ trình</option>
+        <option value="0">Sách Toán</option>
+        <option value="1">FL / CL · CV</option>
+      </select>
+      <select id="filterDifficulty" aria-label="Lọc theo độ khó">
+        <option value="">Mọi độ khó</option>
+        <option value="foundation">Nền tảng</option>
+        <option value="intermediate">Trung cấp</option>
+        <option value="advanced">Nâng cao</option>
+      </select>
+    </div>
+    <details class="concept-map" id="conceptMap">
+      <summary>Bản đồ khái niệm</summary>
+      <div class="concept-nodes" id="conceptNodes"></div>
+    </details>
     <button class="lab-btn reading-resume" id="readingResume" hidden>Đọc tiếp bài gần nhất</button>
     <nav class="side-nav" id="sideNav"></nav>
     <div class="side-foot">
-      <b id="statChapters">0</b> chương · <span id="readingProgress">0</span> đã đọc.
+      <b id="statChapters">0</b> chương · <span id="readingProgress">0</span> đã đọc · <span id="masteryProgress">0</span> đã nắm.
+      <div class="side-next" id="nextRecommendation"></div>
+      <button type="button" class="side-review" id="readingReview">Ôn tập hôm nay</button>
     </div>
   </aside>
 
@@ -325,6 +504,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
     <header class="topbar">
       <div class="crumb"><b id="crumbBook">Kho tài liệu</b> <span id="crumbChap"></span></div>
       <div class="controls">
+        <button class="navbtn" id="btnReview" title="Ôn tập theo lịch và gợi ý bài tiếp theo">Ôn tập</button>
+        <button class="navbtn" id="btnClassroom" aria-pressed="false" title="Ẩn mục lục, tăng cỡ chữ cho lớp học">Lớp học</button>
         <button class="navbtn" id="btnFlip" title="Lật trang flipbook">📖 Lật trang</button>
         <button class="navbtn" id="btnPrev">Bài trước</button>
         <button class="navbtn" id="btnNext">Bài sau</button>
@@ -334,9 +515,113 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
   </div>
 </div>
 
+<dialog class="review-dialog" id="reviewDialog" aria-labelledby="reviewTitle">
+  <div class="review-inner">
+    <h2 id="reviewTitle">Ôn tập &amp; gợi ý</h2>
+    <p class="review-summary" id="reviewSummary"></p>
+    <div class="review-list" id="reviewList"></div>
+    <div class="review-actions">
+      <button type="button" class="review-close" id="reviewClose">Đóng</button>
+      <button type="button" class="review-close primary" id="reviewGo">Mở bài gợi ý</button>
+    </div>
+  </div>
+</dialog>
+
 <!-- ====== Dữ liệu (được build.js điền) ====== -->
 <script id="flatData" type="application/json">[{"bi":0,"ci":0,"file":"00_LoTrinh_MucLuc.md","num":0,"title":"Giới thiệu & lộ trình"},{"bi":0,"ci":1,"file":"Chuong_01_Tu_duy_toan_hoc_va_cach_doc_ky_hieu.md","num":1,"title":"Chương 1 — Tư duy toán học và cách đọc ký hiệu"},{"bi":0,"ci":2,"file":"Chuong_02_So_ti_le_ham_va_mo_hinh_hoa.md","num":2,"title":"Chương 2 — Số, tỉ lệ, hàm và mô hình hóa"},{"bi":0,"ci":3,"file":"Chuong_03_Dai_so_tuyen_tinh_vector_ma_tran.md","num":3,"title":"Chương 3 — Đại số tuyến tính: vector, ma trận, biến đổi và trị riêng"},{"bi":0,"ci":4,"file":"Chuong_04_Giai_tich_dao_ham_gradient_tich_phan.md","num":4,"title":"Chương 4 — Giải tích: hàm, độ dốc, đạo hàm, tích phân và gradient"},{"bi":0,"ci":5,"file":"Chuong_05_Xac_suat_va_thong_ke.md","num":5,"title":"Chương 5 — Xác suất và thống kê (nhập môn)"},{"bi":0,"ci":6,"file":"Chuong_06_Toan_roi_rac_va_logic.md","num":6,"title":"Chương 6 — Toán rời rạc và logic"},{"bi":0,"ci":7,"file":"Chuong_07_Do_thi_va_mang.md","num":7,"title":"Chương 7 — Đồ thị và mạng"},{"bi":0,"ci":8,"file":"Chuong_08_Toi_uu_hoa_gradient_descent.md","num":8,"title":"Chương 8 — Tối ưu hóa: hàm mục tiêu, ràng buộc và gradient descent"},{"bi":0,"ci":9,"file":"Chuong_09_Cac_y_tuong_gap_nhau_trong_ML_DL.md","num":9,"title":"Chương 9 — Các ý tưởng toán học gặp nhau trong học máy và học sâu"},{"bi":1,"ci":0,"file":"00_LoTrinh_MucLuc.md","num":0,"title":"Giới thiệu & lộ trình"},{"bi":1,"ci":1,"file":"Chuong_01_Kiem_tra_dau_vao_va_dinh_vi.md","num":1,"title":"Chương 1.1 — Kiểm tra đầu vào & định vị (Giai đoạn 1)"},{"bi":1,"ci":2,"file":"Chuong_02_Doc_du_lieu_va_to_chuc_thi_nghiem.md","num":2,"title":"Chương 1.2 — Đọc dữ liệu & tổ chức thí nghiệm (Giai đoạn 1)"},{"bi":1,"ci":3,"file":"Chuong_03_Numpy_cho_ML.md","num":3,"title":"Chương 1.3 — NumPy cho ML (Giai đoạn 1)"},{"bi":1,"ci":4,"file":"Chuong_04_PyTorch_co_ban.md","num":4,"title":"Chương 1.4 — PyTorch cơ bản (Giai đoạn 1)"},{"bi":1,"ci":5,"file":"Chuong_05_Git_venv_to_chuc_thi_nghiem.md","num":5,"title":"Chương 1.5 — Git, môi trường ảo & tổ chức thí nghiệm (Giai đoạn 1)"},{"bi":1,"ci":6,"file":"Chuong_06_G2_Dai_cuong_cac_nhanh_ML.md","num":6,"title":"Chương 2.1 — Ba họ bài toán học máy: giám sát, không giám sát, tăng cường (Giai đoạn 2)"},{"bi":1,"ci":7,"file":"Chuong_07_G2_Du_lieu_dac_trung_nhan_loss.md","num":7,"title":"Chương 2.2 — Dữ liệu, đặc trưng, nhãn, dự đoán và hàm mất mát (Giai đoạn 2)"},{"bi":1,"ci":8,"file":"Chuong_08_G2_Train_validation_test.md","num":8,"title":"Chương 2.3 — Tập train, validation và test (Giai đoạn 2)"},{"bi":1,"ci":9,"file":"Chuong_09_G2_Hoi_quy_tuyen_tinh_logistic.md","num":9,"title":"Chương 2.4 — Hồi quy tuyến tính & hồi quy logistic (Giai đoạn 2)"},{"bi":1,"ci":10,"file":"Chuong_10_G2_Overfit_underfit_regularization_bias_variance.md","num":10,"title":"Chương 2.5 — Overfitting, underfitting, regularization và đánh đổi bias–variance (Giai đoạn 2)"},{"bi":1,"ci":11,"file":"Chuong_11_G2_Gradient_descent_co_ban.md","num":11,"title":"Chương 2.6 — Gradient descent ở mức trực quan và toán học cơ bản (Giai đoạn 2)"},{"bi":1,"ci":12,"file":"Chuong_12_G2_Chi_so_danh_gia.md","num":12,"title":"Chương 2.7 — Chỉ số đánh giá (Giai đoạn 2)"},{"bi":1,"ci":13,"file":"Chuong_13_G2_Ro_ri_du_lieu_sai_lam_thiet_ke_thi_nghiem.md","num":13,"title":"Chương 2.8 — Rò rỉ dữ liệu và các sai lầm trong thiết kế thí nghiệm (Giai đoạn 2)"},{"bi":1,"ci":14,"file":"Chuong_14_G3_Neuron_tang_activation_forward_backward.md","num":14,"title":"Chương 3.1–3.3 — Neuron, các tầng, hàm kích hoạt & lan truyền xuôi–ngược (Giai đoạn 3)"},{"bi":1,"ci":15,"file":"Chuong_15_G3_Minibatch_optimizer_learning_rate.md","num":15,"title":"Chương 3.4–3.5 — Hàm mất mát, mini-batch, optimizer và learning rate (Giai đoạn 3)"},{"bi":1,"ci":16,"file":"Chuong_16_G3_Khoi_tao_chuan_hoa_regularization.md","num":16,"title":"Chương 3.6 — Khởi tạo trọng số, chuẩn hóa và regularization (Giai đoạn 3)"},{"bi":1,"ci":17,"file":"Chuong_17_G3_Doc_duong_cong_huan_luyen_chan_doan.md","num":17,"title":"Chương 3.7 — Đọc đường cong huấn luyện & chẩn đoán các trường hợp model không học (Giai đoạn 3)"},{"bi":1,"ci":18,"file":"Chuong_18_G4_Anh_so_pixel_convolution_pooling.md","num":18,"title":"Chương 4.1–4.3 — Ảnh số, phân loại ảnh, convolution/padding/stride/pooling (Giai đoạn 4)"},{"bi":1,"ci":19,"file":"Chuong_19_G4_CNN_kien_truc_augmentation_transfer.md","num":19,"title":"Chương 4.4–4.5 — Kiến trúc CNN, augmentation và transfer learning (Giai đoạn 4)"},{"bi":1,"ci":20,"file":"Chuong_20_G4_Phan_loai_nhieu_lop_mat_can_bang_lop.md","num":20,"title":"Chương 4.6 — Phân loại nhiều lớp và mất cân bằng lớp (Giai đoạn 4)"},{"bi":1,"ci":21,"file":"Chuong_21_G4_Detection_Segmentation_Phan_tich_loi.md","num":21,"title":"Chương 4.7–4.8 — Detection/Segmentation và phân tích lỗi của mô hình thị giác (Giai đoạn 4)"},{"bi":1,"ci":22,"file":"Chuong_22_G5_Embedding_Attention_Transformer_ViT.md","num":22,"title":"Chương 5.1–5.4 — Embedding, attention/self-attention, Transformer và Vision Transformer (Giai đoạn 5)"},{"bi":1,"ci":23,"file":"Chuong_23_G5_Pretraining_finetune_linear_probing.md","num":23,"title":"Chương 5.5–5.6 — Pretraining, fine-tuning, inference; frozen backbone, linear probing & tinh chỉnh một phần (Giai đoạn 5)"},{"bi":1,"ci":24,"file":"Chuong_24_G5_Mo_hinh_nen_tang_multimodal_gioi_han.md","num":24,"title":"Chương 5.7–5.9 — Mô hình nền tảng là gì (và không phải gì), mô hình đa phương thức & giới hạn (Giai đoạn 5)"},{"bi":1,"ci":25,"file":"Chuong_25_G6_Client_server_FL_vs_phan_tan_rounds.md","num":25,"title":"Chương 6.1–6.3 — Bài toán client–server, FL khác huấn luyện phân tán, và vòng truyền thông (Giai đoạn 6)"},{"bi":1,"ci":26,"file":"Chuong_26_G6_FedAvg.md","num":26,"title":"Chương 6.4 — Federated Averaging (FedAvg): phương pháp khởi đầu của học liên kết (Giai đoạn 6)"},{"bi":1,"ci":27,"file":"Chuong_27_G6_NonIID_can_bang_client_sampling_local_epochs.md","num":27,"title":"Chương 6.5–6.6 — Dữ liệu non-IID, mất cân bằng client, client sampling, local epochs & số vòng truyền thông (Giai đoạn 6)"},{"bi":1,"ci":28,"file":"Chuong_28_G6_Cost_model_danh_gia_so_voi_tap_trung.md","num":28,"title":"Chương 6.7–6.8 — Chi phí truyền thông/tài nguyên và đánh giá FL so với huấn luyện tập trung (Giai đoạn 6)"},{"bi":1,"ci":29,"file":"Chuong_29_G6_Privacy_Secure_Aggregation_DP_gioi_han.md","num":29,"title":"Chương 6.9 – 6.10 — Quyền riêng tư: Secure Aggregation & Differential Privacy (nhập môn), và các giới hạn bảo mật / độ tin cậy (Giai đoạn 6)"},{"bi":1,"ci":30,"file":"Chuong_30_G7_Du_lieu_lien_tuc_catastrophic_forgetting.md","num":30,"title":"Chương 7.1–7.2 — Dữ liệu đến theo luồng / chuỗi nhiệm vụ, và catastrophic forgetting (Giai đoạn 7)"},{"bi":1,"ci":31,"file":"Chuong_31_G7_Task_class_domain_incremental_3_ho_phuong_phap.md","num":31,"title":"Chương 7.3–7.4 — Task / Class / Domain-incremental, và ba họ phương pháp CL: rehearsal, regularization, kiến trúc (Giai đoạn 7)"},{"bi":1,"ci":32,"file":"Chuong_32_G7_Danh_gia_CL_hoc_moi_giu_cu.md","num":32,"title":"Chương 7.5–7.6 — Học lớp mới / thích nghi miền, và đánh giá CL: khả năng học mới vs giữ kiến thức cũ (Giai đoạn 7)"},{"bi":1,"ci":33,"file":"Chuong_33_G7_Gioi_han_bo_nho_privacy_du_lieu_luu_lai.md","num":33,"title":"Chương 7.7 — Giới hạn của CL: bộ nhớ, quyền riêng tư và dữ liệu được lưu lại (Giai đoạn 7)"},{"bi":1,"ci":34,"file":"Chuong_34_G8_Ket_hop_FL_CL_CV_1.md","num":34,"title":"Chương 8.1–8.4 — Kết hợp FL + CL + CV: nhiều client khác nhau, dữ liệu thay đổi theo thời gian, học lớp mới không quên cũ, và dùng pretrained trong liên kết (Giai đoạn 8)"},{"bi":1,"ci":35,"file":"Chuong_35_G8_Huong_ket_hop_FL_CL_drift_tradeoff.md","num":35,"title":"Chương 8.5–8.7 — Các hướng kết hợp FL + CL; client drift, non-IID, forgetting, cập nhật không đồng bộ; và đánh đổi (Giai đoạn 8)"},{"bi":1,"ci":36,"file":"Chuong_36_G8_Ablation_gia_dinh_dieu_kien_that_bai.md","num":36,"title":"Chương 8.8–8.9 — Xác định đóng góp đến từ đâu (ablation), và giả định / điều kiện thất bại của mỗi phương pháp (Giai đoạn 8)"},{"bi":1,"ci":37,"file":"Chuong_37_G9_Doc_nghien_cuu_baseline_ablation_chia_du_lieu.md","num":37,"title":"Chương 9.1–9.3 — Đọc nghiên cứu: cấu trúc, baseline vs ablation, và kiểm tra cách chia dữ liệu/client/nhiệm vụ (Giai đoạn 9)"},{"bi":1,"ci":38,"file":"Chuong_38_G9_Chi_so_cost_phat_hien_phong_dai_tai_hien.md","num":38,"title":"Chương 9.4–9.6 — Đánh giá chỉ số / chi phí / giao tiếp, phát hiện kết luận vượt bằng chứng, và tái hiện một thí nghiệm nhỏ (Giai đoạn 9)"},{"bi":1,"ci":39,"file":"Chuong_39_G9_Bao_cao_tai_lap_du_an_cuoi.md","num":39,"title":"Chương 9.7–9.8 — Viết báo cáo tái lập được & dự án cuối lộ trình (Giai đoạn 9)"}]</script>
 <script id="booksData" type="application/json">[{"fullTitle":"Từ Trực Giác Đến Thuật Toán — Sách toán nền tảng","shortLabel":"Sách Toán","chapters":[{"file":"00_LoTrinh_MucLuc.md","num":0,"title":"Giới thiệu & lộ trình"},{"file":"Chuong_01_Tu_duy_toan_hoc_va_cach_doc_ky_hieu.md","num":1,"title":"Chương 1 — Tư duy toán học và cách đọc ký hiệu"},{"file":"Chuong_02_So_ti_le_ham_va_mo_hinh_hoa.md","num":2,"title":"Chương 2 — Số, tỉ lệ, hàm và mô hình hóa"},{"file":"Chuong_03_Dai_so_tuyen_tinh_vector_ma_tran.md","num":3,"title":"Chương 3 — Đại số tuyến tính: vector, ma trận, biến đổi và trị riêng"},{"file":"Chuong_04_Giai_tich_dao_ham_gradient_tich_phan.md","num":4,"title":"Chương 4 — Giải tích: hàm, độ dốc, đạo hàm, tích phân và gradient"},{"file":"Chuong_05_Xac_suat_va_thong_ke.md","num":5,"title":"Chương 5 — Xác suất và thống kê (nhập môn)"},{"file":"Chuong_06_Toan_roi_rac_va_logic.md","num":6,"title":"Chương 6 — Toán rời rạc và logic"},{"file":"Chuong_07_Do_thi_va_mang.md","num":7,"title":"Chương 7 — Đồ thị và mạng"},{"file":"Chuong_08_Toi_uu_hoa_gradient_descent.md","num":8,"title":"Chương 8 — Tối ưu hóa: hàm mục tiêu, ràng buộc và gradient descent"},{"file":"Chuong_09_Cac_y_tuong_gap_nhau_trong_ML_DL.md","num":9,"title":"Chương 9 — Các ý tưởng toán học gặp nhau trong học máy và học sâu"}]},{"fullTitle":"Học Liên Kết & Học Liên Tục cho Thị Giác Máy Tính — Lộ trình 9 giai đoạn","shortLabel":"FL / CL · CV","chapters":[{"file":"00_LoTrinh_MucLuc.md","num":0,"title":"Giới thiệu & lộ trình"},{"file":"Chuong_01_Kiem_tra_dau_vao_va_dinh_vi.md","num":1,"title":"Chương 1.1 — Kiểm tra đầu vào & định vị (Giai đoạn 1)"},{"file":"Chuong_02_Doc_du_lieu_va_to_chuc_thi_nghiem.md","num":2,"title":"Chương 1.2 — Đọc dữ liệu & tổ chức thí nghiệm (Giai đoạn 1)"},{"file":"Chuong_03_Numpy_cho_ML.md","num":3,"title":"Chương 1.3 — NumPy cho ML (Giai đoạn 1)"},{"file":"Chuong_04_PyTorch_co_ban.md","num":4,"title":"Chương 1.4 — PyTorch cơ bản (Giai đoạn 1)"},{"file":"Chuong_05_Git_venv_to_chuc_thi_nghiem.md","num":5,"title":"Chương 1.5 — Git, môi trường ảo & tổ chức thí nghiệm (Giai đoạn 1)"},{"file":"Chuong_06_G2_Dai_cuong_cac_nhanh_ML.md","num":6,"title":"Chương 2.1 — Ba họ bài toán học máy: giám sát, không giám sát, tăng cường (Giai đoạn 2)"},{"file":"Chuong_07_G2_Du_lieu_dac_trung_nhan_loss.md","num":7,"title":"Chương 2.2 — Dữ liệu, đặc trưng, nhãn, dự đoán và hàm mất mát (Giai đoạn 2)"},{"file":"Chuong_08_G2_Train_validation_test.md","num":8,"title":"Chương 2.3 — Tập train, validation và test (Giai đoạn 2)"},{"file":"Chuong_09_G2_Hoi_quy_tuyen_tinh_logistic.md","num":9,"title":"Chương 2.4 — Hồi quy tuyến tính & hồi quy logistic (Giai đoạn 2)"},{"file":"Chuong_10_G2_Overfit_underfit_regularization_bias_variance.md","num":10,"title":"Chương 2.5 — Overfitting, underfitting, regularization và đánh đổi bias–variance (Giai đoạn 2)"},{"file":"Chuong_11_G2_Gradient_descent_co_ban.md","num":11,"title":"Chương 2.6 — Gradient descent ở mức trực quan và toán học cơ bản (Giai đoạn 2)"},{"file":"Chuong_12_G2_Chi_so_danh_gia.md","num":12,"title":"Chương 2.7 — Chỉ số đánh giá (Giai đoạn 2)"},{"file":"Chuong_13_G2_Ro_ri_du_lieu_sai_lam_thiet_ke_thi_nghiem.md","num":13,"title":"Chương 2.8 — Rò rỉ dữ liệu và các sai lầm trong thiết kế thí nghiệm (Giai đoạn 2)"},{"file":"Chuong_14_G3_Neuron_tang_activation_forward_backward.md","num":14,"title":"Chương 3.1–3.3 — Neuron, các tầng, hàm kích hoạt & lan truyền xuôi–ngược (Giai đoạn 3)"},{"file":"Chuong_15_G3_Minibatch_optimizer_learning_rate.md","num":15,"title":"Chương 3.4–3.5 — Hàm mất mát, mini-batch, optimizer và learning rate (Giai đoạn 3)"},{"file":"Chuong_16_G3_Khoi_tao_chuan_hoa_regularization.md","num":16,"title":"Chương 3.6 — Khởi tạo trọng số, chuẩn hóa và regularization (Giai đoạn 3)"},{"file":"Chuong_17_G3_Doc_duong_cong_huan_luyen_chan_doan.md","num":17,"title":"Chương 3.7 — Đọc đường cong huấn luyện & chẩn đoán các trường hợp model không học (Giai đoạn 3)"},{"file":"Chuong_18_G4_Anh_so_pixel_convolution_pooling.md","num":18,"title":"Chương 4.1–4.3 — Ảnh số, phân loại ảnh, convolution/padding/stride/pooling (Giai đoạn 4)"},{"file":"Chuong_19_G4_CNN_kien_truc_augmentation_transfer.md","num":19,"title":"Chương 4.4–4.5 — Kiến trúc CNN, augmentation và transfer learning (Giai đoạn 4)"},{"file":"Chuong_20_G4_Phan_loai_nhieu_lop_mat_can_bang_lop.md","num":20,"title":"Chương 4.6 — Phân loại nhiều lớp và mất cân bằng lớp (Giai đoạn 4)"},{"file":"Chuong_21_G4_Detection_Segmentation_Phan_tich_loi.md","num":21,"title":"Chương 4.7–4.8 — Detection/Segmentation và phân tích lỗi của mô hình thị giác (Giai đoạn 4)"},{"file":"Chuong_22_G5_Embedding_Attention_Transformer_ViT.md","num":22,"title":"Chương 5.1–5.4 — Embedding, attention/self-attention, Transformer và Vision Transformer (Giai đoạn 5)"},{"file":"Chuong_23_G5_Pretraining_finetune_linear_probing.md","num":23,"title":"Chương 5.5–5.6 — Pretraining, fine-tuning, inference; frozen backbone, linear probing & tinh chỉnh một phần (Giai đoạn 5)"},{"file":"Chuong_24_G5_Mo_hinh_nen_tang_multimodal_gioi_han.md","num":24,"title":"Chương 5.7–5.9 — Mô hình nền tảng là gì (và không phải gì), mô hình đa phương thức & giới hạn (Giai đoạn 5)"},{"file":"Chuong_25_G6_Client_server_FL_vs_phan_tan_rounds.md","num":25,"title":"Chương 6.1–6.3 — Bài toán client–server, FL khác huấn luyện phân tán, và vòng truyền thông (Giai đoạn 6)"},{"file":"Chuong_26_G6_FedAvg.md","num":26,"title":"Chương 6.4 — Federated Averaging (FedAvg): phương pháp khởi đầu của học liên kết (Giai đoạn 6)"},{"file":"Chuong_27_G6_NonIID_can_bang_client_sampling_local_epochs.md","num":27,"title":"Chương 6.5–6.6 — Dữ liệu non-IID, mất cân bằng client, client sampling, local epochs & số vòng truyền thông (Giai đoạn 6)"},{"file":"Chuong_28_G6_Cost_model_danh_gia_so_voi_tap_trung.md","num":28,"title":"Chương 6.7–6.8 — Chi phí truyền thông/tài nguyên và đánh giá FL so với huấn luyện tập trung (Giai đoạn 6)"},{"file":"Chuong_29_G6_Privacy_Secure_Aggregation_DP_gioi_han.md","num":29,"title":"Chương 6.9 – 6.10 — Quyền riêng tư: Secure Aggregation & Differential Privacy (nhập môn), và các giới hạn bảo mật / độ tin cậy (Giai đoạn 6)"},{"file":"Chuong_30_G7_Du_lieu_lien_tuc_catastrophic_forgetting.md","num":30,"title":"Chương 7.1–7.2 — Dữ liệu đến theo luồng / chuỗi nhiệm vụ, và catastrophic forgetting (Giai đoạn 7)"},{"file":"Chuong_31_G7_Task_class_domain_incremental_3_ho_phuong_phap.md","num":31,"title":"Chương 7.3–7.4 — Task / Class / Domain-incremental, và ba họ phương pháp CL: rehearsal, regularization, kiến trúc (Giai đoạn 7)"},{"file":"Chuong_32_G7_Danh_gia_CL_hoc_moi_giu_cu.md","num":32,"title":"Chương 7.5–7.6 — Học lớp mới / thích nghi miền, và đánh giá CL: khả năng học mới vs giữ kiến thức cũ (Giai đoạn 7)"},{"file":"Chuong_33_G7_Gioi_han_bo_nho_privacy_du_lieu_luu_lai.md","num":33,"title":"Chương 7.7 — Giới hạn của CL: bộ nhớ, quyền riêng tư và dữ liệu được lưu lại (Giai đoạn 7)"},{"file":"Chuong_34_G8_Ket_hop_FL_CL_CV_1.md","num":34,"title":"Chương 8.1–8.4 — Kết hợp FL + CL + CV: nhiều client khác nhau, dữ liệu thay đổi theo thời gian, học lớp mới không quên cũ, và dùng pretrained trong liên kết (Giai đoạn 8)"},{"file":"Chuong_35_G8_Huong_ket_hop_FL_CL_drift_tradeoff.md","num":35,"title":"Chương 8.5–8.7 — Các hướng kết hợp FL + CL; client drift, non-IID, forgetting, cập nhật không đồng bộ; và đánh đổi (Giai đoạn 8)"},{"file":"Chuong_36_G8_Ablation_gia_dinh_dieu_kien_that_bai.md","num":36,"title":"Chương 8.8–8.9 — Xác định đóng góp đến từ đâu (ablation), và giả định / điều kiện thất bại của mỗi phương pháp (Giai đoạn 8)"},{"file":"Chuong_37_G9_Doc_nghien_cuu_baseline_ablation_chia_du_lieu.md","num":37,"title":"Chương 9.1–9.3 — Đọc nghiên cứu: cấu trúc, baseline vs ablation, và kiểm tra cách chia dữ liệu/client/nhiệm vụ (Giai đoạn 9)"},{"file":"Chuong_38_G9_Chi_so_cost_phat_hien_phong_dai_tai_hien.md","num":38,"title":"Chương 9.4–9.6 — Đánh giá chỉ số / chi phí / giao tiếp, phát hiện kết luận vượt bằng chứng, và tái hiện một thí nghiệm nhỏ (Giai đoạn 9)"},{"file":"Chuong_39_G9_Bao_cao_tai_lap_du_an_cuoi.md","num":39,"title":"Chương 9.7–9.8 — Viết báo cáo tái lập được & dự án cuối lộ trình (Giai đoạn 9)"}]}]</script>
+<script id="voiceData" type="application/json">{
+  "version": 1,
+  "chapters": {
+    "Chuong_01_Tu_duy_toan_hoc_va_cach_doc_ky_hieu.md": {
+      "audio": "audio/chuong-01-tu-duy-toan-hoc-va-cach-doc-ky-hieu.mp3",
+      "title": "Chương 1 — Tư duy toán học và cách đọc ký hiệu",
+      "duration": 1313,
+      "voice": "Hoài My (vi) + Ava (en)",
+      "generated": "2026-11-23T05:09:31.731Z",
+      "sections": [
+        {
+          "id": "mo-dau",
+          "title": "Mở đầu",
+          "t": 0,
+          "duration": 7.4
+        },
+        {
+          "id": "1-mo-dau-bang-mot-tinh-huong",
+          "title": "1. Mở đầu bằng một tình huống",
+          "t": 8,
+          "duration": 81.1
+        },
+        {
+          "id": "2-truc-giac-truoc",
+          "title": "2. Trực giác trước",
+          "t": 89.7,
+          "duration": 101.4
+        },
+        {
+          "id": "3-thu-giai-bang-cach-chua-chinh-thuc",
+          "title": "3. Thử giải bằng cách chưa chính thức",
+          "t": 191.7,
+          "duration": 76.1
+        },
+        {
+          "id": "4-dat-ten-cho-y-tuong",
+          "title": "4. Đặt tên cho ý tưởng",
+          "t": 268.5,
+          "duration": 89
+        },
+        {
+          "id": "5-tu-cau-chuyen-den-ky-hieu",
+          "title": "5. Từ câu chuyện đến ký hiệu",
+          "t": 358.1,
+          "duration": 208.8
+        },
+        {
+          "id": "6-vi-du-co-loi-giai-tung-buoc",
+          "title": "6. Ví dụ có lời giải từng bước",
+          "t": 567.6,
+          "duration": 158.9
+        },
+        {
+          "id": "7-nhin-tu-goc-do-khoa-hoc-may-tinh-hoac-ai",
+          "title": "7. Nhìn từ góc độ khoa học máy tính hoặc AI",
+          "t": 727.2,
+          "duration": 72.4
+        },
+        {
+          "id": "8-nhung-cho-de-nham",
+          "title": "8. Những chỗ dễ nhầm",
+          "t": 800.3,
+          "duration": 92.3
+        },
+        {
+          "id": "9-khi-nao-y-tuong-nay-huu-ich",
+          "title": "9. Khi nào ý tưởng này hữu ích?",
+          "t": 893.2,
+          "duration": 42.8
+        },
+        {
+          "id": "doc-sau-mot-cong-thuc-la-mot-quy-trinh-co-dieu-kien",
+          "title": "Đọc sâu — một công thức là một quy trình có điều kiện",
+          "t": 936.6,
+          "duration": 189.8
+        },
+        {
+          "id": "10-bai-tap",
+          "title": "10. Bài tập",
+          "t": 1127.1,
+          "duration": 149.5
+        },
+        {
+          "id": "11-tom-tat-bang-ngon-ngu-doi-thuong",
+          "title": "11. Tóm tắt bằng ngôn ngữ đời thường",
+          "t": 1277.2,
+          "duration": 35.7
+        }
+      ]
+    }
+  }
+}</script>
 
 <script id="md_0" type="text/plain"># Tên sách
 
@@ -946,7 +1231,7 @@ Toán và lập trình dùng chung khái niệm "hàm" — một là ký hiệu,
 
 **Nhầm 3: "Mô hình tuyến tính áp dụng được mãi, với mọi dữ liệu."** Sai — đây là *mô hình*, tức là *xấp xỉ có giả định*. Khi thực tế cong (Ví dụ B), mô hình tuyến tính sai dần khi x đi xa phạm vi dữ liệu. Đọc: *"đúng trong khoảng dữ liệu đã thấy, chưa chắc đúng ngoài đó."* — và tuyệt đối không "ngoại suy mù" ra xa dữ liệu.
 
-**Lim của phép so sánh "công thức nấu ăn"** (mục 2): công thức nấu ăn cho phép "gần đúng", điều chỉnh theo khẩu vị; mô hình toán đòi *phép tính chính xác* và *giả định rõ*. Hàm toán không "nêm" được.
+**Giới hạn của phép so sánh "công thức nấu ăn"** (mục 2): công thức nấu ăn cho phép "gần đúng", điều chỉnh theo khẩu vị; mô hình toán đòi *phép tính chính xác* và *giả định rõ*. Hàm toán không "nêm" được.
 
 ---
 
@@ -1265,7 +1550,7 @@ Kết quả nằm trong [−1,1]: 1 khi cùng hướng, 0 khi vuông góc, −1 
 
 **Nhầm 3: "Ma trận có thể nhân với bất kỳ vector nào."** Không. Số **cột** của ma trận phải bằng số **thành phần** của vector mới nhân được (điều kiện "kích thước khớp"). Thử nhân `[2 0 1; 0 1 1]` (2 hàng, 3 cột) với vector 2 thành phần → bị lỗi. Quy tắc: *hàng×cột phải khớp nhau* (điều mà lập trình gọi "shape mismatch" khi chạy tensor).
 
-**Lim của việc vẽ vector 2D:** dữ liệu thật nhiều chiều không vẽ nổi, nhưng không phải vì chúng "khó" — chỉ là ta hết không gian để hình dung. Mọi phép toán vẫn chạy đúng cho n chiều. Đừng bị giới hạn bởi "không vẽ được".
+**Giới hạn của việc vẽ vector 2D:** dữ liệu thật nhiều chiều không vẽ nổi, nhưng không phải vì chúng "khó" — chỉ là ta hết không gian để hình dung. Mọi phép toán vẫn chạy đúng cho n chiều. Đừng bị giới hạn bởi "không vẽ được".
 
 ---
 
@@ -1532,7 +1817,7 @@ Mỗi "bước nhỏ" này là đạo hàm đang sống: ta vừa thấy nó ở
 
 **Nhầm 3: "Tích phân là 'diện tích', đạo hàm là 'độ dốc' — hai thứ không liên quan."** Thực ra chúng là *phép ngược nhau* (định lý cơ bản của giải tích): lấy đạo hàm của tích phân lại ra nguyên hàm, và ngược lại. Tích phân = "gom đạo hàm lại". Nhớ mối liên hệ "độ dốc ↔ diện tích" thay vì coi chúng là hai vũ trụ riêng.
 
-**Lim của phép so sánh "đạo hàm = độ dốc đồi":** đồi chỉ 2D dễ hình dung; dữ liệu ML hàng nghìn chiều, "đi lên/đi xuống" thành khái niệm vector hóa, và *cực trị toàn cục* (đỉnh thật giữa nhiều đỉnh) khó tìm hơn cực trị địa phương (một đỉnh gần đó). Đừng mang "một đồi, một đỉnh" vào không gian nhiều chiều.
+**Giới hạn của phép so sánh "đạo hàm = độ dốc đồi":** đồi chỉ 2D dễ hình dung; dữ liệu ML hàng nghìn chiều, "đi lên/đi xuống" thành khái niệm vector hóa, và *cực trị toàn cục* (đỉnh thật giữa nhiều đỉnh) khó tìm hơn cực trị địa phương (một đỉnh gần đó). Đừng mang "một đồi, một đỉnh" vào không gian nhiều chiều.
 
 ---
 
@@ -1811,7 +2096,7 @@ P(D|S) = [ P(S|D) · P(D) ] / [ P(S|D)·P(D) + P(S|¬D)·P(¬D) ]
 
 **Nhầm 3: "Xác suất 0 nghĩa là không bao giờ, 1 nghĩa là luôn luôn."** Với *cách nhìn tần suất*, gần đúng vậy. Nhưng với *biến ngẫu nhiên liên tục*, xác suất của *một điểm chính xác* thường là 0 (vì vô hạn giá trị) — đó là nghịch lý hình học, không phải "không thể xảy ra". Phải dùng *khoảng* mới có xác suất dương. Đây là chỗ rất dễ bối rối khi gặp phân phối liên tục.
 
-**Lim của "xác suất = tỉ lệ dài hạn" (phép so sánh mục 2):** áp dụng tốt cho hiện tượng lặp được, nhưng với sự kiện *một lần* (trận bóng ngày mai) không "lặp vô hạn" được. Ở đó, xác suất là *niềm tin có cơ sở* (nhìn Bayes) — và nó không "đo được bằng đếm" mà bằng mức độ tin cậy. Đừng ép mọi xác suất vào khung tần suất (đếm).
+**Giới hạn của "xác suất = tỉ lệ dài hạn" (phép so sánh mục 2):** áp dụng tốt cho hiện tượng lặp được, nhưng với sự kiện *một lần* (trận bóng ngày mai) không "lặp vô hạn" được. Ở đó, xác suất là *niềm tin có cơ sở* (nhìn Bayes) — và nó không "đo được bằng đếm" mà bằng mức độ tin cậy. Đừng ép mọi xác suất vào khung tần suất (đếm).
 
 ---
 
@@ -2061,7 +2346,7 @@ Khi xếp cả hai bước, "mọi n" được suy ra như domino đổ liên ti
 
 **Nhầm 3: "Quy nạp là 'suy từ vài trường hợp sang tất cả' (cảm nhận theo mẫu)."** Sai. Quy nạp toán học *không* phải suy luận theo mẫu; nó là **chứng minh chặt chẽ** bằng hai bước (cơ sở + quy nạp) mà không cần thử hữu hạn. Tên gọi "quy nạp" dễ gây hiểu lầm với "inductive reasoning" (theo mẫu). Đây là **suy diễn tiên nghiệm một lần cho mọi n**.
 
-**Lim của "logic = bộ luật chơi cờ":** bộ luật cờ có thể mâu thuẫn về tinh tế (gamer phán xử); logic hình thức thì yêu cầu *không mâu thuẫn* và *đầy đủ*. Nhưng cũng chính sự "không ý nghĩa" của logic khiến nó mạnh: máy có thể xử lý hàng triệu mệnh đề mà không cần hiểu — vừa là sức mạnh, vừa là lý do cần người thiết kế luật đúng.
+**Giới hạn của "logic = bộ luật chơi cờ":** bộ luật cờ có thể mâu thuẫn về tinh tế (gamer phán xử); logic hình thức thì yêu cầu *không mâu thuẫn* và *đầy đủ*. Nhưng cũng chính sự "không ý nghĩa" của logic khiến nó mạnh: máy có thể xử lý hàng triệu mệnh đề mà không cần hiểu — vừa là sức mạnh, vừa là lý do cần người thiết kế luật đúng.
 
 ---
 
@@ -2293,7 +2578,7 @@ Em: nối An, Chi                     → deg=2
 
 **Nhầm 3: "Bậc (degree) đo 'độ quan trọng' tuyệt đối của nút."** Chỉ là một phép đo thô. Có nhiều độ đo khác (giữa các cặp, page-rank, closeness). Đừng quy "nhiều bạn bè = quan trọng nhất về mọi mặt". Nhận diện mức độ *của chỉ số* và chọn chỉ số phù hợp câu hỏi.
 
-**Lim của "đồ thị = bản đồ tàu điện ngầm":** mạng xã hội có *đồ thị con*, *thuộc tính nút*, và *đồ thị có hướng* — phức tạp hơn bản đồ tàu. Và tìm đường ngắn nhất trong đồ thị khổng lồ cần kỹ thuật (A*, heuristics) để không bùng nổ — đơn giản hóa "cứ Dijkstra là xong" là chưa đủ với quy mô thật.
+**Giới hạn của "đồ thị = bản đồ tàu điện ngầm":** mạng xã hội có *đồ thị con*, *thuộc tính nút*, và *đồ thị có hướng* — phức tạp hơn bản đồ tàu. Và tìm đường ngắn nhất trong đồ thị khổng lồ cần kỹ thuật (A*, heuristics) để không bùng nổ — đơn giản hóa "cứ Dijkstra là xong" là chưa đủ với quy mô thật.
 
 ---
 
@@ -2544,7 +2829,7 @@ b ← b − α · ∂loss/∂b
 
 **Nhầm 4: "Tối ưu hóa = chỉ tìm 'đáy'."** Tối ưu hóa tổng quát còn gồm tìm **lớn nhất** (lợi nhuận, reward), xử lý **ràng buộc**, và các vấn đề nhiều mục tiêu. Gradient descent chỉ là một công cụ cho một kiểu. Đừng đồng nhất công cụ với toàn bộ lĩnh vực.
 
-**Lim của "người bịt mắt dò dốc":** người đó chỉ dò trong "thung lũng gần nhất"; với mô hình thật hàng triệu chiều, khái niệm "đáy" không còn trực quan và việc hội tụ khó đảm bảo. Phép so sánh tệ ở chỗ số chiều; nhưng ý "lặp, đi ngược dốc" vẫn đúng.
+**Giới hạn của "người bịt mắt dò dốc":** người đó chỉ dò trong "thung lũng gần nhất"; với mô hình thật hàng triệu chiều, khái niệm "đáy" không còn trực quan và việc hội tụ khó đảm bảo. Phép so sánh tệ ở chỗ số chiều; nhưng ý "lặp, đi ngược dốc" vẫn đúng.
 
 ---
 
@@ -2801,7 +3086,7 @@ Ba trụ cột đứng trong vòng này đúng như bảng ở mục 5.2. Giờ 
 
 **Nhầm 4: "Activation (như ReLU) khó hiểu, cần thuộc công thức."** Không. Trực giác của ReLU đơn giản: *số dương giữ nguyên, số âm về 0*. Vai trò: thêm phi tuyến. Đừng sợ; hiểu cái gì nó làm quan trọng hơn thuộc công thức.
 
-**Lim của "lắp xe đạp" (mục 2):** xe lắp xong tĩnh; mạng nơ-ron thay đổi trong lúc học và việc "hội tụ" không đảm bảo tối ưu (Chương 8). Và ẩn dụ "bộ phận khớp nhau" gợi ý dễ lắp — thực tế chọn architecture/hyperparameter là nghệ thuật đòi nhiều thử nghiệm (sẽ nói đầy đủ ở lộ trình FL/CL).
+**Giới hạn của "lắp xe đạp" (mục 2):** xe lắp xong tĩnh; mạng nơ-ron thay đổi trong lúc học và việc "hội tụ" không đảm bảo tối ưu (Chương 8). Và ẩn dụ "bộ phận khớp nhau" gợi ý dễ lắp — thực tế chọn architecture/hyperparameter là nghệ thuật đòi nhiều thử nghiệm (sẽ nói đầy đủ ở lộ trình FL/CL).
 
 ---
 
@@ -8406,14 +8691,20 @@ Kernel:
 ```
 **Bước 1a — ô (0,0):** `(1×1)+(0×0)+(5×0)+(6×1) = 1+0+0+6 = 7`.
 **Bước 1b — ô (0,1):** kernel qua `[0,2;6,7]` → `0+0+0+7=7`.
-**Bước 1c — ô (1,0):** qua `[5,6;4,3]` → `5+0+0+3=8`.
-**Bước 1d — diện tích đầu ra:** ảnh 4×4, kernel 2×2, stride 1 → `(4-2+1)=3` theo mỗi chiều → **3×3 map**.
+**Bước 1c — ô (0,2):** kernel qua `[2,3;7,8]` → `2+8=10`.
+**Bước 1d — ô (1,0):** qua `[5,6;4,3]` → `5+3=8`.
+**Bước 1e — ô (1,1):** qua `[6,7;3,2]` → `6+2=8`.
+**Bước 1f — ô (1,2):** qua `[7,8;2,1]` → `7+1=8`.
+**Bước 1g — ô (2,0):** qua `[4,3;0,9]` → `4+9=13`.
+**Bước 1h — ô (2,1):** qua `[3,2;9,8]` → `3+8=11`.
+**Bước 1i — ô (2,2):** qua `[2,1;8,7]` → `2+7=9`.
+**Bước 1j — kích thước đầu ra:** ảnh 4×4, kernel 2×2, stride 1 → `(4-2+1)=3` theo mỗi chiều → **3×3 map**.
 ```
-7  7  9
-8  8  5   (ô giữa: [6,7;3,2] → 6+0+0+2=8)
-3  9  9   (ô dưới-giữa [3,2;9,8]→3+0+0+8=11? — tính lại tay)
+7   7  10
+8   8   8
+13 11   9
 ```
-*(Kiểm tay thật đầy đủ bạn tự làm; đây minh họa cơ chế: nhân + cộng cục bộ, diện tích theo công thức.)*
+*(Chín ô là chín lần đặt kernel; mỗi ô là một tổng có trọng số trên vùng 2×2 tương ứng.)*
 
 **Bước 2 — Công thức kích thước đầu ra.**
 
@@ -9614,7 +9905,7 @@ logits = nn.Linear(64, 10)(out[:, 0]) # dùng [CLS] (= vị trí 0)
 
 | Phương diện | CNN | Transformer (ViT) |
 |---|---|---|
-| Nhìn bối cảnh | cục bộ(dần rộng) | toàn cục ngay |
+| Nhìn bối cảnh | cục bộ (dần rộng) | toàn cục ngay |
 | Chi phí | tốt cho ảnh lớn | O(n²) với n patch — tốn |
 | Cần dữ liệu | vừa | nhiều hơn (data-hungry) |
 | Đánh đổi | tự nhiên cho ảnh | mạnh tổng quát nhưng tốn |
@@ -10217,7 +10508,7 @@ def acc(ds):
             c += (model(xb).argmax(1)==yb).sum(); n += yb.size(0)
     return c.item()/n
 
-base = datasets.ImageFolder(...)   # hoặc dataset soi; đây placeholder
+base = datasets.ImageFolder(...)   # cần thay bằng đường dẫn dataset thật; đây là khung minh họa
 # (thực tế): so acc(A) test chuẩn vs acc(B) test đổi brightness/nhiễu
 ```
 
@@ -12888,7 +13179,7 @@ def mem_reg(model):
     np = sum(p.numel() for p in model.parameters())
     return 2 * np * 4          # θ_star + importance
 
-model = nn.Linear(10, 2)       # placeholder
+model = nn.Linear(10, 2)       # mô hình minh họa cho phép đếm tham số, không phải kết quả thực nghiệm
 print("buffer 1000 ảnh MB:", round(mem_buf(1000)/1e6, 2))
 print("reg 2x params MB:", round(mem_reg(model)/1e6, 2))
 ```
@@ -14640,13 +14931,13 @@ const VectorLesson = (() => {
 const LearningTools = (() => {
   const definitions = {
     linear:{title:'Một đường thẳng dự đoán điều gì?',prompt:'Giữ x = 2 và mục tiêu y = 4. Đổi hệ số rồi dự đoán sai số trước khi nhìn kết quả.',controls:[['w','Hệ số w',-3,3,.1,1],['b','Hệ số b',-5,5,.1,0]]},
-    gradient:{title:'Từng bước xuống dốc',prompt:'Với f(x) = (x − 3)², hãy dự đoán: bước lớn hơn có luôn đến đích nhanh hơn?',controls:[['x','Điểm bắt đầu x',-3,9,.5,0],['rate','Learning rate η',0,1.2,.05,.1]]},
+    gradient:{title:'Từng bước xuống dốc, có vệt quỹ đạo',prompt:'Kéo điểm trên đường cong, đổi η rồi dự đoán đường đi trước khi chạy nhiều bước. Đổi η qua 1 để thấy dao động hoặc phân kỳ.',controls:[['x','Điểm bắt đầu x',-3,9,.5,0],['rate','Learning rate η',0,1.2,.05,.1]],prediction:{question:'Với f(x) = (x − 3)², η = 0,1 và x = 0, bước đầu tiên sẽ đi về đâu?',options:[['closer','Tới gần 3 hơn'],['past','Nhảy qua 3'],['same','Đứng yên']],correct:'closer',explain:'Gradient tại x = 0 là −6; bước cập nhật x ← 0 − 0,1 × (−6) = 0,6, gần 3 hơn.'}},
     bayes:{title:'Dấu hiệu xuất hiện, xác suất đổi ra sao?',prompt:'Ví dụ email: dấu hiệu là một từ khóa. Giữ chất lượng dấu hiệu, thay tỉ lệ spam ban đầu.',controls:[['prior','Tỉ lệ spam ban đầu (%)',.1,50,.1,1],['sensitivity','P(dấu hiệu | spam) (%)',0,100,1,90],['specificity','P(không có dấu hiệu | không spam) (%)',0,100,1,95]]},
-    matrix:{title:'Một ma trận biến đổi mũi tên',prompt:'Giữ vector v = (1, 1). Thay các phần tử để thử co giãn, phản xạ hoặc shear.',controls:[['a','Phần tử a₁₁',-2,2,.5,1],['b','Phần tử a₁₂',-2,2,.5,0],['c','Phần tử a₂₁',-2,2,.5,0],['d','Phần tử a₂₂',-2,2,.5,1]]},
-    metrics:{title:'Cùng một bảng đếm, nhiều thước đo',prompt:'Lớp dương là đối tượng cần phát hiện. Thêm âm tính thật: accuracy có thể tăng dù recall không đổi.',controls:[['tp','TP · Dương tính đúng',0,200,1,40],['fp','FP · Báo động sai',0,200,1,10],['fn','FN · Bỏ sót',0,200,1,20],['tn','TN · Âm tính đúng',0,1000,5,130]]},
-    fedavg:{title:'Ai đóng góp bao nhiêu vào mô hình chung?',prompt:'Hai client cùng khởi đầu và cùng cách biểu diễn tham số. Thay số mẫu để quan sát trung bình có trọng số.',controls:[['na','Số mẫu client A',0,1000,10,100],['nb','Số mẫu client B',0,1000,10,300],['wa','Tham số sau local train · A',-5,5,.1,2.5],['wb','Tham số sau local train · B',-5,5,.1,2.2]]},
+    matrix:{title:'Một ma trận biến đổi cả mặt phẳng',prompt:'Kéo đầu mút vector v trên hình rồi thay các phần tử ma trận. So v với Av, xem ô đơn vị biến thành hình bình hành và diện tích bằng |det A|.',controls:[['a','Phần tử a₁₁',-2,2,.1,1.5],['b','Phần tử a₁₂',-2,2,.1,.5],['c','Phần tử a₂₁',-2,2,.1,.5],['d','Phần tử a₂₂',-2,2,.1,1.2]],extras:{vx:1,vy:1},prediction:{question:'Nếu |det A| = 2 thì diện tích ô đơn vị sau biến đổi sẽ thế nào?',options:[['double','Tăng gấp đôi'],['same','Không đổi'],['half','Giảm một nửa']],correct:'double',explain:'Định thức là hệ số diện tích có dấu; |det A| = 2 làm diện tích tăng gấp đôi, còn dấu cho biết hướng bị lật hay không.'}},
+    metrics:{title:'Cùng một bảng đếm, nhiều thước đo',prompt:'Lớp dương là đối tượng cần phát hiện. Thêm âm tính thật: accuracy có thể tăng dù recall không đổi. Dự đoán trước khi kéo TN.',controls:[['tp','TP · Dương tính đúng',0,200,1,40],['fp','FP · Báo động sai',0,200,1,10],['fn','FN · Bỏ sót',0,200,1,20],['tn','TN · Âm tính đúng',0,1000,5,130]],prediction:{question:'Thêm thật nhiều TN nhưng giữ nguyên TP, FP, FN. Recall và accuracy sẽ ra sao?',options:[['up','Recall giữ nguyên, accuracy tăng'],['down','Recall giảm, accuracy giảm'],['same','Cả hai không đổi']],correct:'up',explain:'Recall = TP/(TP+FN) không dùng TN nên không đổi. Accuracy = (TP+TN)/tổng nên tăng khi TN tăng.'}},
+    fedavg:{title:'Ai đóng góp bao nhiêu vào mô hình chung?',prompt:'Hai client cùng khởi đầu và cùng cách biểu diễn tham số. Thay số mẫu để quan sát trung bình có trọng số.',controls:[['na','Số mẫu client A',0,1000,10,100],['nb','Số mẫu client B',0,1000,10,300],['wa','Tham số sau local train · A',-5,5,.1,2.5],['wb','Tham số sau local train · B',-5,5,.1,2.2]],prediction:{question:'Client A có 100 mẫu, client B có 300 mẫu. Trong FedAvg theo số mẫu, tiếng nói của B so với A là:',options:[['three','Gấp ba lần'],['equal','Bằng nhau'],['third','Một phần ba']],correct:'three',explain:'Trọng số tỉ lệ với số mẫu: 300/400 so với 100/400, tức B có trọng số gấp ba A. Điều này không nói B có mô hình local tốt hơn.'}},
     forgetting:{title:'Một điểm trung bình có che mất quên?',prompt:'Đánh giá nhiệm vụ cũ và mới trên các tập test cố định. Đổi điểm của nhiệm vụ cũ sau khi học mới.',controls:[['before','Điểm nhiệm vụ cũ trước khi học mới (%)',0,100,1,90],['old','Điểm nhiệm vụ cũ sau khi học mới (%)',0,100,1,65],['fresh','Điểm nhiệm vụ mới sau khi học (%)',0,100,1,85]]},
-    attention:{title:'Raw dot bằng 0 có nghĩa không chú ý?',prompt:'Một query, hai key, hai value (1, 0) và (0, 1). Quan sát softmax sau khi chia √dₖ.',controls:[['s1','Raw dot với key 1',-8,8,.5,1],['s2','Raw dot với key 2',-8,8,.5,0],['dk','Số chiều key dₖ',1,64,1,2]]},
+    attention:{title:'Raw dot bằng 0 có nghĩa không chú ý?',prompt:'Một query, hai key, hai value (1, 0) và (0, 1). Quan sát softmax sau khi chia √dₖ.',controls:[['s1','Raw dot với key 1',-8,8,.5,1],['s2','Raw dot với key 2',-8,8,.5,0],['dk','Số chiều key dₖ',1,64,1,2]],prediction:{question:'Raw dot với key 2 bằng 0 sau khi chia √dₖ. Trọng số softmax của key 2 sẽ thế nào?',options:[['positive','Có thể vẫn lớn hơn 0'],['zero','Luôn bằng 0'],['one','Luôn bằng 1']],correct:'positive',explain:'Softmax so sánh các logit, không biến điểm 0 thành trọng số 0. Nếu key 1 có logit nhỏ hơn, key 2 vẫn có thể nhận trọng số dương.'}},
     split:{title:'Dành dữ liệu cho ba vai trò',prompt:'Có 1.000 mẫu. Train dùng học tham số; validation chọn cấu hình; test chỉ dùng đánh giá cuối.',controls:[['train','Tỉ lệ train (%)',40,90,1,70],['validation','Tỉ lệ validation (%)',5,40,1,15]]},
     cost:{title:'Đếm chi phí một vòng rồi cộng lại',prompt:'Mô hình dense gửi đầy đủ xuống và lên. Thay số client tham gia và số vòng trước khi tính tổng.',controls:[['size','Kích thước mô hình (MB thập phân)',1,100,1,10],['clients','Client tham gia mỗi vòng',1,100,1,10],['rounds','Số vòng',1,500,1,100]]},
   };
@@ -14672,7 +14963,7 @@ const LearningTools = (() => {
     batch:{title:'Batch size đổi số bước chứ không đổi dữ liệu',prompt:'Cùng một dataset và số epoch. Chọn batch size để thấy số bước mỗi epoch và số cập nhật thay đổi.',controls:[['dataset','Số mẫu train',100,5000,100,1000],['batch','Batch size',10,500,10,32],['epochs','Số epoch',1,30,1,10],['lr','Learning rate',.001,.1,.001,.01]]},
     normalize:{title:'Lan truyền phương sai qua nhiều tầng',prompt:'Khởi tạo quá nhỏ hoặc quá lớn làm tín hiệu co lại hoặc bùng nổ. Bật chuẩn hóa để đưa phương sai về quanh 1.',controls:[['init','Độ lớn khởi tạo',.1,3,.1,1],['depth','Số tầng',2,30,1,10],{key:'normalize',label:'Bật chuẩn hóa',type:'toggle',value:false}]},
     curves:{title:'Đọc khoảng cách train và validation',prompt:'Đổi khoảng cách và độ nhiễu của hai đường loss. Chẩn đoán overfit, underfit hay cân bằng từ hình dạng, không từ một con số.',controls:[['gap','Khoảng cách val − train',0,.8,.05,.15],['noise','Độ nhiễu của val',0,.3,.02,.05],['epochs','Số epoch',5,40,1,20]]},
-    conv:{title:'Kernel trượt làm thay đổi kích thước và tham số',prompt:'Đổi cạnh ảnh, kernel, padding và stride. Tính đầu ra trước khi nhìn công thức được thay số.',controls:[['size','Cạnh ảnh vào',8,64,1,32],['kernel','Kernel K',1,7,2,3],['padding','Padding P',0,3,1,1],['stride','Stride S',1,3,1,1],['channels','Số kênh ra',1,32,1,16]]},
+    conv:{title:'Kernel trượt trên ảnh và volume đặc trưng',prompt:'Kéo cửa sổ kernel trên ảnh để xem nó lấy mẫu vùng nào, rồi đổi bộ lọc, padding và stride. Volume 3D xếp các feature map theo kênh.',controls:[['size','Cạnh ảnh vào',6,12,1,8],['kernel','Kernel K',1,5,2,3],['padding','Padding P',0,2,1,0],['stride','Stride S',1,2,1,1],['channels','Số kênh ra',1,4,1,3],{key:'filter',label:'Bộ lọc đang xem',type:'select',options:[['vertical','Cạnh dọc'],['edge','Cạnh / viền'],['blur','Làm mờ'],['identity','Giữ nguyên']],value:'vertical'}],extras:{kx:0,ky:0},prediction:{question:'Ảnh 8×8, kernel 3×3, padding 1, stride 1. Feature map đầu ra có kích thước:',options:[['eight','8×8'],['six','6×6'],['ten','10×10']],correct:'eight',explain:'out = (8 + 2×1 − 3)/1 + 1 = 8. Padding 1 bù đúng phần kernel lấn ra biên nên kích thước không đổi.'}},
     augment:{title:'Tăng cường dữ liệu và đóng băng backbone',prompt:'Tăng số biến thể mỗi ảnh và chọn tỉ lệ lớp được đóng băng. So lượng lượt học với số tham số phải cập nhật.',controls:[['dataset','Số ảnh train',100,10000,100,1000],['factor','Số biến thể mỗi ảnh',1,8,1,4],['frozen','Tỉ lệ tham số đóng băng (%)',0,100,5,80],['lr','Learning rate',.0001,.01,.0001,.001]]},
     softmax:{title:'Softmax đổi logit thành phân phối',prompt:'Ba logit và tỉ lệ lớp đa số. Xem xác suất từng lớp rồi so accuracy toàn cục với macro recall.',controls:[['z1','Logit lớp 1',-4,4,.5,2],['z2','Logit lớp 2',-4,4,.5,1],['z3','Logit lớp 3',-4,4,.5,0],['majority','Tỉ lệ lớp đa số (%)',40,100,1,95]]},
     iou:{title:'Hai hộp chồng nhau bao nhiêu?',prompt:'Kéo hộp dự đoán quanh hộp đáp án cố định. Tính giao, hợp và IoU trước khi kết luận đúng hay sai.',controls:[['x','Hộp dự đoán · x',0,4,.1,1.5],['y','Hộp dự đoán · y',0,4,.1,1.5],['w','Chiều rộng',1,4,.1,3],['h','Chiều cao',1,4,.1,3]]},
@@ -14697,13 +14988,37 @@ const LearningTools = (() => {
     if(Array.isArray(control))return {type:'range',key:control[0],label:control[1],min:control[2],max:control[3],step:control[4],value:control[5]};
     return {type:control.type||'range',...control};
   }
-  function defaults(type){return Object.fromEntries(definitions[type].controls.map(control=>{const c=controlInfo(control);return [c.key,c.value];}));}
+  function defaults(type){return Object.assign({},definitions[type].extras||{},Object.fromEntries(definitions[type].controls.map(control=>{const c=controlInfo(control);return [c.key,c.value];})));}
+  const clamp=(value,min,max)=>Math.min(max,Math.max(min,value));
+  function predictionResult(type,choice){
+    const prediction=definitions[type]&&definitions[type].prediction;
+    if(!prediction)return null;
+    const answer=prediction.options.find(([value])=>value===prediction.correct);
+    return {correct:choice===prediction.correct,answer:answer?answer[1]:prediction.correct,explain:prediction.explain};
+  }
   function calculate(type,p){
+    const custom=definitions[type];
+    if(custom&&typeof custom.calculate==='function')return custom.calculate(p);
     switch(type){
       case 'linear':{const y=2*p.w+p.b;return {y,error:y-4,loss:(y-4)**2};}
       case 'gradient':return {x:p.x,loss:(p.x-3)**2,gradient:2*(p.x-3),next:p.x-p.rate*2*(p.x-3)};
       case 'bayes':{const prior=p.prior/100,s=p.sensitivity/100,spec=p.specificity/100,tp=10000*prior*s,fp=10000*(1-prior)*(1-spec);return {tp,fp,fn:10000*prior*(1-s),tn:10000*(1-prior)*spec,posterior:tp+fp>0?tp/(tp+fp):null};}
-      case 'matrix':return {x:p.a+p.b,y:p.c+p.d,det:p.a*p.d-p.b*p.c};
+      case 'matrix':{
+        const vx=p.vx??1,vy=p.vy??1,x=p.a*vx+p.b*vy,y=p.c*vx+p.d*vy,det=p.a*p.d-p.b*p.c,trace=p.a+p.d,disc=trace*trace-4*det,eigen=[];
+        if(disc>=0){
+          const root=Math.sqrt(disc),values=Math.abs(root)<1e-10?[trace/2]:[(trace+root)/2,(trace-root)/2];
+          values.forEach(lambda=>{
+            const row1=[p.a-lambda,p.b],row2=[p.c,p.d-lambda];
+            let ex,ey;
+            if(Math.hypot(...row1)>=Math.hypot(...row2)){ex=p.b;ey=lambda-p.a;}
+            else {ex=lambda-p.d;ey=p.c;}
+            if(Math.hypot(ex,ey)<1e-9){ex=p.b||1;ey=p.c||0;}
+            const length=Math.hypot(ex,ey)||1;
+            eigen.push({lambda,ex:ex/length,ey:ey/length});
+          });
+        }
+        return {x,y,vx,vy,det,area:Math.abs(det),invertible:Math.abs(det)>1e-9,eigen};
+      }
       case 'metrics':{const {tp,fp,fn,tn}=p,n=tp+fp+fn+tn;return {precision:tp+fp?tp/(tp+fp):null,recall:tp+fn?tp/(tp+fn):null,accuracy:n?(tp+tn)/n:null,f1:2*tp+fp+fn?2*tp/(2*tp+fp+fn):null};}
       case 'fedavg':{const n=p.na+p.nb;return {total:n,alpha:n?p.na/n:null,average:n?(p.na*p.wa+p.nb*p.wb)/n:null};}
       case 'forgetting':return {drop:p.before-p.old,average:(p.old+p.fresh)/2};
@@ -14735,7 +15050,38 @@ const LearningTools = (() => {
       case 'batch':{const steps=Math.ceil(p.dataset/p.batch);return {steps,total:steps*p.epochs,seen:p.dataset*p.epochs,last:p.dataset-(steps-1)*p.batch};}
       case 'normalize':{const logVar=p.normalize?0:p.depth*Math.log(p.init);const std=Math.exp(logVar/2);return {std,logVar,status:std<.1?'co lại':std>10?'bùng nổ':'ổn định'};}
       case 'curves':{const train=[],val=[];for(let e=0;e<p.epochs;e++){const t=.15+.8*Math.exp(-e/5);train.push(t);val.push(t+p.gap+p.noise*Math.sin(e*1.7));}const last=train[train.length-1],lastVal=val[val.length-1];return {train,val,finalGap:lastVal-last,diagnosis:last>.55?'underfit':lastVal-last>.25?'overfit':'cân bằng'};}
-      case 'conv':{const out=Math.floor((p.size+2*p.padding-p.kernel)/p.stride)+1;const pixels=Math.max(0,out)*Math.max(0,out)*p.channels;return {out,params:(3*p.kernel*p.kernel+1)*p.channels,pixels,ops:pixels*3*p.kernel*p.kernel};}
+      case 'conv':{
+        const K=p.kernel,P=p.padding,S=p.stride,size=p.size,filters=['vertical','edge','blur','identity'],activeFilter=filters.includes(p.filter)?p.filter:'vertical';
+        const input=Array.from({length:size},(_,y)=>Array.from({length:size},(_,x)=>{
+          let value=1;
+          if(x>=Math.floor(size*.32)&&x<Math.floor(size*.55)&&y>=1&&y<size-1)value=8;
+          if(x>=Math.floor(size*.68)&&y<Math.floor(size*.42))value=Math.min(9,value+4);
+          return value;
+        }));
+        const convolve=(kind)=>{
+          const kernel=filterKernel(kind,K),out=Math.floor((size+2*P-K)/S)+1,map=[];
+          for(let oy=0;oy<out;oy++){
+            const row=[];
+            for(let ox=0;ox<out;ox++){
+              let sum=0;
+              for(let ky=0;ky<K;ky++)for(let kx=0;kx<K;kx++){
+                const iy=oy*S+ky-P,ix=ox*S+kx-P;
+                if(iy>=0&&iy<size&&ix>=0&&ix<size)sum+=input[iy][ix]*kernel[ky][kx];
+              }
+              row.push(sum);
+            }
+            map.push(row);
+          }
+          return {kind,kernel,out,map,min:Math.min(...map.flat()),max:Math.max(...map.flat())};
+        };
+        const order=[activeFilter,...filters.filter(kind=>kind!==activeFilter)];
+        const channelMaps=order.slice(0,p.channels).map(convolve),active=channelMaps[0];
+        const maxK=Math.max(0,size-K),kx=clamp(Number.isFinite(p.kx)?p.kx:0,0,maxK),ky=clamp(Number.isFinite(p.ky)?p.ky:0,0,maxK);
+        const patch=Array.from({length:Math.min(K,size)},(_,y)=>Array.from({length:Math.min(K,size)},(_,x)=>input[Math.min(size-1,ky+y)][Math.min(size-1,kx+x)]));
+        let patchSum=0;for(let y=0;y<patch.length;y++)for(let x=0;x<patch[y].length;x++)patchSum+=patch[y][x]*(active.kernel[y]?.[x]??0);
+        const out=active.out,pixels=Math.max(0,out)*Math.max(0,out)*p.channels;
+        return {out,input,kernel:active.kernel,patch,patchSum,map:active.map,maps:channelMaps,kx,ky,min:active.min,max:active.max,paramsPerChannel:K*K+1,params:(K*K+1)*p.channels,pixels,ops:pixels*K*K};
+      }
       case 'augment':{const effective=p.dataset*p.factor;return {effective,trainable:5e6*(100-p.frozen)/100,strategy:p.frozen>=80?'linear probe':p.frozen<=20?'fine-tune toàn bộ':'tinh chỉnh một phần'};}
       case 'softmax':{const m=Math.max(p.z1,p.z2,p.z3),e1=Math.exp(p.z1-m),e2=Math.exp(p.z2-m),e3=Math.exp(p.z3-m),sum=e1+e2+e3;const probs=[e1/sum,e2/sum,e3/sum];return {probs,top:probs.indexOf(Math.max(...probs))+1,accuracy:p.majority,macro:100/3};}
       case 'iou':{const gx=1,gy=1,gw=3,gh=3;const ix=Math.max(0,Math.min(p.x+p.w,gx+gw)-Math.max(p.x,gx)),iy=Math.max(0,Math.min(p.y+p.h,gy+gh)-Math.max(p.y,gy)),inter=ix*iy,union=p.w*p.h+gw*gh-inter;return {inter,union,iou:union>0?inter/union:null,pass:union>0&&inter/union>=.5};}
@@ -14756,6 +15102,15 @@ const LearningTools = (() => {
       default:throw new Error('Unknown learning experiment: '+type);
     }
   }
+  function filterKernel(kind,K){
+    if(K===1)return [[1]];
+    const kernel=Array.from({length:K},()=>Array(K).fill(0)),center=Math.floor(K/2);
+    if(kind==='identity'){kernel[center][center]=1;return kernel;}
+    if(kind==='blur'){for(let y=0;y<K;y++)for(let x=0;x<K;x++)kernel[y][x]=1/(K*K);return kernel;}
+    if(kind==='vertical'){for(let y=0;y<K;y++)for(let x=0;x<K;x++)kernel[y][x]=x<center?-1:x>center?1:0;return kernel;}
+    for(let y=0;y<K;y++)for(let x=0;x<K;x++)kernel[y][x]=y===center&&x===center?K*K-1:-1;
+    return kernel;
+  }
   const safe=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   let serial=0;
   function controlHTML(id,control){
@@ -14763,15 +15118,43 @@ const LearningTools = (() => {
     if(control.type==='toggle')return `<div class="experiment-control experiment-toggle"><label for="${id}-${control.key}"><input id="${id}-${control.key}" type="checkbox" data-param="${control.key}"${control.value?' checked':''}> ${control.label}</label></div>`;
     return `<div class="experiment-control"><label for="${id}-${control.key}">${control.label}</label><div><input id="${id}-${control.key}" type="range" min="${control.min}" max="${control.max}" step="${control.step}" value="${control.value}" data-param="${control.key}"><output for="${id}-${control.key}">${format(control.value)}</output></div></div>`;
   }
+  function predictionHTML(type){
+    const pred=definitions[type]&&definitions[type].prediction;
+    if(!pred)return '';
+    return `<div class="prediction-gate" data-prediction="${type}"><div class="prediction-kicker">Dự đoán trước khi chạy</div><p class="prediction-question">${pred.question}</p><div class="prediction-options">${pred.options.map(([value,label],index)=>`<button type="button" class="prediction-option" data-answer="${safe(value)}"><b>${String.fromCharCode(65+index)}.</b> ${safe(label)}</button>`).join('')}</div><p class="prediction-feedback" data-prediction-feedback role="status" aria-live="polite"></p></div>`;
+  }
+  function actionsHTML(type){
+    const custom=definitions[type];
+    if(custom&&typeof custom.actionsHTML==='function')return custom.actionsHTML();
+    if(type==='gradient')return '<div class="lab-actions"><button type="button" class="lab-btn" data-step>Đi 1 bước</button><button type="button" class="lab-btn" data-run>Chạy 10 bước</button><button type="button" class="lab-btn" data-stop disabled>Tạm dừng</button></div><div class="rate-presets" aria-label="Learning rate nhanh"><span>η nhanh:</span><button type="button" data-rate="0.05">0,05</button><button type="button" data-rate="0.1">0,1</button><button type="button" data-rate="0.5">0,5</button><button type="button" data-rate="1.05">1,05</button></div>';
+    if(type==='matrix')return '<div class="lab-actions"><button type="button" class="lab-btn" data-identity>Ma trận đồng nhất</button><button type="button" class="lab-btn" data-rotate>Xoay 30°</button></div>';
+    return '';
+  }
+  function toolbarHTML(){
+    return '<div class="lab-toolbar"><button type="button" class="lab-tool" data-snapshot>Lưu mốc A</button><button type="button" class="lab-tool" data-share>Chia sẻ</button><button type="button" class="lab-tool" data-export>Xuất phiếu</button><span class="lab-tool-status" data-tool-status role="status" aria-live="polite"></span></div>';
+  }
+  function challengeHTML(type){
+    const challenge=definitions[type].challenge;
+    if(!challenge)return '';
+    return `<div class="lab-challenge"><div class="lab-challenge-copy"><span class="prediction-kicker">Thử thách</span><p>${safe(challenge.goal)}</p></div><button type="button" class="lab-btn" data-check-challenge>Kiểm tra mục tiêu</button><p class="lab-challenge-feedback" data-challenge-feedback role="status" aria-live="polite"></p></div>`;
+  }
+  function errorMuseumHTML(type){
+    const errors=definitions[type].errors||[];
+    if(!errors.length)return '';
+    return `<details class="error-museum"><summary>Bảo tàng lỗi · ${errors.length} trạng thái sai có chủ đích</summary><p class="error-museum-intro">Chọn một trạng thái, đọc số liệu, rồi thử chẩn đoán trước khi mở lời giải thích.</p><div class="error-list">${errors.map((error,index)=>`<button type="button" data-error="${index}">${safe(error.label)}</button>`).join('')}</div><p class="error-note" data-error-note role="status" aria-live="polite"></p></details>`;
+  }
   function html(type){
     const def=definitions[type];
     if(!def)return '<p class="learning-warning">Minh họa này chưa được hỗ trợ.</p>';
-    const id='experiment-'+(++serial);
-    return `<div class="learning-experiment" data-experiment="${type}"><div class="experiment-head"><h3>${def.title}</h3><button type="button" class="lab-btn" data-reset>Đặt lại</button></div><p class="experiment-prompt">${def.prompt}</p><div class="experiment-body"><div class="experiment-visual" data-visual></div><div class="experiment-controls">${def.controls.map(control=>controlHTML(id,controlInfo(control))).join('')}${type==='gradient'?'<button type="button" class="lab-btn" data-step>Đi một bước gradient</button>':''}</div></div><div class="experiment-results" data-results></div><p class="experiment-observation" data-observation role="status" aria-live="polite" aria-atomic="true"></p></div>`;
+    const id='experiment-'+(++serial),gated=!!def.prediction;
+    return `<div class="learning-experiment" data-experiment="${type}"><div class="experiment-head"><h3>${def.title}</h3><button type="button" class="lab-btn" data-reset>Đặt lại</button></div><p class="experiment-prompt">${def.prompt}</p>${toolbarHTML()}${predictionHTML(type)}<div class="experiment-stage" data-stage${gated?' hidden':''}>${challengeHTML(type)}<div class="experiment-body"><div class="experiment-visual" data-visual tabindex="0" aria-label="Vùng tương tác: kéo hoặc dùng bàn phím"></div><div class="experiment-controls">${def.controls.map(control=>controlHTML(id,controlInfo(control))).join('')}${actionsHTML(type)}</div></div><div class="experiment-results" data-results role="status" aria-live="polite" aria-atomic="true"></div><p class="experiment-observation" data-observation role="status" aria-live="polite" aria-atomic="true"></p><div class="snapshot-view" data-snapshot-view hidden></div>${errorMuseumHTML(type)}</div></div>`;
   }
   function svg(content,description){return `<svg viewBox="0 0 360 270" role="img" aria-label="${safe(description)}">${content}</svg>`;}
+  function svgBox(content,description,width,height){return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${safe(description)}">${content}</svg>`;}
   function bars(entries,max=100){
-    return svg(entries.map(([name,value,color],i)=>`<text x="12" y="${30+i*52}" fill="#544b40" font-size="13">${safe(name)} · ${format(value)}</text><rect x="12" y="${39+i*52}" width="${Math.max(0,Math.min(330,330*value/(max||1)))}" height="16" rx="3" fill="${color}"/>`).join(''),entries.map(([n,v])=>n+': '+format(v)).join('; '));
+    const width=value=>Math.max(0,Math.min(300,300*value/(max||1)));
+    const chart=svg(entries.map(([name,value,color],i)=>`<text x="12" y="${30+i*52}" fill="#544b40" font-size="13">${safe(name)}</text><rect x="12" y="39.5" width="${width(value)}" height="16" rx="3" fill="${color}"><title>${safe(name)}: ${format(value)}</title></rect><text x="${Math.min(340,18+width(value))}" y="${52+i*52}" fill="#544b40" font-size="11">${format(value)}</text>`).join(''),entries.map(([n,v])=>n+': '+format(v)).join('; '));
+    return `<div class="chart-wrap">${chart}<details class="lab-data"><summary>Bảng số liệu</summary><table><tbody>${entries.map(([name,value])=>`<tr><th scope="row">${safe(name)}</th><td>${format(value)}</td></tr>`).join('')}</tbody></table></details></div>`;
   }
   let chartSerial=0;
   function lineChart(series,options={}){
@@ -14835,7 +15218,6 @@ const LearningTools = (() => {
       case 'batch':return bars([['Bước/epoch',r.steps,'#1f6f5f'],['Cập nhật',r.total,'#ad542f'],['Nghìn mẫu thấy',r.seen/1000,'#9e7a31']]);
       case 'normalize':{const points=[];for(let d=1;d<=30;d++){const std=p.normalize?1:Math.exp(d*Math.log(p.init)/2);points.push([d,Math.min(100,std)]);}return lineChart([{name:'std',points,color:'#1f6f5f'}],{xMin:1,xMax:30,yMin:0,yMax:100,title:'Độ lệch chuẩn của activation',xLabel:'số tầng',markers:[[p.depth,Math.min(100,r.std),'#ad542f']]});}
       case 'curves':return lineChart([{name:'train',points:r.train.map((v,i)=>[i,v]),color:'#1f6f5f'},{name:'validation',points:r.val.map((v,i)=>[i,v]),color:'#ad542f'}],{xMin:0,xMax:p.epochs-1,yMin:0,yMax:Math.max(1.5,...r.train,...r.val)+.1,title:'Hai đường loss',xLabel:'epoch'});
-      case 'conv':return bars([['Cạnh ra',r.out,'#1f6f5f'],['Tham số',r.params,'#ad542f'],['Điểm ảnh ra (nghìn)',r.pixels/1000,'#9e7a31']],Math.max(r.out,r.params,r.pixels/1000,1));
       case 'augment':return bars([['Lượt ảnh',r.effective,'#1f6f5f'],['Ảnh gốc',p.dataset,'#9e7a31'],['Tham số học (triệu)',r.trainable/1e6,'#ad542f']],Math.max(r.effective,p.dataset,r.trainable/1e6,1));
       case 'softmax':return bars([['Lớp 1',100*r.probs[0],'#1f6f5f'],['Lớp 2',100*r.probs[1],'#2f7d73'],['Lớp 3',100*r.probs[2],'#9e7a31'],['Accuracy',r.accuracy,'#ad542f']]);
       case 'iou':return boxDiagram(p,r);
@@ -14879,7 +15261,7 @@ const LearningTools = (() => {
       case 'batch':return [[['Bước mỗi epoch',f(r.steps)],['Tổng cập nhật',f(r.total)],['Mẫu đã thấy',f(r.seen)],['Batch cuối',f(r.last)]],`${p.dataset} mẫu, batch ${p.batch}: ${f(r.steps)} bước mỗi epoch, batch cuối có ${f(r.last)} mẫu. Batch lớn giảm số cập nhật nhưng không đổi số mẫu đã thấy; learning rate cần được chọn lại khi đổi batch.`];
       case 'normalize':return [[['Độ lệch chuẩn',f(r.std)],['Trạng thái',r.status]],`Sau ${p.depth} tầng, độ lệch chuẩn ước lượng là ${f(r.std)} (${r.status}). ${p.normalize?'Chuẩn hóa giữ phương sai quanh 1 nhưng thêm chi phí và thống kê cần tính đúng lúc train/test.':'Không chuẩn hóa: khởi tạo nhỏ làm tín hiệu co lại; khởi tạo lớn làm bùng nổ.'} Đây là mô hình nhân hệ số đơn giản, không phải mạng thật.`];
       case 'curves':return [[['Train cuối',f(r.train[r.train.length-1])],['Validation cuối',f(r.val[r.val.length-1])],['Khoảng cách cuối',f(r.finalGap)],['Chẩn đoán',r.diagnosis]],`Train cuối ${f(r.train[r.train.length-1])}, validation cuối ${f(r.val[r.val.length-1])}, khoảng cách ${f(r.finalGap)}. Chẩn đoán: ${r.diagnosis}. Overfit cần thêm dữ liệu/regularization; underfit cần mô hình mạnh hơn hoặc train lâu hơn.`];
-      case 'conv':return [[['Cạnh đầu ra',f(r.out)],['Tham số',f(r.params)],['Điểm ảnh đầu ra',f(r.pixels)],['Phép tính ước lượng',f(r.ops)]],`Cạnh ra = (${p.size} + 2×${p.padding} − ${p.kernel})/${p.stride} + 1 = ${f(r.out)}. Với ${p.channels} kênh ra và kernel ${p.kernel}×${p.kernel}, số tham số là ${f(r.params)}. Công thức chỉ đúng khi phép chia cho stride là số nguyên.`];
+      case 'conv':return [[['Cạnh feature map',f(r.out)],['Vị trí kernel',`(${r.ky}; ${r.kx})`],['Tổng patch',f(r.patchSum)],['Tham số',f(r.params)],['Phép nhân-cộng',f(r.ops)]],`Cạnh ra = (${p.size} + 2×${p.padding} − ${p.kernel})/${p.stride} + 1 = ${f(r.out)}. Cửa sổ ${p.kernel}×${p.kernel} đang lấy mẫu từ ô (${r.ky}; ${r.kx}), tổng có trọng số = ${f(r.patchSum)}. Volume 3D xếp ${p.channels} feature map; kênh 1 là bản đồ đang xem. Với ảnh vào một kênh, mỗi kênh ra cần ${p.kernel}×${p.kernel} trọng số cộng bias, nên tổng là ${f(r.params)}. Số tham số không phụ thuộc kích thước ảnh vì kernel dùng chung.`];
       case 'augment':return [[['Lượt ảnh mỗi epoch',f(r.effective)],['Tham số học',f(r.trainable)],['Chiến lược',r.strategy]],`${p.dataset} ảnh × ${p.factor} biến thể = ${f(r.effective)} lượt mỗi epoch; đóng băng ${f(p.frozen)}% nên chỉ còn ${f(r.trainable)} tham số học. Chiến lược: ${r.strategy}. Tăng cường dữ liệu không tạo thông tin mới; nó thay đổi phân bố nhìn thấy.`];
       case 'softmax':return [[['P(lớp 1)',f(100*r.probs[0])+'%'],['P(lớp 2)',f(100*r.probs[1])+'%'],['P(lớp 3)',f(100*r.probs[2])+'%'],['Lớp trội',String(r.top)],['Macro recall',f(r.macro)+'%']],`Ba xác suất cộng lại bằng 100%; lớp ${r.top} có xác suất lớn nhất. Với dữ liệu lệch ${f(p.majority)}% lớp đa số, accuracy luôn đoán lớp đa số là ${f(r.accuracy)}% nhưng macro recall chỉ ${f(r.macro)}%; hai thước đo kể hai câu chuyện.`];
       case 'iou':return [[['Diện tích giao',f(r.inter)],['Diện tích hợp',f(r.union)],['IoU',r.iou===null?f(null):f(r.iou)],['Đạt ngưỡng 0,5',r.pass?'Có':'Không']],`Giao = ${f(r.inter)}, hợp = ${f(r.union)}, IoU = ${r.iou===null?f(null):f(r.iou)}. ${r.pass?'Hộp đạt ngưỡng 0,5 trong ví dụ này.':'Hộp chưa đạt ngưỡng 0,5.'} IoU phụ thuộc cả vị trí lẫn kích thước; một hộp nhỏ đúng tâm vẫn có thể có IoU thấp.`];
@@ -14900,20 +15282,73 @@ const LearningTools = (() => {
       default:return null;
     }
   }
-  function plot(type,p,r){
+  function heatColor(value,min,max){
+    if(!Number.isFinite(value))return '#f6f1e8';
+    if(max===min)return '#d8c7a8';
+    const t=(value-min)/(max-min||1);
+    return value<0?`rgba(173,84,47,${(.12+.55*(1-t)).toFixed(2)})`:`rgba(31,111,95,${(.1+.65*t).toFixed(2)})`;
+  }
+  function matrixPlot(p,r){
+    const ox=210,oy=168,scale=34,W=420,H=320,clip='matrix-clip-'+(++chartSerial);
+    const pt=(x,y)=>[ox+x*scale,oy-y*scale];
+    let grid='';for(let i=-5;i<=5;i++){grid+=`<path d="M${ox+i*scale} 8 V${H-8} M8 ${oy+i*scale} H${W-8}" stroke="#eee7db"/>`;}
+    const square=[[0,0],[1,0],[1,1],[0,1]].map(([x,y])=>pt(x,y).join(',')).join(' ');
+    const par=[[0,0],[p.a,p.c],[p.a+p.b,p.c+p.d],[p.b,p.d]].map(([x,y])=>pt(x,y).join(',')).join(' ');
+    const eigen=r.eigen.map(e=>{
+      const t=7;
+      return `<line x1="${pt(-e.ex*t,-e.ey*t)[0]}" y1="${pt(-e.ex*t,-e.ey*t)[1]}" x2="${pt(e.ex*t,e.ey*t)[0]}" y2="${pt(e.ex*t,e.ey*t)[1]}" stroke="#9e7a31" stroke-width="1.5" stroke-dasharray="6 5"/><text x="${pt(e.ex*3.3,e.ey*3.3)[0]+4}" y="${pt(e.ex*3.3,e.ey*3.3)[1]}" font-size="11" fill="#9e7a31">λ=${format(e.lambda)}</text>`;
+    }).join('');
+    const v=pt(r.vx,r.vy),av=pt(r.x,r.y);
+    return svgBox(`<defs><clipPath id="${clip}"><rect x="8" y="8" width="${W-16}" height="${H-16}"/></clipPath></defs><g clip-path="url(#${clip})">${grid}<path d="M8 ${oy} H${W-8} M${ox} 8 V${H-8}" stroke="#a89c8b"/>${eigen}<polygon points="${square}" fill="none" stroke="#8d8274" stroke-dasharray="3 3"/><polygon points="${par}" fill="rgba(173,84,47,.16)" stroke="#ad542f" stroke-width="2"/><line x1="${ox}" y1="${oy}" x2="${v[0]}" y2="${v[1]}" stroke="#1f6f5f" stroke-width="4"/><line x1="${ox}" y1="${oy}" x2="${av[0]}" y2="${av[1]}" stroke="#ad542f" stroke-width="3" stroke-dasharray="7 4"/></g><circle data-handle="vector" cx="${v[0]}" cy="${v[1]}" r="11" fill="#1f6f5f" stroke="#fff" stroke-width="3" style="cursor:grab"/><circle cx="${av[0]}" cy="${av[1]}" r="6" fill="#ad542f" stroke="#fff" stroke-width="2"/><text x="12" y="20" font-size="12" fill="#1f6f5f">v = (${format(r.vx)}; ${format(r.vy)}) — kéo điểm xanh</text><text x="12" y="${H-8}" font-size="12" fill="#ad542f">Av = (${format(r.x)}; ${format(r.y)}) · |det A| = ${format(r.area)} · ${r.eigen.length?r.eigen.length+' phương thực':'không có phương thực'}</text>`,`Mặt phẳng với vector v, ảnh Av và hình bình hành diện tích ${format(r.area)}`,W,H);
+  }
+  function gradientPlot(p,r){
+    const W=420,H=300,x0=-3,x1=9,y0=0,y1=44,clip='gradient-clip-'+(++chartSerial);
+    const px=x=>34+(x-x0)/(x1-x0)*(W-58),py=y=>H-42-(y-y0)/(y1-y0)*(H-76);
+    const curve=Array.from({length:121},(_,i)=>{const x=x0+(x1-x0)*i/120;return (i?'L':'M')+px(x).toFixed(1)+' '+py((x-3)**2).toFixed(1);}).join(' ');
+    const trail=(p.trail||[r.x]).map((x,i)=>`<circle cx="${px(x)}" cy="${py((x-3)**2)}" r="${i===0?4:3}" fill="#9e7a31" opacity="${(.35+.65*(i+1)/((p.trail||[]).length||1)).toFixed(2)}"/>`).join('');
+    const slope=2*(r.x-3),tx0=Math.max(x0,r.x-1.4),tx1=Math.min(x1,r.x+1.4);
+    const tangent=`<line x1="${px(tx0)}" y1="${py(r.loss+slope*(tx0-r.x))}" x2="${px(tx1)}" y2="${py(r.loss+slope*(tx1-r.x))}" stroke="#ad542f" stroke-width="2" stroke-dasharray="5 4"/>`;
+    return svgBox(`<defs><clipPath id="${clip}"><rect x="34" y="20" width="${W-58}" height="${H-42}"/></clipPath></defs><g clip-path="url(#${clip})"><path d="M${px(0)} 20 V${H-42} M34 ${py(0)} H${W-24}" stroke="#d8d0c2"/>${tangent}<path d="${curve}" fill="none" stroke="#1f6f5f" stroke-width="3"/>${trail}<circle data-handle="gradient" cx="${px(r.x)}" cy="${py(r.loss)}" r="11" fill="#ad542f" stroke="#fff" stroke-width="3" style="cursor:grab"/></g><text x="12" y="16" font-size="12" fill="#6f675d">f(x) = (x − 3)² · kéo điểm đỏ hoặc dùng nút</text><text x="12" y="${H-10}" font-size="11" fill="#6f675d">x = ${format(r.x)} · loss = ${format(r.loss)} · gradient = ${format(r.gradient)} · ${stepsLabel(p)}</text>`,`Đường cong loss với điểm hiện tại và ${(p.trail||[]).length} vết bước`,W,H);
+  }
+  function stepsLabel(p){return p.trail?`vệt ${p.trail.length} điểm`:'chưa chạy';}
+  function convVisual(p,r){
+    const n=r.input.length,K=r.kernel.length,out=r.map.length,filters={vertical:'cạnh dọc',edge:'viền',blur:'làm mờ',identity:'giữ nguyên'};
+    const icell=Math.max(10,Math.min(24,220/n)),mcell=Math.max(9,Math.min(24,190/Math.max(out,1))),ix=22,iy=52,mx=22,my=52;
+    let inputGrid=`<rect x="${ix}" y="${iy}" width="${n*icell}" height="${n*icell}" fill="#faf8f3" stroke="#b5ac9e"/>`;
+    r.input.forEach((row,y)=>row.forEach((value,x)=>{inputGrid+=`<rect x="${ix+x*icell}" y="${iy+y*icell}" width="${icell-.6}" height="${icell-.6}" fill="${heatColor(value,1,13)}"/><text x="${ix+x*icell+icell/2}" y="${iy+y*icell+icell/2+3.5}" text-anchor="middle" font-size="${Math.min(10,icell*.48)}" fill="#3f382f">${value}</text>`;}));
+    inputGrid+=`<rect x="${ix+r.kx*icell}" y="${iy+r.ky*icell}" width="${K*icell}" height="${K*icell}" fill="rgba(158,122,49,.13)" stroke="#9e7a31" stroke-width="2.5" style="cursor:grab" data-handle="kernel"/><rect x="${ix}" y="${iy}" width="${n*icell}" height="${n*icell}" fill="transparent" style="cursor:grab" data-handle="kernel"/>`;
+    const inputSVG=`<svg data-input-grid="1" viewBox="0 0 ${ix*2+n*icell} ${iy+n*icell+34}" role="img" aria-label="Ảnh đầu vào, cửa sổ kernel có thể kéo"><text x="${ix}" y="24" font-size="12" fill="#544b40">Ảnh vào ${n}×${n} · kéo ô vàng</text><text x="${ix}" y="${iy+n*icell+24}" font-size="11" fill="#6f675d">patch tổng có trọng số = ${format(r.patchSum)}</text>${inputGrid}</svg>`;
+    let mapGrid=`<rect x="${mx}" y="${my}" width="${out*mcell}" height="${out*mcell}" fill="#faf8f3" stroke="#b5ac9e"/>`;
+    r.map.forEach((row,y)=>row.forEach((value,x)=>{mapGrid+=`<rect x="${mx+x*mcell}" y="${my+y*mcell}" width="${mcell-.6}" height="${mcell-.6}" fill="${heatColor(value,r.min,r.max)}"/>${mcell>=16?`<text x="${mx+x*mcell+mcell/2}" y="${my+y*mcell+mcell/2+3}" text-anchor="middle" font-size="${Math.min(9,mcell*.45)}" fill="#3f382f">${format(value)}</text>`:''}`;}));
+    const mapSVG=`<svg viewBox="0 0 ${mx*2+out*mcell} ${my+out*mcell+34}" role="img" aria-label="Feature map ${out} nhân ${out}"><text x="${mx}" y="24" font-size="12" fill="#544b40">Feature map ${out}×${out} · ${filters[r.maps[0].kind]||r.maps[0].kind}</text><text x="${mx}" y="${my+out*mcell+24}" font-size="11" fill="#6f675d">${r.ops} phép nhân-cộng ước lượng</text>${mapGrid}</svg>`;
+    const outSize=out,cell=Math.max(5,Math.min(10,120/Math.max(outSize,1))),baseX=160,baseY=206,layers=r.maps.length;
+    let volume='';
+    for(let li=layers-1;li>=0;li--){
+      const shiftX=li*24,shiftY=-li*28,active=li===0;
+      for(let y=0;y<outSize;y++)for(let x=0;x<outSize;x++){
+        const value=r.maps[li].map[y][x],u=baseX+(x-y)*cell*.9+shiftX,v=baseY+(x+y)*cell*.45+shiftY;
+        volume+=`<polygon points="${u},${v-cell*.45} ${u+cell*.9},${v} ${u},${v+cell*.45} ${u-cell*.9},${v}" fill="${heatColor(value,r.maps[li].min,r.maps[li].max)}" stroke="${active?'#544b40':'rgba(84,75,64,.25)'}" stroke-width="${active?.55:.25}"/>`;
+      }
+      volume+=`<text x="${baseX+shiftX+outSize*cell*.9+5}" y="${baseY+shiftY+6}" font-size="10" fill="${active?'#1f6f5f':'#8d8274'}">kênh ${li+1}</text>`;
+    }
+    const volumeSVG=`<svg viewBox="0 0 340 260" role="img" aria-label="Volume đặc trưng 3D xếp các kênh"><text x="14" y="20" font-size="12" fill="#544b40">Volume 3D: C=${layers}, H=W=${outSize} · kênh 1 ở trước</text>${volume}</svg>`;
+    const channelButtons=r.maps.map((map,index)=>`<button type="button" class="conv-channel${index===0?' is-active':''}" data-channel="${index}" data-filter="${map.kind}"><span>Kênh ${index+1}</span><small>${filters[map.kind]||map.kind}</small></button>`).join('');
+    return `<div class="conv-visual" data-volume="3d"><div class="conv-panels"><div class="conv-panel">${inputSVG}</div><div class="conv-panel">${mapSVG}</div></div><div class="conv-volume">${volumeSVG}<div class="conv-channels">${channelButtons}</div></div></div>`;
+  }
+  function plot(type,p,r,ghost){
+    const custom=definitions[type];
+    if(custom&&typeof custom.plot==='function')return custom.plot(p,r,ghost);
+    if(type==='matrix')return matrixPlot(p,r);
+    if(type==='gradient')return gradientPlot(p,r);
+    if(type==='conv')return convVisual(p,r);
     const extra=extraPlot(type,p,r);
     if(extra)return extra;
-    if(type==='linear'||type==='gradient'){
-      const x0=type==='linear'?-5:-3,x1=type==='linear'?5:9,y0=type==='linear'?-10:0,y1=type==='linear'?10:40;
+    if(type==='linear'){
+      const x0=-5,x1=5,y0=-10,y1=10;
       const point=(x,y)=>[25+(x-x0)/(x1-x0)*310,245-(y-y0)/(y1-y0)*220];
-      const path=Array.from({length:101},(_,i)=>{const x=x0+(x1-x0)*i/100,y=type==='linear'?p.w*x+p.b:(x-3)**2;return (i?'L':'M')+point(x,y).map(v=>v.toFixed(2)).join(' ');}).join(' ');
-      const [cx,cy]=point(type==='linear'?2:r.x,type==='linear'?r.y:r.loss);
-      return svg(`<defs><clipPath id="clip-${type}"><rect x="25" y="25" width="310" height="220"/></clipPath></defs><path d="M25 245 H335 M${point(0,0)[0]} 25 V245" stroke="#b5ac9e" fill="none"/><g clip-path="url(#clip-${type})"><path d="${path}" stroke="#1f6f5f" stroke-width="3" fill="none"/><circle cx="${cx}" cy="${cy}" r="6" fill="#ad542f"/></g><text x="25" y="18" font-size="13" fill="#6f675d">${type==='linear'?'y = wx + b':'f(x) = (x − 3)²'}</text><text x="28" y="264" font-size="12" fill="#6f675d">x từ ${x0} đến ${x1}; trục đứng từ ${y0} đến ${y1}</text>`,type==='linear'?`Dự đoán tại x=2: ${format(r.y)}`:`Tại x=${format(r.x)}, loss=${format(r.loss)}. Ngoài miền vẽ thì điểm bị cắt.`);
-    }
-    if(type==='matrix'){
-      const pt=(x,y)=>[180+x*28,135-y*28];const end=pt(r.x,r.y);
-      let grid='';for(let i=-4;i<=4;i++)grid+=`<path d="M${180+i*28} 15 V255 M50 ${135+i*28} H310" stroke="#e3ddd1" fill="none"/>`;
-      return svg(`${grid}<path d="M50 135 H310 M180 15 V255" stroke="#a89c8b"/><path d="M180 135 L208 107" stroke="#1f6f5f" stroke-width="6"/><circle cx="208" cy="107" r="5" fill="#1f6f5f"/><path d="M180 135 L${end.join(' ')}" stroke="#ad542f" stroke-width="3" stroke-dasharray="7 4"/><circle cx="${end[0]}" cy="${end[1]}" r="5" fill="#ad542f"/><text x="12" y="22" font-size="13" fill="#1f6f5f">v=(1,1) nét liền</text><text x="12" y="265" font-size="13" fill="#ad542f">Av=(${format(r.x)}; ${format(r.y)}) nét đứt</text>`,`Vector (1,1) biến thành (${format(r.x)},${format(r.y)})`);
+      const path=Array.from({length:101},(_,i)=>{const x=x0+(x1-x0)*i/100,y=p.w*x+p.b;return (i?'L':'M')+point(x,y).map(v=>v.toFixed(2)).join(' ');}).join(' ');
+      const [cx,cy]=point(2,r.y);
+      return svg(`<defs><clipPath id="clip-${type}"><rect x="25" y="25" width="310" height="220"/></clipPath></defs><path d="M25 245 H335 M${point(0,0)[0]} 25 V245" stroke="#b5ac9e" fill="none"/><g clip-path="url(#clip-${type})"><path d="${path}" stroke="#1f6f5f" stroke-width="3" fill="none"/><circle cx="${cx}" cy="${cy}" r="6" fill="#ad542f"/></g><text x="25" y="18" font-size="13" fill="#6f675d">y = wx + b</text><text x="28" y="264" font-size="12" fill="#6f675d">x từ ${x0} đến ${x1}; trục đứng từ ${y0} đến ${y1}</text>`,`Dự đoán tại x=2: ${format(r.y)}`);
     }
     if(type==='bayes')return bars([['Spam có dấu hiệu',r.tp,'#1f6f5f'],['Không spam có dấu hiệu',r.fp,'#ad542f']],Math.max(r.tp,r.fp,1));
     if(type==='metrics')return bars([['TP',p.tp,'#1f6f5f'],['FP',p.fp,'#ad542f'],['FN',p.fn,'#9e7a31'],['TN',p.tn,'#7a8b63']],Math.max(p.tp,p.fp,p.fn,p.tn,1));
@@ -14925,12 +15360,14 @@ const LearningTools = (() => {
     return '';
   }
   function describe(type,p,r,steps){
+    const custom=definitions[type];
+    if(custom&&typeof custom.describe==='function')return custom.describe(p,r,steps);
     const f=format;
     switch(type){
       case 'linear':return [[['Dự đoán tại x=2',f(r.y)],['Sai số có dấu',f(r.error)],['Sai số bình phương',f(r.loss)]],`ŷ = ${f(p.w)} × 2 + ${f(p.b)} = ${f(r.y)}. Đây là sai số trên một mẫu; loss trung bình cần cộng qua các mẫu rồi chia số mẫu.`];
-      case 'gradient':return [[['Số bước',String(steps)],['x hiện tại',f(r.x)],['Loss',f(r.loss)]],`Gradient = ${f(r.gradient)}; x kế = x − η × gradient = ${f(r.next)}. ${p.rate===0?'η = 0: không cập nhật.':p.rate<1?'Với hàm bậc hai này, 0 < η < 1 cho hội tụ.':p.rate===1?'η = 1: thường dao động đối xứng quanh 3; chỉ đứng yên khi đã ở 3.':'η > 1: thường đi xa nghiệm hơn, không bảo đảm giảm loss.'}${r.loss>40?' Điểm hiện ngoài khung vẽ; số liệu vẫn được tính.':''}`];
+      case 'gradient':return [[['Số bước',String(steps)],['x hiện tại',f(r.x)],['Loss',f(r.loss)],['Gradient',f(r.gradient)],['x kế tiếp',f(r.next)]],`Gradient = ${f(r.gradient)}; x kế = x − η × gradient = ${f(r.next)}. ${p.rate===0?'η = 0: không cập nhật.':p.rate<1?'Với hàm bậc hai này, 0 < η < 1 cho hội tụ.':p.rate===1?'η = 1: thường dao động đối xứng quanh 3; chỉ đứng yên khi đã ở 3.':'η > 1: thường đi xa nghiệm hơn, không bảo đảm giảm loss.'}${r.loss>40?' Điểm hiện ngoài khung vẽ; số liệu vẫn được tính.':''} Vệt vàng trên hình lưu các điểm đã đi, không phải quỹ đạo liên tục.`];
       case 'bayes':return [[['Spam có dấu hiệu (kỳ vọng)',f(r.tp)],['Không spam có dấu hiệu',f(r.fp)],['P(spam | dấu hiệu)',r.posterior===null?f(null):f(100*r.posterior)+'%']],`Trong 10.000 email giả định: posterior = ${f(r.tp)} / (${f(r.tp)} + ${f(r.fp)}). ${r.posterior===null?'Không có email mang dấu hiệu theo mô hình này nên điều kiện có xác suất 0.':'Chất lượng dấu hiệu và tỉ lệ ban đầu đều ảnh hưởng kết luận; số đếm là kỳ vọng, không phải dữ liệu đo.'}`];
-      case 'matrix':return [[['Av',`(${f(r.x)}; ${f(r.y)})`],['Định thức',f(r.det)]],`[${f(p.a)} ${f(p.b)}; ${f(p.c)} ${f(p.d)}] × (1,1) = (${f(p.a)} + ${f(p.b)}; ${f(p.c)} + ${f(p.d)}). ${r.det===0?'Định thức 0: phép biến đổi mất ít nhất một chiều, không khả nghịch.':'Định thức khác 0: ma trận 2×2 khả nghịch.'}`];
+      case 'matrix':{const eig=r.eigen.length?r.eigen.map(e=>`λ=${f(e.lambda)} theo (${f(e.ex)}; ${f(e.ey)})`).join('; '):'không có eigenvalue thực';return [[['Av',`(${f(r.x)}; ${f(r.y)})`],['Định thức',f(r.det)],['Diện tích ô đơn vị',f(r.area)],['Eigenvalue thực',eig]],`[${f(p.a)} ${f(p.b)}; ${f(p.c)} ${f(p.d)}] × (${f(r.vx)}; ${f(r.vy)}) = (${f(r.x)}; ${f(r.y)}). ${Math.abs(r.det)<1e-9?'Định thức 0: phép biến đổi ép mặt phẳng thành một đường, không khả nghịch.':'Định thức khác 0: diện tích đổi theo hệ số |det A|; dấu âm nghĩa là hướng bị lật.'} ${r.eigen.length?'Các đường vàng là phương thực (eigenvector) — hướng không bị xoay, chỉ co giãn.':'Hai eigenvalue phức nên không có hướng thực giữ nguyên; phép biến đổi có thành phần xoay.'}`];}
       case 'metrics':{const percent=x=>x===null?f(null):f(100*x)+'%';return [[['Precision',percent(r.precision)],['Recall',percent(r.recall)],['F1',percent(r.f1)],['Accuracy',percent(r.accuracy)]],`Precision = TP/(TP+FP); recall = TP/(TP+FN). Accuracy phụ thuộc cả TN. Mẫu số 0 được hiển thị không xác định thay vì gán một quy ước ngầm.`];}
       case 'fedavg':return [[['Tổng mẫu tham gia',f(r.total)],['Trọng số A',r.alpha===null?f(null):f(r.alpha)],['Tham số gộp',f(r.average)]],r.total?`w = (${p.na} × ${f(p.wa)} + ${p.nb} × ${f(p.wb)}) / ${r.total}. Gộp tham số không bảo đảm cùng kết quả với train tập trung; ví dụ một tham số chỉ minh họa phép gộp.`:'Tổng số mẫu bằng 0: không thực hiện phép gộp. Client không có mẫu không đóng góp trọng số.' ];
       case 'forgetting':return [[['Mức giảm nhiệm vụ cũ',f(r.drop)+' điểm %'],['Trung bình hai nhiệm vụ',f(r.average)+'%']],`Mức giảm = ${p.before} − ${p.old}. ${r.drop<0?'Giá trị âm là cải thiện trên nhiệm vụ cũ.':'Điểm trung bình có thể che mất mức suy giảm trên nhiệm vụ cũ.'} Đây là hai mốc của một nhiệm vụ; forgetting tổng quát cần lịch sử và quy ước tổng hợp được ghi rõ.`];
@@ -14942,7 +15379,36 @@ const LearningTools = (() => {
   }
   function mount(root){
     root.querySelectorAll('[data-experiment]').forEach(box=>{
-      const type=box.dataset.experiment,def=definitions[type],params=defaults(type);let steps=0,initialX=params.x;
+      const type=box.dataset.experiment,def=definitions[type],params=defaults(type),stage=box.querySelector('[data-stage]');
+      let steps=0,initialX=params.x,timer=null,drag=null,snapshot=null,interacted=false,statusTimer=null;
+      params.trail=[params.x];
+      const noteInteraction=()=>{
+        if(interacted)return;
+        interacted=true;
+        if(typeof window.recordLabInteraction==='function')window.recordLabInteraction(type);
+      };
+      const setStatus=text=>{
+        const el=box.querySelector('[data-tool-status]');
+        if(!el)return;
+        el.textContent=text;
+        if(statusTimer)clearTimeout(statusTimer);
+        statusTimer=setTimeout(()=>{el.textContent='';},3500);
+      };
+      const stateForShare=()=>{
+        const allowed=new Set([...def.controls.map(control=>controlInfo(control).key),...Object.keys(def.extras||{})]);
+        const state={};
+        Object.keys(params).forEach(key=>{if(allowed.has(key))state[key]=params[key];});
+        return state;
+      };
+      const copyText=text=>{
+        if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(text);
+        const area=document.createElement('textarea');
+        area.value=text;area.style.position='fixed';area.style.opacity='0';
+        document.body.appendChild(area);area.select();
+        const ok=document.execCommand&&document.execCommand('copy');
+        document.body.removeChild(area);
+        return ok?Promise.resolve():Promise.reject(new Error('copy unavailable'));
+      };
       const controls=[...box.querySelectorAll('[data-param]')];
       const controlFor=key=>controlInfo(def.controls.find(control=>(Array.isArray(control)?control[0]:control.key)===key));
       function sync(control){
@@ -14951,30 +15417,758 @@ const LearningTools = (() => {
         else control.value=params[info.key];
         if(info.type==='range'){const output=control.parentElement.querySelector('output');if(output)output.textContent=format(params[info.key]);}
       }
-      function reset(){Object.assign(params,defaults(type));initialX=params.x;steps=0;update();}
+      function stop(){
+        if(timer){clearInterval(timer);timer=null;}
+        const run=box.querySelector('[data-run]'),stopBtn=box.querySelector('[data-stop]');
+        if(run)run.disabled=false;if(stopBtn)stopBtn.disabled=true;
+      }
+      function resetTrail(x){params.trail=[x];}
       function update(){
+        if(type==='gradient')params.trail=params.trail&&params.trail.length?params.trail:[params.x];
         const r=calculate(type,params),[values,observation]=describe(type,params,r,steps);
+        let ghost=null;
+        if(snapshot){try{ghost=calculate(type,snapshot.params);}catch(_){ghost=null;}}
         controls.forEach(sync);
-        box.querySelector('[data-visual]').innerHTML=plot(type,params,r);
+        box.querySelector('[data-visual]').innerHTML=plot(type,params,r,ghost);
         box.querySelector('[data-results]').innerHTML=values.map(([name,value])=>`<div><span>${safe(name)}</span><strong>${safe(value)}</strong></div>`).join('');
         box.querySelector('[data-observation]').textContent=observation;
+        const view=box.querySelector('[data-snapshot-view]');
+        if(view){
+          view.hidden=!snapshot;
+          if(snapshot)view.innerHTML=`<div class="snapshot-head"><b>Mốc A</b><button type="button" class="snapshot-clear" data-clear-snapshot>Xóa mốc</button></div><div class="snapshot-grid"><div><span class="snapshot-label">Đã lưu</span>${snapshot.values.map(([name,value])=>`<p>${safe(name)}: <b>${safe(value)}</b></p>`).join('')}</div><div><span class="snapshot-label">Hiện tại</span>${values.map(([name,value])=>`<p>${safe(name)}: <b>${safe(value)}</b></p>`).join('')}</div></div>`;
+        }
         const step=box.querySelector('[data-step]');if(step)step.disabled=!Number.isFinite(r.next)||Math.abs(r.next)>1e6;
+        box.querySelectorAll('[data-rate]').forEach(btn=>btn.classList.toggle('is-active',Math.abs(Number(btn.dataset.rate)-params.rate)<1e-9));
+        if(typeof def.afterUpdate==='function')def.afterUpdate({box,params,result:r,update});
       }
+      function reset(){
+        stop();Object.assign(params,defaults(type));steps=0;initialX=params.x;params.trail=[params.x];update();
+      }
+      function oneStep(){
+        const r=calculate(type,params);
+        if(!Number.isFinite(r.next)||Math.abs(r.next)>1e6){stop();return false;}
+        params.x=Math.round(r.next*1000)/1000;steps++;
+        params.trail=params.trail||[];params.trail.push(params.x);
+        if(params.trail.length>48)params.trail.shift();
+        update();return true;
+      }
+      const gate=box.querySelector('[data-prediction]');
+      if(gate){
+        gate.querySelectorAll('[data-answer]').forEach(button=>button.addEventListener('click',()=>{
+          noteInteraction();
+          const result=predictionResult(type,button.dataset.answer),correct=def.prediction.correct;
+          gate.querySelectorAll('[data-answer]').forEach(option=>{
+            option.disabled=true;
+            option.classList.toggle('is-correct',option.dataset.answer===correct);
+            option.classList.toggle('is-wrong',option===button&&button.dataset.answer!==correct);
+          });
+          const feedback=gate.querySelector('[data-prediction-feedback]');
+          feedback.textContent=`${result.correct?'Dự đoán đúng.':'Chưa đúng — đáp án đúng là '+result.answer+'.'} ${result.explain}`;
+          feedback.className='prediction-feedback '+(result.correct?'is-correct':'is-wrong');
+          stage.hidden=false;box.classList.add('prediction-passed');update();
+        }));
+      }
+      box.querySelector('[data-snapshot]').addEventListener('click',()=>{
+        noteInteraction();
+        const r=calculate(type,params),[values,observation]=describe(type,params,r,steps);
+        snapshot={params:stateForShare(),values,observation};
+        update();setStatus('Đã lưu mốc A để so sánh.');
+      });
+      box.addEventListener('click',event=>{
+        const clear=event.target.closest&&event.target.closest('[data-clear-snapshot]');
+        if(!clear)return;
+        snapshot=null;update();setStatus('Đã xóa mốc A.');
+      });
+      box.querySelector('[data-share]').addEventListener('click',()=>{
+        noteInteraction();
+        const url=typeof window.labShareUrl==='function'?window.labShareUrl(type,stateForShare()):location.href;
+        copyText(url).then(()=>setStatus('Đã sao chép liên kết có trạng thái lab.')).catch(()=>setStatus('Không sao chép tự động được: '+url));
+      });
+      box.querySelector('[data-export]').addEventListener('click',()=>{
+        noteInteraction();
+        const r=calculate(type,params),[values,observation]=describe(type,params,r,steps);
+        const controlLines=def.controls.map(control=>{const info=controlInfo(control);const raw=params[info.key];const value=info.type==='select'?(info.options.find(([key])=>key===raw)||[])[1]||raw:raw;return `- ${info.label}: **${value}**`;}).join('\n');
+        const lines=[`# Phiếu lab — ${def.title}`,`Chương: ${document.title.replace(/ · Toán.*$/,'')}`,``,`## Dự đoán`,def.prediction?def.prediction.question:'Không có cổng dự đoán.',``,`## Trạng thái hiện tại`,controlLines,``,`## Số liệu`,...values.map(([name,value])=>`- ${name}: **${value}**`),``,`## Quan sát`,observation];
+        if(def.challenge)lines.push('',`## Thử thách`,def.challenge.goal);
+        if(snapshot)lines.push('',`## Mốc A`,...snapshot.values.map(([name,value])=>`- ${name}: **${value}**`));
+        const blob=new Blob([lines.join('\n')],{type:'text/markdown;charset=utf-8'}),link=document.createElement('a');
+        link.href=URL.createObjectURL(blob);link.download='phieu-lab-'+type+'.md';document.body.appendChild(link);link.click();document.body.removeChild(link);
+        setTimeout(()=>URL.revokeObjectURL(link.href),1000);
+        setStatus('Đã xuất phiếu lab Markdown.');
+      });
+      const challenge=box.querySelector('[data-check-challenge]');
+      if(challenge&&def.challenge&&typeof def.challenge.check==='function')challenge.addEventListener('click',()=>{
+        noteInteraction();
+        const r=calculate(type,params);
+        const passed=Boolean(def.challenge.check(params,r));
+        const feedback=box.querySelector('[data-challenge-feedback]');
+        if(feedback){feedback.dataset.state=passed?'correct':'wrong';feedback.textContent=passed?'Đạt mục tiêu. Hãy thử một cấu hình khác để kiểm tra hiểu biết.':'Chưa đạt mục tiêu. Đọc lại số liệu và thử thay đổi một tham số.';}
+        if(passed&&typeof window.recordLabChallenge==='function')window.recordLabChallenge(type);
+      });
+      box.querySelectorAll('[data-error]').forEach(button=>button.addEventListener('click',()=>{
+        noteInteraction();
+        const error=(def.errors||[])[Number(button.dataset.error)];
+        if(!error)return;
+        Object.assign(params,defaults(type),error.params||{});steps=0;
+        if(type==='gradient'){initialX=params.x;resetTrail(params.x);}
+        update();
+        const note=box.querySelector('[data-error-note]');
+        if(note)note.textContent=error.explain||'';
+        box.classList.add('is-error-state');
+      }));
       controls.forEach(input=>{
         input.addEventListener(input.type==='range'?'input':'change',()=>{
+          noteInteraction();
           const key=input.dataset.param;
           params[key]=input.type==='checkbox'?input.checked:input.type==='range'?Number(input.value):input.value;
-          if(type==='gradient'){if(key==='x')initialX=params.x;params.x=initialX;}
-          steps=0;update();
+          if(type==='gradient'&&(key==='x'||key==='rate')){if(key==='x')initialX=params.x;steps=0;resetTrail(params.x);}
+          update();
         });
       });
       box.querySelector('[data-reset]').addEventListener('click',reset);
-      const step=box.querySelector('[data-step]');if(step)step.addEventListener('click',()=>{params.x=calculate(type,params).next;steps++;update();});
+      const step=box.querySelector('[data-step]');if(step)step.addEventListener('click',()=>{oneStep();});
+      const run=box.querySelector('[data-run]');
+      if(run)run.addEventListener('click',()=>{
+        if(timer)return;let count=0;
+        run.disabled=true;const stopBtn=box.querySelector('[data-stop]');if(stopBtn)stopBtn.disabled=false;
+        const tick=()=>{if(!box.isConnected){stop();return;}if(!oneStep()||++count>=10)stop();};
+        tick();timer=setInterval(tick,460);
+      });
+      const stopBtn=box.querySelector('[data-stop]');if(stopBtn)stopBtn.addEventListener('click',stop);
+      box.querySelectorAll('[data-rate]').forEach(btn=>btn.addEventListener('click',()=>{
+        params.rate=Number(btn.dataset.rate);steps=0;resetTrail(params.x);update();
+      }));
+      box.querySelectorAll('[data-identity]').forEach(btn=>btn.addEventListener('click',()=>{params.a=1;params.b=0;params.c=0;params.d=1;steps=0;update();}));
+      box.querySelectorAll('[data-rotate]').forEach(btn=>btn.addEventListener('click',()=>{
+        const r=Math.PI/6;params.a=Math.cos(r);params.b=-Math.sin(r);params.c=Math.sin(r);params.d=Math.cos(r);steps=0;update();
+      }));
+      const visual=box.querySelector('[data-visual]');
+      function svgForHandle(kind){return kind==='kernel'?visual.querySelector('svg[data-input-grid]'):visual.querySelector('svg');}
+      function localPoint(svg,event){
+        const matrix=svg&&svg.getScreenCTM&&svg.getScreenCTM();if(!matrix)return null;
+        const point=svg.createSVGPoint();point.x=event.clientX;point.y=event.clientY;return point.matrixTransform(matrix.inverse());
+      }
+      visual.addEventListener('click',event=>{
+        const channel=event.target.closest&&event.target.closest('[data-channel]');
+        if(channel){noteInteraction();params.filter=channel.dataset.filter;steps=0;update();}
+      });
+      visual.addEventListener('pointerdown',event=>{
+        const handle=event.target.closest&&event.target.closest('[data-handle]');if(!handle)return;
+        noteInteraction();drag={kind:handle.dataset.handle};event.preventDefault();
+        if(visual.focus)visual.focus({preventScroll:true});
+      });
+      window.addEventListener('pointermove',event=>{
+        if(!drag)return;
+        const svg=svgForHandle(drag.kind),point=localPoint(svg,event);if(!point)return;
+        if(drag.kind==='vector'){
+          params.vx=Math.round(clamp((point.x-210)/34,-4,4)*10)/10;
+          params.vy=Math.round(clamp((168-point.y)/34,-4,4)*10)/10;
+          steps=0;update();
+        }else if(drag.kind==='gradient'){
+          params.x=Math.round(clamp(-3+(point.x-34)/362*12,-3,9)*10)/10;
+          initialX=params.x;steps=0;resetTrail(params.x);update();
+        }else if(drag.kind==='kernel'){
+          const n=params.size,K=params.kernel,cell=Math.max(10,Math.min(24,220/n));
+          params.kx=clamp(Math.floor((point.x-22)/cell),0,Math.max(0,n-K));
+          params.ky=clamp(Math.floor((point.y-52)/cell),0,Math.max(0,n-K));
+          steps=0;update();
+        }
+      });
+      const endDrag=()=>{drag=null;};
+      window.addEventListener('pointerup',endDrag);window.addEventListener('pointercancel',endDrag);
+      visual.addEventListener('keydown',event=>{
+        const keys={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]};
+        if(!keys[event.key])return;
+        noteInteraction();
+        const [dx,dy]=keys[event.key],coarse=event.shiftKey?2:1;event.preventDefault();
+        if(type==='matrix'){params.vx=clamp(Math.round((params.vx+dx*.2*coarse)*10)/10,-4,4);params.vy=clamp(Math.round((params.vy+dy*.2*coarse)*10)/10,-4,4);steps=0;update();}
+        if(type==='gradient'){params.x=clamp(Math.round((params.x+dx*.5*coarse)*10)/10,-3,9);initialX=params.x;steps=0;resetTrail(params.x);update();}
+        if(type==='conv'){params.kx=clamp(params.kx+dx*coarse,0,Math.max(0,params.size-params.kernel));params.ky=clamp(params.ky+dy*coarse,0,Math.max(0,params.size-params.kernel));steps=0;update();}
+      });
+      if(typeof def.bind==='function')def.bind({box,type,params,update,reset,visual:box.querySelector('[data-visual]'),controls,noteInteraction,getSteps:()=>steps,setSteps:value=>{steps=value;},resetTrail});
       reset();
     });
   }
-  return {html,mount,calculate,definitions,controlInfo,defaults,plot,describe};
+  return {html,mount,calculate,definitions,controlInfo,defaults,plot,describe,predictionResult};
 })();
+
+/* Năm lab flagship nâng cấp: ngưỡng, attention, FedAvg, quên, DP.
+   Phần này mở rộng LearningTools bằng hook calculate/describe/plot/bind. */
+(function () {
+  const D = LearningTools.definitions;
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  const num = value => Number.isFinite(value)
+    ? Number(value).toLocaleString('vi-VN', { maximumFractionDigits: 3 })
+    : 'Không xác định';
+  const pct = value => Number.isFinite(value) ? num(100 * value) + '%' : 'Không xác định';
+  const safe = value => String(value == null ? '' : value)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const svg = (content, description, width, height) =>
+    `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${safe(description)}">${content}</svg>`;
+  const heat = value => {
+    const v = clamp(value, 0, 1);
+    return `hsl(${Math.round(36 - 30 * v)} 58% ${Math.round(94 - 42 * v)}%)`;
+  };
+  const pointInView = (svgEl, event, width, height) => {
+    const rect = svgEl.getBoundingClientRect();
+    return {
+      x: (event.clientX - rect.left) / (rect.width || 1) * width,
+      y: (event.clientY - rect.top) / (rect.height || 1) * height,
+    };
+  };
+
+  Object.assign(D, {
+    metrics: {
+      title: 'Kéo ngưỡng, thấy precision–recall đánh đổi',
+      prompt: 'Kéo vạch ngưỡng trên biểu đồ. Hai nhóm điểm nguy cơ chồng lấn; hạ ngưỡng bắt thêm ca dương nhưng cũng thêm báo nhầm.',
+      controls: [
+        ['threshold', 'Ngưỡng quyết định', 0, 100, 1, 50],
+        ['separation', 'Mức tách hai nhóm', 0, 3, 0.1, 1.5],
+        ['prevalence', 'Tỉ lệ ca dương (%)', 5, 50, 1, 20],
+      ],
+      prediction: {
+        question: 'Hạ ngưỡng để báo dương nhiều hơn thường làm gì với recall và precision?',
+        options: [['recall-up', 'Recall tăng, precision thường giảm'], ['both-up', 'Cả hai cùng tăng'], ['same', 'Cả hai không đổi']],
+        correct: 'recall-up',
+        explain: 'Hạ ngưỡng nhận thêm nhiều ca vào lớp dương: bắt được thêm ca bệnh (recall tăng) nhưng cũng thêm báo nhầm (precision thường giảm). Đây là đánh đổi, không phải lỗi cài đặt.',
+      },
+      challenge: {
+        goal: 'Đặt ngưỡng để recall ≥ 0,80 và precision ≥ 0,70 cùng lúc.',
+        check: (_p, r) => r.recall >= 0.8 && r.precision >= 0.7,
+      },
+      errors: [
+        { label: 'Ngưỡng quá thấp', params: { threshold: 5 }, explain: 'Gần như mọi ca bị báo dương: recall cao nhưng precision sụp vì có rất nhiều FP. Accuracy có thể vẫn trông ổn nếu lớp âm đông.' },
+        { label: 'Ngưỡng quá cao', params: { threshold: 95 }, explain: 'Hầu như không báo dương: precision có thể đẹp nhưng recall gần 0, bỏ sót phần lớn ca bệnh. Một chỉ số đẹp không đủ.' },
+        { label: 'Lớp dương rất hiếm', params: { prevalence: 5, separation: 0.4, threshold: 50 }, explain: 'Khi lớp dương hiếm, accuracy cao có thể chỉ nhờ đoán âm. Phải đọc confusion matrix và recall của lớp cần phát hiện.' },
+      ],
+      calculate(p) {
+        const n = 200, positives = Math.max(1, Math.round(n * p.prevalence / 100)), negatives = n - positives;
+        const posScores = [], negScores = [];
+        for (let i = 0; i < positives; i++) posScores.push(clamp(Math.round(45 + p.separation * 14 + 22 * Math.sin(i * 2.399963)), 0, 100));
+        for (let i = 0; i < negatives; i++) negScores.push(clamp(Math.round(45 - p.separation * 14 + 22 * Math.sin(i * 1.618034 + 1)), 0, 100));
+        const threshold = Math.round(p.threshold);
+        let tp = 0, fp = 0, fn = 0, tn = 0;
+        posScores.forEach(score => score >= threshold ? tp++ : fn++);
+        negScores.forEach(score => score >= threshold ? fp++ : tn++);
+        const precision = tp + fp ? tp / (tp + fp) : null;
+        const recall = tp + fn ? tp / (tp + fn) : null;
+        const accuracy = (tp + tn) / n;
+        const f1 = 2 * tp + fp + fn ? 2 * tp / (2 * tp + fp + fn) : null;
+        return { threshold, tp, fp, fn, tn, positives, negatives, precision, recall, accuracy, f1, posScores, negScores };
+      },
+      describe(p, r) {
+        return [
+          [['TP / FP', `${r.tp} / ${r.fp}`], ['FN / TN', `${r.fn} / ${r.tn}`], ['Precision', pct(r.precision)], ['Recall', pct(r.recall)], ['Accuracy', pct(r.accuracy)], ['F1', pct(r.f1)]],
+          `Ngưỡng ${r.threshold}: ${r.tp} ca dương được bắt, ${r.fp} báo nhầm, ${r.fn} bỏ sót. Precision = TP/(TP+FP); recall = TP/(TP+FN). Hạ ngưỡng thường đổi recall lấy precision; accuracy một mình không cho biết đang bỏ sót ai.`,
+        ];
+      },
+      plot(p, r, ghost) {
+        const W = 420, H = 360, x0 = 34, x1 = 342, y0 = 42, y1 = 206;
+        const bin = values => { const out = Array(10).fill(0); values.forEach(v => out[Math.min(9, Math.floor(v / 10))]++); return out; };
+        const pos = bin(r.posScores), neg = bin(r.negScores), max = Math.max(1, ...pos, ...neg), width = (x1 - x0) / 10;
+        const bars = (values, color) => values.map((count, i) => {
+          const h = count / max * (y1 - y0), x = x0 + i * width, y = y1 - h;
+          return `<rect x="${x + 1}" y="${y}" width="${Math.max(1, width - 2)}" height="${h}" fill="${color}" opacity=".72"><title>Điểm ${i * 10}–${i * 10 + 9}: ${count} ca</title></rect>`;
+        }).join('');
+        const tx = x0 + (x1 - x0) * r.threshold / 100;
+        const gx = ghost ? x0 + (x1 - x0) * ghost.threshold / 100 : null;
+        const cell = (x, y, w, h, label, value, color) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${color}" stroke="#fff" stroke-width="2"/><text x="${x + 10}" y="${y + 18}" font-size="11" fill="#544b40">${label}</text><text x="${x + w - 10}" y="${y + 18}" text-anchor="end" font-size="14" font-weight="700" fill="#332d26">${value}</text>`;
+        return svg(`
+          <text x="14" y="20" font-size="12" fill="#6f675d">Phân bố điểm nguy cơ · 200 ca · kéo vạch ngưỡng</text>
+          <line x1="${x0}" y1="${y1}" x2="${x1}" y2="${y1}" stroke="#a89c8b"/>
+          <line x1="${x0}" y1="${y0}" x2="${x0}" y2="${y1}" stroke="#a89c8b"/>
+          ${bars(neg, '#1f6f5f')}${bars(pos, '#ad542f')}
+          ${gx != null ? `<line x1="${gx}" y1="${y0}" x2="${gx}" y2="${y1}" stroke="#9a8f82" stroke-dasharray="4 3"/>` : ''}
+          <line x1="${tx}" y1="${y0}" x2="${tx}" y2="${y1}" stroke="#9e7a31" stroke-width="2"/>
+          <circle data-handle="threshold" cx="${tx}" cy="${y0}" r="9" fill="#9e7a31" stroke="#fff" stroke-width="2.5" style="cursor:grab"/>
+          <text x="${x0}" y="${H - 122}" font-size="10" fill="#6f675d">0</text><text x="${x1 - 14}" y="${H - 122}" font-size="10" fill="#6f675d">100</text>
+          <rect x="14" y="222" width="10" height="10" fill="#1f6f5f" opacity=".72"/><text x="29" y="231" font-size="10" fill="#6f675d">âm thật</text>
+          <rect x="90" y="222" width="10" height="10" fill="#ad542f" opacity=".72"/><text x="105" y="231" font-size="10" fill="#6f675d">dương thật</text>
+          <text x="14" y="252" font-size="12" fill="#6f675d">Ma trận nhầm lẫn tại ngưỡng ${r.threshold}</text>
+          ${cell(14, 264, 190, 30, 'TP · bắt đúng', r.tp, '#dfe9dd')}${cell(204, 264, 190, 30, 'FN · bỏ sót', r.fn, '#f3e3da')}
+          ${cell(14, 294, 190, 30, 'FP · báo nhầm', r.fp, '#f3e3da')}${cell(204, 294, 190, 30, 'TN · đúng', r.tn, '#dfe9dd')}
+          <text x="14" y="344" font-size="11" fill="#6f675d">precision ${pct(r.precision)} · recall ${pct(r.recall)} · accuracy ${pct(r.accuracy)}</text>
+        `, 'Phân bố điểm nguy cơ, ngưỡng quyết định và confusion matrix', W, H);
+      },
+      bind({ visual, params, update, noteInteraction }) {
+        let active = false;
+        const move = event => {
+          const svgEl = visual.querySelector('svg');
+          if (!svgEl) return;
+          const p = pointInView(svgEl, event, 420, 360);
+          if (p.x < 34 || p.x > 342) return;
+          params.threshold = Math.round(clamp((p.x - 34) / 308 * 100, 0, 100));
+          update();
+        };
+        visual.addEventListener('pointerdown', event => {
+          const handle = event.target.closest && event.target.closest('[data-handle="threshold"]');
+          if (!handle) return;
+          active = true; noteInteraction(); event.preventDefault(); move(event);
+        });
+        window.addEventListener('pointermove', event => { if (active) move(event); });
+        window.addEventListener('pointerup', () => { active = false; });
+        visual.addEventListener('keydown', event => {
+          if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+          noteInteraction(); event.preventDefault();
+          params.threshold = clamp(params.threshold + (event.key === 'ArrowRight' ? 1 : -1) * (event.shiftKey ? 5 : 1), 0, 100);
+          update();
+        });
+      },
+    },
+
+    attention: {
+      title: 'Softmax biến điểm thô thành trọng số tương đối',
+      prompt: 'Hai query, hai key. Đổi dot thô, nhiệt độ và bật mask để thấy cùng một raw dot 0 vẫn có thể nhận trọng số dương — và mask đổi toàn bộ phân bổ.',
+      controls: [
+        ['s1', 'Raw dot với key 1', -8, 8, 0.5, 1],
+        ['s2', 'Raw dot với key 2', -8, 8, 0.5, 0],
+        ['dk', 'Số chiều key dₖ', 1, 64, 1, 2],
+        ['temp', 'Nhiệt độ T', 0.1, 2, 0.1, 1],
+        { key: 'mask', label: 'Mask causal cho query đầu', type: 'toggle', value: false },
+      ],
+      prediction: {
+        question: 'Raw dot với key 2 bằng 0 sau khi chia √dₖ. Trọng số softmax của key 2 sẽ thế nào?',
+        options: [['positive', 'Có thể vẫn lớn hơn 0'], ['zero', 'Luôn bằng 0'], ['one', 'Luôn bằng 1']],
+        correct: 'positive',
+        explain: 'Softmax so sánh các logit, không biến điểm 0 thành trọng số 0. Nếu key 1 có logit nhỏ hơn, key 2 vẫn có thể nhận trọng số dương.',
+      },
+      challenge: {
+        goal: 'Làm hai trọng số của query đầu gần nhau: mỗi trọng số nằm trong khoảng 0,45–0,55 và mask tắt.',
+        check: (p, r) => !p.mask && r.rows[0].every(value => value >= 0.45 && value <= 0.55),
+      },
+      errors: [
+        { label: 'Nhiệt độ quá thấp', params: { temp: 0.1 }, explain: 'Chia cho T rất nhỏ làm logit phóng đại; softmax bão hòa gần 0/1. Trọng số gần như chọn một key dù raw dot chỉ hơn kém nhẹ.' },
+        { label: 'Bật mask nhưng quên', params: { mask: true }, explain: 'Mask causal chặn key tương lai ở query đầu: trọng số key 2 bằng 0 do mask, không phải vì raw dot bằng 0. Cần phân biệt mask với softmax.' },
+        { label: 'Tưởng dot 0 là không chú ý', params: { s1: -1, s2: 0 }, explain: 'Key 2 có raw dot 0 vẫn nhận trọng số dương vì key 1 còn thấp hơn. Softmax chuẩn hóa tương đối trong hàng.' },
+      ],
+      calculate(p) {
+        const scale = Math.sqrt(Math.max(1, p.dk)) * Math.max(0.01, p.temp);
+        const logits = [p.s1 / scale, p.s2 / scale];
+        const softmax = values => {
+          const max = Math.max(...values), exps = values.map(value => Math.exp(value - max)), total = exps.reduce((a, b) => a + b, 0);
+          return exps.map(value => value / total);
+        };
+        const base = softmax(logits);
+        const first = p.mask ? [1, 0] : base;
+        const second = softmax([logits[1], logits[0]]);
+        const rows = [first, second];
+        const entropy = row => {
+          const value = -row.reduce((sum, item) => sum + (item > 0 ? item * Math.log(item) : 0), 0);
+          return Math.abs(value) < 1e-12 ? 0 : value;
+        };
+        return { l1: logits[0], l2: logits[1], a: first[0], b: first[1], rows, entropy1: entropy(first), entropy2: entropy(second) };
+      },
+      describe(p, r) {
+        const row = values => `(${pct(values[0])}; ${pct(values[1])})`;
+        return [
+          [['Logit sau scaling', `(${num(r.l1)}; ${num(r.l2)})`], ['Query 1', row(r.rows[0])], ['Query 2', row(r.rows[1])], ['Entropy query 1', num(r.entropy1)]],
+          `Mỗi hàng softmax có tổng 1. ${p.mask ? 'Mask causal đặt trọng số key 2 của query 1 bằng 0 bằng mask, không phải bằng raw dot.' : 'Không mask: cả hai key đều có thể nhận trọng số dương.'} Raw dot 0 chỉ là một logit; trọng số phụ thuộc các logit còn lại và nhiệt độ T.`,
+        ];
+      },
+      plot(p, r, ghost) {
+        const W = 360, H = 300, labels = ['key 1', 'key 2'], rowLabels = ['query 1', 'query 2'];
+        const cells = r.rows.map((row, i) => row.map((value, j) => {
+          const x = 96 + j * 104, y = 74 + i * 84;
+          return `<rect x="${x}" y="${y}" width="100" height="80" rx="5" fill="${heat(value)}" stroke="#fff" stroke-width="2"><title>${rowLabels[i]} → ${labels[j]}: ${pct(value)}</title></rect><text x="${x + 50}" y="${y + 46}" text-anchor="middle" font-size="18" font-weight="700" fill="#332d26">${pct(value)}</text>`;
+        }).join('')).join('');
+        const ghostNote = ghost && ghost.rows ? ` · trước đó query 1 = (${pct(ghost.rows[0][0])}; ${pct(ghost.rows[0][1])})` : '';
+        return svg(`
+          <text x="14" y="20" font-size="12" fill="#6f675d">Trọng số attention theo hàng · T = ${num(p.temp)} · ${p.mask ? 'có mask' : 'không mask'}</text>
+          <text x="146" y="52" text-anchor="middle" font-size="11" fill="#6f675d">key 1</text><text x="250" y="52" text-anchor="middle" font-size="11" fill="#6f675d">key 2</text>
+          <text x="18" y="120" font-size="11" fill="#6f675d">query 1</text><text x="18" y="204" font-size="11" fill="#6f675d">query 2</text>
+          ${cells}
+          <text x="14" y="266" font-size="11" fill="#6f675d">Đậm hơn = trọng số lớn hơn. Mỗi hàng cộng lại bằng 1.</text>
+          <text x="14" y="284" font-size="10" fill="#8d8274">${safe(ghostNote)}</text>
+        `, 'Heatmap trọng số attention cho hai query và hai key', W, H);
+      },
+    },
+
+    fedavg: {
+      title: 'Gộp có trọng số theo số mẫu, không phải bình quân đều',
+      prompt: 'Kéo hai điểm tham số local trên trục số. Xem trọng số theo số mẫu kéo điểm gộp về phía client nào; bật non-IID để nhớ rằng công thức gộp không sửa được dữ liệu lệch.',
+      controls: [
+        ['na', 'Số mẫu client A', 0, 1000, 10, 100],
+        ['nb', 'Số mẫu client B', 0, 1000, 10, 300],
+        ['wa', 'Tham số sau local train · A', -5, 5, 0.1, 2.5],
+        ['wb', 'Tham số sau local train · B', -5, 5, 0.1, 2.2],
+        { key: 'noniid', label: 'Dữ liệu client lệch nhau (non-IID)', type: 'toggle', value: false },
+      ],
+      prediction: {
+        question: 'Client A có 100 mẫu, client B có 300 mẫu. Trong FedAvg theo số mẫu, tiếng nói của B so với A là:',
+        options: [['three', 'Gấp ba lần'], ['equal', 'Bằng nhau'], ['third', 'Một phần ba']],
+        correct: 'three',
+        explain: 'Trọng số tỉ lệ với số mẫu: 300/400 so với 100/400, tức B có trọng số gấp ba A. Điều này không nói B có mô hình local tốt hơn.',
+      },
+      challenge: {
+        goal: 'Đặt số mẫu để client B chiếm ít nhất 80% trọng số gộp.',
+        check: (_p, r) => r.alphaB >= 0.8,
+      },
+      errors: [
+        { label: 'Bình quân đều hai client', params: { na: 100, nb: 300, wa: 2.5, wb: 2.2 }, explain: 'Trung bình đều cho 2,35; FedAvg theo mẫu cho 2,275. Bỏ trọng số mẫu là đổi công thức, không phải một lựa chọn trung lập.' },
+        { label: 'Client không có mẫu', params: { na: 0, nb: 300 }, explain: 'Client 0 mẫu không được đóng góp trọng số. Nếu code chia cho tổng mẫu mà không kiểm tra, cần xử lý trường hợp tổng bằng 0.' },
+        { label: 'Non-IID nhưng tin công thức', params: { noniid: true, na: 100, nb: 900, wa: 3.8, wb: -2.5 }, explain: 'Công thức gộp vẫn đúng số học, nhưng tham số local đến từ dữ liệu lệch. Weighted average không bảo đảm mô hình chung tốt cho mọi client.' },
+      ],
+      calculate(p) {
+        const n = p.na + p.nb, alphaA = n ? p.na / n : null, alphaB = n ? p.nb / n : null;
+        const average = n ? (p.na * p.wa + p.nb * p.wb) / n : null;
+        return { n, alphaA, alphaB, average, unweighted: (p.wa + p.wb) / 2, wa: p.wa, wb: p.wb, noniid: p.noniid };
+      },
+      describe(p, r) {
+        return [
+          [['Trọng số A', pct(r.alphaA)], ['Trọng số B', pct(r.alphaB)], ['FedAvg', num(r.average)], ['Bình quân đều', num(r.unweighted)]],
+          r.n ? `w = (${p.na} × ${num(p.wa)} + ${p.nb} × ${num(p.wb)}) / ${r.n} = ${num(r.average)}. Bình quân đều sẽ cho ${num(r.unweighted)}; chênh lệch ${num(r.average - r.unweighted)}. ${p.noniid ? 'Non-IID làm các tham số local khác nhau, nhưng không đổi công thức gộp theo mẫu.' : 'Cùng dữ liệu IID, trọng số theo mẫu vẫn là lựa chọn mặc định của FedAvg.'}` : 'Tổng số mẫu bằng 0: không thực hiện phép gộp. Client không có mẫu không đóng góp trọng số.',
+        ];
+      },
+      plot(p, r, ghost) {
+        const W = 420, H = 330, x0 = 42, x1 = 380;
+        const x = value => x0 + (value + 5) / 10 * (x1 - x0);
+        const total = Math.max(1, p.na + p.nb), wa = p.na / total * (x1 - x0), wb = p.nb / total * (x1 - x0);
+        const handleAttr = handle => handle ? ` data-handle="${handle}"` : '';
+        const marker = (value, y, color, label, handle, shape) => shape === 'diamond'
+          ? `<polygon${handleAttr(handle)} points="${x(value)},${y - 10} ${x(value) + 10},${y} ${x(value)},${y + 10} ${x(value) - 10},${y}" fill="${color}" stroke="#fff" stroke-width="2" style="cursor:grab"><title>${safe(label)}</title></polygon>`
+          : `<circle${handleAttr(handle)} cx="${x(value)}" cy="${y}" r="9" fill="${color}" stroke="#fff" stroke-width="2.5" style="cursor:grab"><title>${safe(label)}</title></circle>`;
+        const ghostNote = ghost ? `<text x="14" y="318" font-size="10" fill="#8d8274">Mốc A: FedAvg ${num(ghost.average)} · bình quân đều ${num(ghost.unweighted)}</text>` : '';
+        return svg(`
+          <text x="14" y="20" font-size="12" fill="#6f675d">Mẫu dữ liệu tại hai client</text>
+          <rect x="${x0}" y="34" width="${wa}" height="26" fill="#1f6f5f" opacity=".72"><title>Client A: ${p.na} mẫu</title></rect>
+          <rect x="${x0 + wa}" y="34" width="${wb}" height="26" fill="#ad542f" opacity=".72"><title>Client B: ${p.nb} mẫu</title></rect>
+          <text x="${x0 + 6}" y="52" font-size="10" fill="#fff">A · ${p.na}</text><text x="${x0 + wa + 6}" y="52" font-size="10" fill="#fff">B · ${p.nb}</text>
+          <line x1="${x0}" y1="112" x2="${x1}" y2="112" stroke="#a89c8b"/><line x1="${x0}" y1="172" x2="${x1}" y2="172" stroke="#a89c8b"/>
+          <text x="${x0}" y="104" font-size="10" fill="#6f675d">−5</text><text x="${x1 - 10}" y="104" font-size="10" fill="#6f675d">5</text>
+          ${marker(r.wa, 112, '#1f6f5f', 'Tham số local A', 'fedavg-a')}
+          ${marker(r.wb, 172, '#ad542f', 'Tham số local B', 'fedavg-b')}
+          <text x="${x(r.wa) + 14}" y="108" font-size="11" fill="#1f6f5f">A = ${num(r.wa)}</text>
+          <text x="${x(r.wb) + 14}" y="168" font-size="11" fill="#ad542f">B = ${num(r.wb)}</text>
+          <line x1="${x0}" y1="234" x2="${x1}" y2="234" stroke="#a89c8b"/>
+          ${r.average != null ? marker(r.average, 234, '#9e7a31', 'FedAvg có trọng số', null, 'diamond') : ''}
+          ${r.average != null ? `<text x="${x(r.average) + 14}" y="230" font-size="11" fill="#9e7a31">FedAvg = ${num(r.average)}</text>` : ''}
+          <circle cx="${x(r.unweighted)}" cy="234" r="7" fill="#fff" stroke="#6f675d" stroke-width="2"/><text x="${x(r.unweighted) - 52}" y="258" font-size="10" fill="#6f675d">bình quân đều ${num(r.unweighted)}</text>
+          <text x="14" y="286" font-size="10" fill="#6f675d">Kéo điểm A hoặc B trên trục để thay tham số local.</text>
+          ${ghostNote}
+        `, 'Trục số tham số local A, B, trung bình FedAvg và bình quân đều', W, H);
+      },
+      bind({ visual, params, update, noteInteraction }) {
+        let active = null;
+        const move = event => {
+          const svgEl = visual.querySelector('svg');
+          if (!svgEl) return;
+          const p = pointInView(svgEl, event, 420, 330);
+          if (p.x < 42 || p.x > 380) return;
+          const value = Math.round(clamp((p.x - 42) / 338 * 10 - 5, -5, 5) * 10) / 10;
+          if (active === 'a') params.wa = value; else params.wb = value;
+          update();
+        };
+        visual.addEventListener('pointerdown', event => {
+          const handle = event.target.closest && event.target.closest('[data-handle]');
+          if (!handle || !/fedavg-/.test(handle.dataset.handle)) return;
+          active = handle.dataset.handle === 'fedavg-a' ? 'a' : 'b';
+          noteInteraction(); event.preventDefault(); move(event);
+        });
+        window.addEventListener('pointermove', event => { if (active) move(event); });
+        window.addEventListener('pointerup', () => { active = null; });
+      },
+    },
+
+    forgetting: {
+      title: 'Forgetting nằm ở task cũ, không nằm ở điểm trung bình',
+      prompt: 'Đổi điểm task cũ trước/sau và thêm replay. Theo dõi mức quên trên task cũ; điểm trung bình có thể che mất một cú rơi lớn.',
+      controls: [
+        ['before', 'Task cũ · trước (%)', 0, 100, 1, 90],
+        ['old', 'Task cũ · sau, không replay (%)', 0, 100, 1, 65],
+        ['fresh', 'Task mới · sau (%)', 0, 100, 1, 85],
+        ['replay', 'Tỉ lệ replay (%)', 0, 100, 5, 0],
+      ],
+      prediction: {
+        question: 'Thêm replay phục hồi một phần điểm task cũ. Forgetting đo được sẽ thay đổi thế nào?',
+        options: [['down', 'Giảm'], ['up', 'Tăng'], ['same', 'Không đổi']],
+        correct: 'down',
+        explain: 'Forgetting = điểm trước − điểm sau trên task cũ. Nếu replay nâng điểm sau, khoảng giảm nhỏ lại; điểm task mới không thay thế phép đo trên task cũ.',
+      },
+      challenge: {
+        goal: 'Đưa forgetting xuống ≤ 10 điểm % trong khi dùng replay ≤ 30%.',
+        check: (p, r) => r.drop <= 10 && p.replay <= 30,
+      },
+      errors: [
+        { label: 'Trung bình đẹp, quên nặng', params: { before: 90, old: 40, fresh: 95, replay: 0 }, explain: 'Trung bình hai task 67,5% nghe tạm được, nhưng task cũ rơi 50 điểm. Một con số trung bình không thay thế việc đo từng task.' },
+        { label: 'Replay quá ít', params: { before: 90, old: 55, fresh: 90, replay: 10 }, explain: 'Replay 10% chỉ phục hồi một phần; forgetting vẫn còn lớn. Replay buffer nhỏ không phải bảo hiểm tuyệt đối.' },
+        { label: 'Chỉ nhìn task mới', params: { before: 90, old: 30, fresh: 98, replay: 0 }, explain: 'Task mới 98% rất tốt nhưng task cũ mất 60 điểm. Plasticity cao có thể đi cùng stability thấp; phải báo cả hai.' },
+      ],
+      calculate(p) {
+        const replay = clamp(p.replay, 0, 100) / 100;
+        const effectiveOld = clamp(p.old + (p.before - p.old) * replay, 0, 100);
+        return { effectiveOld, drop: p.before - effectiveOld, average: (effectiveOld + p.fresh) / 2, retention: p.before ? effectiveOld / p.before : null, recovery: effectiveOld - p.old };
+      },
+      describe(p, r) {
+        return [
+          [['Task cũ sau replay', num(r.effectiveOld) + '%'], ['Forgetting', num(r.drop) + ' điểm %'], ['Retention', pct(r.retention)], ['Trung bình hai task', num(r.average) + '%']],
+          `Forgetting = ${p.before} − ${num(r.effectiveOld)} = ${num(r.drop)} điểm %. Replay ${p.replay}% phục hồi ${num(r.recovery)} điểm trên task cũ. ${r.drop > 15 ? 'Mức quên còn lớn; đường trung bình có thể che mất.' : 'Mức quên đã giảm, nhưng vẫn cần đọc cả điểm task mới và chi phí bộ nhớ.'}`,
+        ];
+      },
+      plot(p, r, ghost) {
+        const W = 420, H = 330, x0 = 38, x1 = 390;
+        const x = value => x0 + value / 100 * (x1 - x0);
+        const row = (y, label, value, color) => `<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="#d8d0c2"/><text x="14" y="${y + 4}" font-size="10" fill="#6f675d">${label}</text><circle cx="${x(value)}" cy="${y}" r="8" fill="${color}" stroke="#fff" stroke-width="2"/><text x="${clamp(x(value) + 12, 120, 350)}" y="${y - 10}" font-size="10" fill="${color}">${num(value)}%</text>`;
+        const ghostLine = ghost ? `<line x1="${x(ghost.effectiveOld)}" y1="70" x2="${x(ghost.effectiveOld)}" y2="168" stroke="#9a8f82" stroke-dasharray="4 3"/>` : '';
+        return svg(`
+          <text x="14" y="22" font-size="12" fill="#6f675d">Dòng thời gian đánh giá hai task</text>
+          ${row(82, 'cũ · trước', p.before, '#7a8b63')}
+          ${row(122, 'cũ · sau', r.effectiveOld, '#1f6f5f')}
+          ${row(162, 'mới · sau', p.fresh, '#ad542f')}
+          ${ghostLine}
+          <path d="M${x(r.effectiveOld)} 94 V110" stroke="#ad542f" stroke-width="2" marker-end="url(#arrow-forgetting)"/><defs><marker id="arrow-forgetting" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0 0L6 3L0 6z" fill="#ad542f"/></marker></defs>
+          <text x="${x(r.effectiveOld) + 8}" y="108" font-size="10" fill="#ad542f">quên ${num(r.drop)}</text>
+          <text x="14" y="206" font-size="12" fill="#6f675d">Bảng điểm theo task</text>
+          <rect x="14" y="218" width="190" height="28" fill="#eef2e9" stroke="#fff"/><text x="22" y="237" font-size="11">Task cũ trước · ${p.before}%</text>
+          <rect x="204" y="218" width="190" height="28" fill="#dfe9dd" stroke="#fff"/><text x="212" y="237" font-size="11">Task cũ sau · ${num(r.effectiveOld)}%</text>
+          <rect x="14" y="246" width="190" height="28" fill="#faf8f3" stroke="#fff"/><text x="22" y="265" font-size="11">Task mới · ${p.fresh}%</text>
+          <rect x="204" y="246" width="190" height="28" fill="#f3e3da" stroke="#fff"/><text x="212" y="265" font-size="11">Forgetting · ${num(r.drop)} điểm</text>
+          <text x="14" y="300" font-size="11" fill="#6f675d">Replay ${p.replay}% · phục hồi ${num(r.recovery)} điểm · retention ${pct(r.retention)}</text>
+        `, 'Dòng thời gian điểm task cũ và task mới cùng bảng forgetting', W, H);
+      },
+    },
+
+    dp: {
+      title: 'Đường đánh đổi privacy–utility của nhiễu DP',
+      prompt: 'Kéo điểm ε trên đường utility. Giảm ε để riêng tư hơn: σ tăng, nhiễu mỗi client tăng và utility giảm. Đổi clipping và số vòng để thấy ngân sách cộng dồn.',
+      controls: [
+        ['epsilon', 'Epsilon ε mỗi vòng', 0.1, 10, 0.1, 1],
+        ['clip', 'Ngưỡng clipping C', 0.1, 5, 0.1, 1],
+        ['clients', 'Số client', 10, 1000, 10, 100],
+        ['rounds', 'Số vòng huấn luyện', 1, 50, 1, 1],
+      ],
+      prediction: {
+        question: 'Giảm ε để riêng tư hơn thường làm nhiễu và utility thay đổi thế nào?',
+        options: [['noise-up', 'Nhiễu tăng, utility giảm'], ['noise-down', 'Nhiễu giảm, utility tăng'], ['same', 'Không đổi']],
+        correct: 'noise-up',
+        explain: 'ε nhỏ hơn đòi hỏi nhiễu lớn hơn để che tín hiệu. Nhiễu tăng làm ước lượng kém chính xác hơn, tức utility thường giảm. Đây là đánh đổi, không phải lỗi cài đặt.',
+      },
+      challenge: {
+        goal: 'Chọn ε sao cho σ ≤ 2 và utility ≥ 40.',
+        check: (_p, r) => r.sigma <= 2 && r.utility >= 40,
+      },
+      errors: [
+        { label: 'ε quá lớn', params: { epsilon: 10 }, explain: 'ε lớn cho σ nhỏ và utility cao, nhưng bảo vệ yếu hơn. “Ít nhiễu” không đồng nghĩa “riêng tư tốt”.' },
+        { label: 'ε quá nhỏ', params: { epsilon: 0.1 }, explain: 'σ rất lớn, nhiễu lấn tín hiệu; utility gần như mất. Riêng tư mạnh có chi phí hữu ích.' },
+        { label: 'Bỏ qua ngân sách nhiều vòng', params: { epsilon: 1, rounds: 50 }, explain: 'Mỗi vòng tiêu một phần ngân sách. Nhìn ε một vòng rồi bỏ qua 50 vòng là đánh giá privacy quá lạc quan.' },
+      ],
+      calculate(p) {
+        const sigma = p.clip * Math.sqrt(2 * Math.log(1.25 / 1e-5)) / Math.max(0.01, p.epsilon);
+        return {
+          sigma,
+          utility: 100 / (1 + sigma),
+          noisePerClient: sigma / Math.sqrt(Math.max(1, p.clients)),
+          budget: p.epsilon * p.rounds,
+          epsilon: p.epsilon,
+          rounds: p.rounds,
+        };
+      },
+      describe(p, r) {
+        return [
+          [['Độ lớn nhiễu σ', num(r.sigma)], ['Utility', num(r.utility)], ['Nhiễu mỗi client', num(r.noisePerClient)], ['Ngân sách ε × vòng', num(r.budget)]],
+          `ε = ${num(p.epsilon)}, C = ${num(p.clip)} cho σ ≈ ${num(r.sigma)}. ${p.rounds > 1 ? `Với ${p.rounds} vòng, ngân sách xấp xỉ ${num(r.budget)} nếu cộng đơn giản; cần kiểm toán composition chặt hơn.` : 'Một vòng huấn luyện. Tăng số vòng sẽ tiêu thêm ngân sách riêng tư.'} Đây là ước lượng Gaussian mechanism, không phải kiểm toán DP đầy đủ.`,
+        ];
+      },
+      plot(p, r, ghost) {
+        const W = 420, H = 330, lx0 = 30, lx1 = 250, gy0 = 220, gy1 = 44;
+        const logMin = -1, logMax = 1;
+        const ex = epsilon => lx0 + (Math.log10(epsilon) - logMin) / (logMax - logMin) * (lx1 - lx0);
+        const points = [];
+        for (let i = 0; i <= 40; i++) {
+          const epsilon = Math.pow(10, logMin + (logMax - logMin) * i / 40);
+          const sigma = p.clip * Math.sqrt(2 * Math.log(1.25 / 1e-5)) / Math.max(0.01, epsilon);
+          const utility = 100 / (1 + sigma);
+          points.push([ex(epsilon), gy0 - utility / 100 * (gy0 - gy1)]);
+        }
+        const path = points.map(([x, y], i) => (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1)).join(' ');
+        const cx = ex(r.epsilon), cy = gy0 - r.utility / 100 * (gy0 - gy1);
+        const bx0 = 272, bx1 = 398, by0 = 44, by1 = 220, mid = (bx0 + bx1) / 2, spread = clamp(r.sigma * 10, 8, 56);
+        const bell = [];
+        for (let i = 0; i <= 40; i++) {
+          const z = -3 + 6 * i / 40;
+          bell.push([mid + z * spread, by1 - Math.exp(-z * z / 2) * (by1 - by0) * 0.85]);
+        }
+        const bellPath = bell.map(([x, y], i) => (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1)).join(' ');
+        const ghostLine = ghost ? `<line x1="${ex(ghost.epsilon)}" y1="${gy1}" x2="${ex(ghost.epsilon)}" y2="${gy0}" stroke="#9a8f82" stroke-dasharray="4 3"/>` : '';
+        return svg(`
+          <text x="14" y="20" font-size="12" fill="#6f675d">Utility theo ε (thang log) · kéo điểm ε</text>
+          <line x1="${lx0}" y1="${gy0}" x2="${lx1}" y2="${gy0}" stroke="#a89c8b"/><line x1="${lx0}" y1="${gy0}" x2="${lx0}" y2="${gy1}" stroke="#a89c8b"/>
+          <path d="${path}" fill="none" stroke="#1f6f5f" stroke-width="3"/>
+          ${ghostLine}
+          <circle data-handle="epsilon" cx="${cx}" cy="${cy}" r="9" fill="#ad542f" stroke="#fff" stroke-width="2.5" style="cursor:grab"><title>ε = ${num(r.epsilon)}</title></circle>
+          <text x="${lx0}" y="${H - 96}" font-size="10" fill="#6f675d">ε = 0,1</text><text x="${lx1 - 20}" y="${H - 96}" font-size="10" fill="#6f675d">ε = 10</text>
+          <text x="${lx0}" y="${gy0 + 16}" font-size="10" fill="#6f675d">Utility ${num(r.utility)} · σ ${num(r.sigma)}</text>
+          <text x="${bx0 + 4}" y="20" font-size="12" fill="#6f675d">Phân bố nhiễu</text>
+          <line x1="${bx0}" y1="${by1}" x2="${bx1}" y2="${by1}" stroke="#a89c8b"/>
+          <path d="${bellPath}" fill="none" stroke="#9e7a31" stroke-width="3"/>
+          <text x="${bx0 + 4}" y="${by1 + 16}" font-size="10" fill="#6f675d">0 · σ ${num(r.sigma)}</text>
+          <text x="14" y="${H - 66}" font-size="11" fill="#6f675d">Nhiễu mỗi client ${num(r.noisePerClient)} · ngân sách ${num(r.budget)} sau ${p.rounds} vòng</text>
+          <text x="14" y="${H - 48}" font-size="10" fill="#8d8274">Giảm ε làm đường utility đi xuống; tăng clipping cũng làm σ tăng.</text>
+        `, 'Đường utility theo epsilon và phân bố nhiễu Gaussian', W, H);
+      },
+      bind({ visual, params, update, noteInteraction }) {
+        let active = false;
+        const move = event => {
+          const svgEl = visual.querySelector('svg');
+          if (!svgEl) return;
+          const p = pointInView(svgEl, event, 420, 330);
+          if (p.x < 30 || p.x > 250) return;
+          const ratio = clamp((p.x - 30) / 220, 0, 1);
+          params.epsilon = Math.round(Math.pow(10, -1 + ratio * 2) * 10) / 10;
+          update();
+        };
+        visual.addEventListener('pointerdown', event => {
+          const handle = event.target.closest && event.target.closest('[data-handle="epsilon"]');
+          if (!handle) return;
+          active = true; noteInteraction(); event.preventDefault(); move(event);
+        });
+        window.addEventListener('pointermove', event => { if (active) move(event); });
+        window.addEventListener('pointerup', () => { active = false; });
+      },
+    },
+  });
+Object.assign(D.matrix, {
+    challenge: {
+      goal: 'Chọn ma trận có |det A| ≥ 2 và giữ ảnh của vector v trong góc phần tư thứ nhất (x > 0, y > 0).',
+      check: (_p, r) => Math.abs(r.det) >= 2 && r.x > 0 && r.y > 0,
+    },
+    errors: [
+      { label: 'Ma trận suy biến', params: { a: 1, b: 2, c: 2, d: 4 }, explain: 'det = 1×4 − 2×2 = 0. Mặt phẳng bị ép thành một đường, không còn phép nghịch đảo; diện tích ảnh bằng 0.' },
+      { label: 'Lật hướng', params: { a: -1, b: 0, c: 0, d: 1 }, explain: 'det = −1: diện tích giữ nguyên nhưng hướng bị lật. Dấu định thức mang thông tin định hướng, không chỉ độ lớn.' },
+      { label: 'Kéo giãn một trục', params: { a: 2, b: 0, c: 0, d: 0.5 }, explain: 'det = 1 nên diện tích không đổi, nhưng hình bị kéo dài theo một trục và bẹt theo trục kia. Diện tích một mình không mô tả hết phép biến đổi.' },
+    ],
+  });
+  Object.assign(D.gradient, {
+    challenge: {
+      goal: 'Với η ≤ 0,30, chạy các bước để loss hiện tại < 0,10.',
+      check: (p, r) => p.rate <= 0.3 && r.loss < 0.1,
+    },
+    errors: [
+      { label: 'η = 1 · dao động', params: { x: 0, rate: 1 }, explain: 'Với f(x) = (x−3)², η = 1 nhảy từ 0 sang 6 rồi về 0: loss không giảm đều. Đây là biên ổn định, không phải tốc độ học tốt.' },
+      { label: 'η > 1 · phân kỳ', params: { x: 0, rate: 1.2 }, explain: 'Hệ số cập nhật vượt 1 làm mỗi bước đi xa nghiệm hơn; loss tăng và có thể tràn khỏi khung. Learning rate lớn không đồng nghĩa học nhanh hơn.' },
+      { label: 'Điểm xuất phát xa', params: { x: 8, rate: 0.1 }, explain: 'Gradient lớn ở xa nghiệm tạo bước nhảy lớn; quỹ đạo vẫn đi về phía 3 nhưng cần nhiều bước hơn. Vị trí đầu và tốc độ học tương tác với nhau.' },
+    ],
+  });
+  Object.assign(D.conv, {
+    challenge: {
+      goal: 'Với ảnh 8×8, chọn kernel 3, padding 1, stride 1 để feature map giữ kích thước 8×8.',
+      check: p => p.size === 8 && p.kernel === 3 && p.padding === 1 && p.stride === 1,
+    },
+    errors: [
+      { label: 'Không padding', params: { size: 8, kernel: 3, padding: 0, stride: 1 }, explain: 'out = (8 + 0 − 3)/1 + 1 = 6: không padding làm feature map nhỏ đi sau mỗi lớp. Đây là lý do mạng sâu cần padding hoặc thiết kế giảm kích thước có chủ đích.' },
+      { label: 'Stride 2', params: { size: 8, kernel: 3, padding: 0, stride: 2 }, explain: 'out = floor((8 − 3)/2) + 1 = 3: stride 2 giảm mạnh độ phân giải. Stride là phép giảm mẫu, không chỉ là tốc độ.' },
+      { label: 'Kernel lớn', params: { size: 8, kernel: 5, padding: 0, stride: 1 }, explain: 'out = (8 − 5) + 1 = 4: kernel lớn hơn làm mất nhiều biên hơn. Cần padding nếu muốn giữ kích thước.' },
+    ],
+  });
+})();
+/* Trình phát bản nghe cho từng chương (dữ liệu từ manifest do build-audio sinh). */
+const VoicePlayer=(function(){
+  const dataEl=document.getElementById('voiceData');
+  let manifest={};
+  try{manifest=JSON.parse(dataEl?dataEl.textContent:'{}')||{};}catch(_){manifest={};}
+  if(manifest.chapters)manifest=manifest.chapters;
+
+  let active=null; // audio đang phát ở lần mount trước
+
+  function fmt(sec){
+    sec=Math.max(0,Math.floor(Number(sec)||0));
+    const m=Math.floor(sec/60),s=sec%60;
+    return m+':'+String(s).padStart(2,'0');
+  }
+  function entryFor(file){return manifest[file]||null;}
+
+  function html(file){
+    const item=entryFor(file);
+    if(!item)return '';
+    const dur=item.duration?fmt(item.duration):'';
+    return '<section class="voice-player" data-voice-root>'
+      +'<div class="voice-head"><div>'
+      +'<div class="voice-kicker">Bản nghe</div>'
+      +'<h2>Nghe bài đọc</h2>'
+      +'<div class="voice-voice">'+esc(item.voice||'')+(dur?' · '+dur:'')+'</div>'
+      +'</div><a class="voice-dl" href="'+esc(item.audio)+'" download>Tải MP3</a></div>'
+      +'<div class="voice-row">'
+      +'<button class="voice-toggle" type="button" aria-label="Phát bài đọc">&#9654;</button>'
+      +'<div class="voice-track">'
+      +'<input class="voice-range" type="range" min="0" max="1000" step="1" value="0" aria-label="Tiến trình bài đọc">'
+      +'<div class="voice-meta"><span class="voice-time">0:00</span><span class="voice-sec">Bắt đầu</span><span class="voice-dur">'+esc(dur)+'</span></div>'
+      +'</div>'
+      +'<select class="voice-rate" aria-label="Tốc độ đọc">'
+      +'<option value="0.8">0.8&times;</option><option value="1" selected>1&times;</option><option value="1.25">1.25&times;</option><option value="1.5">1.5&times;</option>'
+      +'</select>'
+      +'</div></section>';
+  }
+
+  function esc(s){
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function sectionAt(item,t){
+    let label='';
+    const secs=item.sections||[];
+    for(const s of secs){if(s.t<=t+0.05)label=s.title;else break;}
+    return label;
+  }
+
+  function mount(root,file){
+    const card=root.querySelector('[data-voice-root]');
+    if(!card)return;
+    const item=entryFor(file);
+    if(!item)return;
+    if(active){active.pause();active=null;}
+
+    const audio=new Audio(item.audio);
+    audio.preload='metadata';
+    active=audio;
+    const btn=card.querySelector('.voice-toggle');
+    const range=card.querySelector('.voice-range');
+    const timeEl=card.querySelector('.voice-time');
+    const secEl=card.querySelector('.voice-sec');
+    const durEl=card.querySelector('.voice-dur');
+    const rateEl=card.querySelector('.voice-rate');
+    let seeking=false;
+
+    const paint=()=>{
+      const d=Number.isFinite(audio.duration)?audio.duration:(item.duration||0);
+      const t=audio.currentTime||0;
+      const pct=d?Math.min(100,t/d*100):0;
+      range.value=String(Math.round(pct/100*1000));
+      range.style.setProperty('--fill',pct.toFixed(2)+'%');
+      timeEl.textContent=fmt(t);
+      if(d)durEl.textContent=fmt(d);
+      const label=sectionAt(item,t);
+      secEl.textContent=label||(audio.paused?'Bắt đầu':'Đang đọc');
+    };
+
+    btn.addEventListener('click',()=>{
+      if(audio.paused){
+        audio.playbackRate=Number(rateEl.value)||1;
+        audio.play().catch(()=>{secEl.textContent='Không phát được tệp âm thanh';});
+      }else audio.pause();
+    });
+    audio.addEventListener('play',()=>{btn.innerHTML='&#10074;&#10074;';btn.setAttribute('aria-label','Tạm dừng');});
+    audio.addEventListener('pause',()=>{btn.innerHTML='&#9654;';btn.setAttribute('aria-label','Phát bài đọc');});
+    audio.addEventListener('timeupdate',()=>{if(!seeking)paint();});
+    audio.addEventListener('loadedmetadata',paint);
+    audio.addEventListener('ended',()=>{paint();});
+    range.addEventListener('input',()=>{
+      const d=Number.isFinite(audio.duration)?audio.duration:(item.duration||0);
+      if(!d)return;
+      seeking=true;
+      audio.currentTime=Number(range.value)/1000*d;
+      paint();
+    });
+    range.addEventListener('change',()=>{seeking=false;paint();});
+    rateEl.addEventListener('change',()=>{audio.playbackRate=Number(rateEl.value)||1;});
+    card.addEventListener('keydown',e=>{
+      if(e.key===' '&&e.target===card){e.preventDefault();btn.click();}
+    });
+    paint();
+  }
+
+  function stop(){if(active){active.pause();active.currentTime=0;active=null;}}
+  return {html:html,mount:mount,stop:stop,has:file=>!!entryFor(file)};
+})();
+window.VoicePlayer=VoicePlayer;
 
 /* ===================== Renderer Markdown (nhẹ, đủ cho tài liệu) ===================== */
 function escapeHtml(s){
@@ -15195,23 +16389,49 @@ function chapterMD(idx){
 const sideNav = document.getElementById('sideNav');
 const lesson  = document.getElementById('lesson');
 const searchInput = document.getElementById('search');
+const filterTrack = document.getElementById('filterTrack');
+const filterDifficulty = document.getElementById('filterDifficulty');
+const conceptNodes = document.getElementById('conceptNodes');
+const nextRecommendation = document.getElementById('nextRecommendation');
 
 // Keep the 50 numeric routes stable; the sample is a separate route.
 const PILOT = flat.length;
 let current = -1;
 function normalizeSearch(value){ return value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').trim(); }
 const searchIndex = flat.map((item,idx)=>normalizeSearch(item.title+' '+chapterMD(idx).replace(/^:::[^\n]*$/gm,' ')));
+const LAB_ROUTES={};
+const ROUTE_LAB={};
+flat.forEach((item,idx)=>{
+  const match=chapterMD(idx).match(/^:::interactive\s+([a-z0-9-]+)/m);
+  if(match){LAB_ROUTES[match[1]]=idx;ROUTE_LAB[idx]=match[1];}
+});
+function difficultyOf(idx){
+  const item=flat[idx];
+  if(!item)return 'foundation';
+  if(item.bi===0)return item.num!==null&&item.num<=5?'foundation':'intermediate';
+  const group=(item.title.match(/G(?:iai đoạn\s*)?([1-9])/)||[])[1];
+  const level=group?Number(group):(item.num<=13?2:item.num<=24?3:item.num<=29?5:7);
+  return level<=2?'foundation':level<=5?'intermediate':'advanced';
+}
+const DIFFICULTY_LABEL={foundation:'Nền tảng',intermediate:'Trung cấp',advanced:'Nâng cao'};
+function routeIndexFor(bookNum,chapterNum){
+  return flat.findIndex(item=>item.bi===bookNum&&item.num===chapterNum);
+}
 
 /* ===================== Tiến độ đọc (localStorage) ===================== */
 const READER_STORAGE_KEY='math-reader-progress-v1';
-let readerProgress={last:null,completed:{}};
+const CLASSROOM_KEY='math-reader-classroom-v1';
+let readerProgress={last:null,completed:{},quiz:{},labs:{},challenges:{}};
 function loadReaderProgress(){
   try{
     const raw=localStorage.getItem(READER_STORAGE_KEY);
     if(!raw)return;
     const data=JSON.parse(raw);
     if(!data||typeof data!=='object')return;
-    readerProgress.completed=data.completed&&typeof data.completed==='object'&&!Array.isArray(data.completed)?data.completed:{};
+    ['completed','quiz','labs','challenges'].forEach(key=>{
+      const value=data[key];
+      readerProgress[key]=value&&typeof value==='object'&&!Array.isArray(value)?value:{};
+    });
     readerProgress.last=data.last&&typeof data.last.route==='string'?data.last:null;
   }catch{}
 }
@@ -15232,9 +16452,56 @@ function completedCount(){
     return Number.isInteger(idx)&&flat[idx]&&flat[idx].num!==0&&flat[idx].num!==null;
   }).length;
 }
+function routeMastered(route,idx){
+  const quiz=readerProgress.quiz[route];
+  if(quiz&&quiz.correct)return true;
+  const type=ROUTE_LAB[idx];
+  return Boolean(type&&readerProgress.challenges[type]);
+}
+function masteryCount(){
+  return flat.reduce((count,item,idx)=>{
+    if(item.num===0||item.num===null)return count;
+    return count+(routeMastered(routeFor(idx),idx)?1:0);
+  },0);
+}
+function quizDue(entry){
+  if(!entry||!entry.due)return false;
+  return entry.due<=Date.now();
+}
+function nextSuggestion(){
+  const due=Object.entries(readerProgress.quiz)
+    .filter(([,entry])=>quizDue(entry))
+    .sort((a,b)=>a[1].due-b[1].due)[0];
+  if(due){
+    const idx=due[0]==='#/vector-lab'?PILOT:Number(due[0].replace(/^#\//,''));
+    if(Number.isInteger(idx)&&flat[idx])return {idx,reason:due[1].correct?'Đến hạn ôn lại câu đã đúng':'Ôn lại câu từng làm sai'};
+  }
+  const unread=[];
+  flat.forEach((item,idx)=>{
+    if(item.num===0||item.num===null)return;
+    if(!readerProgress.completed[routeFor(idx)]&&idx!==current)unread.push(idx);
+  });
+  if(unread.length)return {idx:unread[0],reason:'Bài chưa đánh dấu đọc'};
+  const unquizzed=flat.findIndex((item,idx)=>item.num!==0&&item.num!==null&&!readerProgress.quiz[routeFor(idx)]);
+  if(unquizzed>=0)return {idx:unquizzed,reason:'Đọc rồi nhưng chưa tự kiểm tra'};
+  return flat.findIndex((item,idx)=>item.num!==0&&item.num!==null)?{idx:flat.findIndex((item,idx)=>item.num!==0&&item.num!==null),reason:'Xem lại nền tảng'}:null;
+}
+function refreshMastery(){
+  const el=document.getElementById('masteryProgress');
+  if(el)el.textContent=String(masteryCount());
+}
+function refreshRecommendation(){
+  if(!nextRecommendation)return;
+  const suggestion=nextSuggestion();
+  if(!suggestion||!flat[suggestion.idx]){nextRecommendation.innerHTML='';return;}
+  const title=chapterTitle(suggestion.idx);
+  nextRecommendation.innerHTML=`<span>Gợi ý: </span><button type="button" data-next-suggestion="${suggestion.idx}">${escapeHtml(title)}</button><br><span>${escapeHtml(suggestion.reason)}</span>`;
+}
 function refreshProgress(){
   const el=document.getElementById('readingProgress');
   if(el)el.textContent=String(completedCount());
+  refreshMastery();
+  refreshRecommendation();
 }
 function refreshResume(){
   const button=document.getElementById('readingResume');
@@ -15256,12 +16523,93 @@ function setCompletionUI(){
 }
 loadReaderProgress();
 
+function recordQuiz(route,correct){
+  const entry=readerProgress.quiz[route]||{attempts:0,reps:0};
+  entry.attempts+=1;
+  entry.at=Date.now();
+  entry.correct=Boolean(correct);
+  if(entry.correct){
+    entry.reps=(entry.reps||0)+1;
+    entry.due=entry.at+[1,3,7,21][Math.min(3,entry.reps-1)]*86400000;
+  }else{
+    entry.reps=0;
+    entry.due=entry.at;
+  }
+  readerProgress.quiz[route]=entry;
+  saveReaderProgress();
+  refreshProgress();
+}
+function recordLabInteraction(type){
+  const entry=readerProgress.labs[type]||{count:0};
+  entry.count+=1;
+  entry.at=Date.now();
+  readerProgress.labs[type]=entry;
+  saveReaderProgress();
+}
+function recordLabChallenge(type){
+  readerProgress.challenges[type]=Date.now();
+  saveReaderProgress();
+  refreshProgress();
+}
+window.recordQuiz=recordQuiz;
+window.recordLabInteraction=recordLabInteraction;
+window.recordLabChallenge=recordLabChallenge;
+
+function reviewQueue(limit){
+  const items=[];
+  flat.forEach((item,idx)=>{
+    if(item.num===0||item.num===null)return;
+    const route=routeFor(idx),quiz=readerProgress.quiz[route],type=ROUTE_LAB[idx];
+    let priority=9,reason='';
+    if(quiz&&quizDue(quiz)){
+      priority=0;
+      reason=quiz.correct?'Đến hạn ôn lại · quiz đã đúng':'Cần sửa · quiz từng làm sai';
+    }else if(type&&readerProgress.labs[type]&&!readerProgress.challenges[type]){
+      priority=1;reason='Lab đã thử nhưng chưa đạt thử thách';
+    }else if(!readerProgress.completed[route]){
+      priority=2;reason='Chưa đánh dấu đọc';
+    }else if(!quiz){
+      priority=3;reason='Đã đọc nhưng chưa làm quiz';
+    }
+    if(priority<9)items.push({idx,route,reason,priority,due:quiz&&quiz.due?quiz.due:0});
+  });
+  return items.sort((a,b)=>a.priority-b.priority||a.due-b.due).slice(0,limit||6);
+}
+let reviewTarget=null;
+function openReviewDialog(){
+  const items=reviewQueue(6);
+  const due=Object.values(readerProgress.quiz).filter(quizDue).length;
+  const summary=document.getElementById('reviewSummary');
+  const list=document.getElementById('reviewList');
+  if(summary)summary.textContent=`${due} câu đến hạn ôn · ${masteryCount()} bài đã nắm · ${completedCount()} bài đã đánh dấu đọc.`;
+  if(list){
+    list.innerHTML=items.length?items.map(item=>`<div class="review-item"><span><b>${escapeHtml(flat[item.idx].title)}</b>${escapeHtml(item.reason)}</span><button type="button" class="review-close" data-review-open="${item.idx}">Mở bài</button></div>`).join(''):'<p class="review-summary">Chưa có mục nào đến hạn. Hãy đọc một bài và làm quiz để bắt đầu lịch ôn.</p>';
+  }
+  reviewTarget=items.length?items[0].idx:null;
+  const dialog=document.getElementById('reviewDialog');
+  if(dialog){
+    if(typeof dialog.showModal==='function')dialog.showModal();
+    else dialog.setAttribute('open','');
+  }
+}
+function closeReviewDialog(){
+  const dialog=document.getElementById('reviewDialog');
+  if(!dialog)return;
+  if(typeof dialog.close==='function')dialog.close();
+  else dialog.removeAttribute('open');
+}
+
 function renderSidebar(filter){
   sideNav.innerHTML='';
   const query=normalizeSearch(filter||'');
+  const track=filterTrack?filterTrack.value:'';
+  const difficulty=filterDifficulty?filterDifficulty.value:'';
   let matches=0;
   books.forEach((book, bi)=>{
-    const shown=flat.map((f,idx)=>({...f,idx})).filter(f=>f.bi===bi && (!query||searchIndex[f.idx].includes(query)));
+    if(track!==''&&Number(track)!==bi)return;
+    const shown=flat.map((f,idx)=>({...f,idx})).filter(f=>f.bi===bi
+      && (!query||searchIndex[f.idx].includes(query))
+      && (!difficulty||difficultyOf(f.idx)===difficulty));
     if(!shown.length)return;
     sideNav.insertAdjacentHTML('beforeend',`<div class="book-label ${bi>0?'top':''}"><span class="bar"></span>${escapeHtml(book.shortLabel)}</div>`);
     shown.forEach(s=>{
@@ -15275,7 +16623,21 @@ function renderSidebar(filter){
       sideNav.appendChild(btn);
     });
   });
-  if(!matches)sideNav.innerHTML='<p class="empty-search">Chưa tìm thấy. Thử từ khóa ngắn hơn.</p>';
+  if(!matches)sideNav.innerHTML='<p class="empty-search">Chưa tìm thấy. Thử từ khoá ngắn hơn hoặc bỏ bộ lọc.</p>';
+}
+const CONCEPT_NODES=[
+  {book:0,num:3,title:'Toán nền tảng',detail:'Vector, ma trận, đạo hàm, xác suất'},
+  {book:0,num:8,title:'Học từ dữ liệu',detail:'Loss, gradient descent, đánh giá'},
+  {book:1,num:18,title:'Thị giác máy tính',detail:'Ảnh, convolution, CNN, attention'},
+  {book:1,num:26,title:'Học liên kết',detail:'FedAvg, non-IID, chi phí, DP'},
+  {book:1,num:30,title:'Học liên tục',detail:'Quên thảm khốc, replay, đánh giá'},
+];
+function renderConceptMap(){
+  if(!conceptNodes)return;
+  conceptNodes.innerHTML=CONCEPT_NODES.map(node=>{
+    const idx=routeIndexFor(node.book,node.num);
+    return idx<0?'':`<button type="button" class="concept-node" data-concept="${idx}"><b>${escapeHtml(node.title)}</b><span>${escapeHtml(node.detail)}</span></button>`;
+  }).join('');
 }
 
 function buildLessonHTML(idx){
@@ -15287,7 +16649,8 @@ function buildLessonHTML(idx){
     const body=renderMarkdown(md);
     const toc=collectToc(body);
     const tools=readingToolsHTML(toc,{book:books[flat[idx].bi].shortLabel,minutes:readingMinutes(md)});
-    const withTools=/<h1\b/.test(body)?body.replace(/(<h1\b[\s\S]*?<\/h1>)/,match=>match+tools):tools+body;
+    const extras=tools+VoicePlayer.html(flat[idx].file);
+    const withTools=/<h1\b/.test(body)?body.replace(/(<h1\b[\s\S]*?<\/h1>)/,match=>match+extras):extras+body;
     inner=`<span class="lesson-tag">${escapeHtml(books[flat[idx].bi].shortLabel)}</span><div class="content">${withTools}${readingCompletionHTML()}</div>`;
   }
   return (document.body.classList.contains('reading--flip')?flipHeaderHTML():'')+inner;
@@ -15306,13 +16669,15 @@ function mountQuizzes(root){
       }
       const explanation=form.querySelector('template.quiz-explanation');
       const detail=explanation?explanation.innerHTML:'';
-      if(chosen.value===form.dataset.answer){
+      const correct=chosen.value===form.dataset.answer;
+      if(correct){
         feedback.dataset.state='correct';
         feedback.innerHTML='<strong>Đúng.</strong> '+detail;
       }else{
         feedback.dataset.state='wrong';
         feedback.innerHTML=`<strong>Chưa đúng.</strong> Đáp án đúng là <strong>${escapeHtml(form.dataset.answer)}</strong>. `+detail;
       }
+      recordQuiz(routeFor(current),correct);
     });
   });
 }
@@ -15351,6 +16716,7 @@ function readRoute(){
   return match&&flat[Number(match[1])]?Number(match[1]):0;
 }
 function mountLesson(){
+  VoicePlayer.stop();
   lesson.innerHTML=buildLessonHTML(current);
   if(current===PILOT)VectorLesson.mount(lesson);
   else{
@@ -15358,6 +16724,7 @@ function mountLesson(){
     mountTableOfContents(lesson);
     mountReadingCompletion(lesson);
     LearningTools.mount(lesson);
+    VoicePlayer.mount(lesson,flat[current].file);
   }
   if(document.body.classList.contains('reading--flip')){
     document.getElementById('flipPrev').addEventListener('click',()=>open(neighbor(-1),true));
@@ -15398,6 +16765,81 @@ function refreshButtons(){
 document.getElementById('btnPrev').addEventListener('click',()=>open(neighbor(-1)));
 document.getElementById('btnNext').addEventListener('click',()=>open(neighbor(1)));
 searchInput.addEventListener('input',()=>renderSidebar(searchInput.value));
+[filterTrack,filterDifficulty].forEach(control=>{if(control)control.addEventListener('change',()=>renderSidebar(searchInput.value));});
+if(nextRecommendation)nextRecommendation.addEventListener('click',event=>{
+  const button=event.target.closest&&event.target.closest('[data-next-suggestion]');
+  if(button)open(Number(button.dataset.nextSuggestion));
+});
+if(conceptNodes)conceptNodes.addEventListener('click',event=>{
+  const button=event.target.closest&&event.target.closest('[data-concept]');
+  if(button)open(Number(button.dataset.concept));
+});
+const reviewDialog=document.getElementById('reviewDialog');
+const reviewList=document.getElementById('reviewList');
+['readingReview','btnReview'].forEach(id=>{
+  const button=document.getElementById(id);
+  if(button)button.addEventListener('click',openReviewDialog);
+});
+const reviewClose=document.getElementById('reviewClose');
+if(reviewClose)reviewClose.addEventListener('click',closeReviewDialog);
+const reviewGo=document.getElementById('reviewGo');
+if(reviewGo)reviewGo.addEventListener('click',()=>{
+  if(Number.isInteger(reviewTarget))open(reviewTarget);
+  closeReviewDialog();
+});
+if(reviewList)reviewList.addEventListener('click',event=>{
+  const button=event.target.closest&&event.target.closest('[data-review-open]');
+  if(!button)return;
+  open(Number(button.dataset.reviewOpen));
+  closeReviewDialog();
+});
+if(reviewDialog)reviewDialog.addEventListener('click',event=>{if(event.target===reviewDialog)closeReviewDialog();});
+function setClassroomMode(on){
+  document.body.classList.toggle('classroom-mode',Boolean(on));
+  const button=document.getElementById('btnClassroom');
+  if(button){button.setAttribute('aria-pressed',String(Boolean(on)));button.textContent=on?'Thoát lớp học':'Lớp học';}
+  try{localStorage.setItem(CLASSROOM_KEY,on?'1':'0');}catch{}
+  if(on)closeMobileDrawer();
+}
+const btnClassroom=document.getElementById('btnClassroom');
+if(btnClassroom)btnClassroom.addEventListener('click',()=>setClassroomMode(!document.body.classList.contains('classroom-mode')));
+renderConceptMap();
+try{setClassroomMode(localStorage.getItem(CLASSROOM_KEY)==='1');}catch{setClassroomMode(false);}
+window.labShareUrl=function(type,state){
+  const base=location.href.split(/[?#]/)[0];
+  return base+'?lab='+encodeURIComponent(type)+'&state='+encodeURIComponent(JSON.stringify(state||{}))+routeFor(current);
+};
+function applySharedLab(){
+  if(typeof URLSearchParams!=='function'||typeof location.search!=='string')return null;
+  const query=new URLSearchParams(location.search);
+  const type=query.get('lab');
+  if(!type||!LearningTools.definitions[type]||!Number.isInteger(LAB_ROUTES[type]))return null;
+  let state=null;
+  try{state=JSON.parse(query.get('state')||'null');}catch{}
+  const idx=LAB_ROUTES[type];
+  open(idx,false,true);
+  const box=lesson.querySelector(`.learning-experiment[data-experiment="${type}"]`);
+  if(box){
+    const stage=box.querySelector('[data-stage]');
+    const gate=box.querySelector('[data-prediction] [data-answer]');
+    if(stage&&stage.hidden&&gate)gate.click();
+    if(state&&typeof state==='object'&&!Array.isArray(state)){
+      const definition=LearningTools.definitions[type];
+      const allowed=new Set(definition.controls.map(control=>Array.isArray(control)?control[0]:control.key));
+      definition.controls.forEach(control=>{
+        const key=Array.isArray(control)?control[0]:control.key;
+        if(!allowed.has(key)||!(key in state))return;
+        const input=box.querySelector(`[data-param="${key}"]`);
+        if(!input)return;
+        if(input.type==='checkbox')input.checked=Boolean(state[key]);
+        else input.value=state[key];
+        input.dispatchEvent(new Event(input.type==='range'?'input':'change',{bubbles:true}));
+      });
+    }
+  }
+  if(typeof history.replaceState==='function')history.replaceState(null,'',routeFor(idx));
+  return idx;
+}
 const sideToggle=document.getElementById('sideToggle');
 const sbOverlay=document.getElementById('sbOverlay');
 const sidebar=document.getElementById('sidebar');
@@ -15421,7 +16863,20 @@ sideToggle.addEventListener('click',()=>{
 });
 sbOverlay.addEventListener('click',()=>closeMobileDrawer(true));
 document.addEventListener('keydown',event=>{
-  if(event.key==='Escape')closeMobileDrawer(true);
+  if(event.defaultPrevented||event.metaKey||event.ctrlKey||event.altKey)return;
+  if(event.key==='ArrowLeft'||event.key==='ArrowRight'){
+    const target=event.target;
+    const editing=target&&(target.closest&&target.closest('input,textarea,select,button,[contenteditable="true"],[data-handle],.learning-experiment'));
+    if(!editing&&!document.body.classList.contains('sb-open')){
+      event.preventDefault();
+      open(neighbor(event.key==='ArrowRight'?1:-1));
+      return;
+    }
+  }
+  if(event.key==='Escape'){
+    closeMobileDrawer(true);
+    if(reviewDialog&&reviewDialog.open)closeReviewDialog();
+  }
   if(event.key==='Tab'&&mobile.matches&&document.body.classList.contains('sb-open')){
     const targets=[sideToggle,...sidebar.querySelectorAll('a[href],button,input')].filter(el=>!el.disabled);
     const first=targets[0],last=targets[targets.length-1];
@@ -15452,7 +16907,9 @@ function onRouteChange(){const idx=readRoute();if(idx!==current){open(idx,false,
 window.addEventListener('hashchange',onRouteChange);
 window.addEventListener('popstate',onRouteChange);
 if (!location.hash) history.replaceState(null, '', '#/vector-lab');
-open(readRoute(),false,false,null,false);refreshProgress();refreshResume();syncDrawer();
+const sharedLab=applySharedLab();
+if(sharedLab==null)open(readRoute(),false,false,null,false);
+refreshProgress();refreshResume();syncDrawer();
 </script>
 </body>
 </html>
